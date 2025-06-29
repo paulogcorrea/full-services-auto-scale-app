@@ -75,7 +75,7 @@ setup_directories() {
     
     # Create data directories for persistent volumes
     mkdir -p ../nomad-data
-    mkdir -p ../volumes/{mysql-data,postgres-data,nexus-data,artifactory-data,rabbitmq-data,jenkins-data,mattermost-data,mattermost-logs,mattermost-config,keycloak-data,prometheus-data,loki-data,grafana-data}
+    mkdir -p ../volumes/{mysql-data,postgres-data,nexus-data,artifactory-data,rabbitmq-data,jenkins-data,mattermost-data,mattermost-logs,mattermost-config,keycloak-data,prometheus-data,loki-data,grafana-data,zookeeper-data,zookeeper-logs,kafka-data,mongodb-data,redis-data}
     
     print_status "Directory structure created"
 }

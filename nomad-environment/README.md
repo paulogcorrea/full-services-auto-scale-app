@@ -43,6 +43,7 @@ This environment manager supports the following services:
 - **Apache ZooKeeper** (Port 2181) - Coordination service for distributed applications
 - **Apache Kafka** (Port 9092) - Event streaming platform
 - **MongoDB** (Port 27017) - Document-oriented NoSQL database
+- **Redis** (Port 6379) - In-memory data store for caching and session management
 
 ## Quick Start
 
@@ -123,6 +124,7 @@ Once deployed, services will be available at:
 - **ZooKeeper**: localhost:2181 (Coordination service for Kafka)
 - **Kafka**: localhost:9092 (Event streaming, bootstrap servers)
 - **MongoDB**: localhost:27017 (admin/admin123, includes testdb with sample data)
+- **Redis**: localhost:6379 (In-memory data store, no authentication configured)
 
 ## Directory Structure
 
@@ -150,7 +152,8 @@ nomad-environment/
 │   ├── grafana.nomad
 │   ├── zookeeper.nomad
 │   ├── kafka.nomad
-│   └── mongodb.nomad
+│   ├── mongodb.nomad
+│   └── redis.nomad
 ├── configs/                     # Configuration files
 ├── scripts/                     # Additional utility scripts
 └── README.md                    # This file
