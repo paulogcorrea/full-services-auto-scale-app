@@ -27,6 +27,7 @@ declare -A SERVICES=(
     ["nexus"]="Sonatype Nexus Repository"
     ["artifactory"]="JFrog Artifactory"
     ["java"]="Java Application Server"
+    ["rabbitmq"]="RabbitMQ Message Broker"
 )
 
 # Function to print colored output
@@ -245,7 +246,7 @@ main_menu() {
                 cleanup
                 exit 0
                 ;;
-            [1-7])
+            [1-8])
                 # Get service key by index
                 local service_keys=($(printf '%s\n' "${!SERVICES[@]}" | sort))
                 local selected_service=${service_keys[$((choice-1))]}
@@ -256,7 +257,7 @@ main_menu() {
                     print_error "Invalid selection"
                 fi
                 ;;
-            8)
+            9)
                 deploy_custom_application
                 show_deployed_jobs
                 ;;
