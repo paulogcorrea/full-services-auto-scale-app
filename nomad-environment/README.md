@@ -138,7 +138,10 @@ nomad-environment/
 │   ├── keycloak.nomad
 │   ├── prometheus.nomad
 │   ├── node-exporter.nomad
-│   └── cadvisor.nomad
+│   ├── cadvisor.nomad
+│   ├── loki.nomad
+│   ├── promtail.nomad
+│   └── grafana.nomad
 ├── configs/                     # Configuration files
 ├── scripts/                     # Additional utility scripts
 └── README.md                    # This file
