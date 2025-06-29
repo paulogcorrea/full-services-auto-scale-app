@@ -40,6 +40,9 @@ This environment manager supports the following services:
 - **Loki** (Port 3100) - Log aggregation system
 - **Promtail** (Port 9080) - Log collection agent
 - **Grafana** (Port 3001) - Unified observability dashboard for metrics and logs
+- **Apache ZooKeeper** (Port 2181) - Coordination service for distributed applications
+- **Apache Kafka** (Port 9092) - Event streaming platform
+- **MongoDB** (Port 27017) - Document-oriented NoSQL database
 
 ## Quick Start
 
@@ -117,6 +120,9 @@ Once deployed, services will be available at:
 - **Loki**: http://localhost:3100 (Log aggregation API - typically accessed through Grafana)
 - **Promtail**: http://localhost:9080/metrics (Log collection agent metrics)
 - **Grafana**: http://localhost:3001 (admin/admin123 - Unified dashboard for metrics and logs)
+- **ZooKeeper**: localhost:2181 (Coordination service for Kafka)
+- **Kafka**: localhost:9092 (Event streaming, bootstrap servers)
+- **MongoDB**: localhost:27017 (admin/admin123, includes testdb with sample data)
 
 ## Directory Structure
 
@@ -141,7 +147,10 @@ nomad-environment/
 │   ├── cadvisor.nomad
 │   ├── loki.nomad
 │   ├── promtail.nomad
-│   └── grafana.nomad
+│   ├── grafana.nomad
+│   ├── zookeeper.nomad
+│   ├── kafka.nomad
+│   └── mongodb.nomad
 ├── configs/                     # Configuration files
 ├── scripts/                     # Additional utility scripts
 └── README.md                    # This file

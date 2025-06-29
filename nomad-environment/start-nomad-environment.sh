@@ -38,6 +38,9 @@ declare -A SERVICES=(
     ["loki"]="Loki Log Aggregation"
     ["promtail"]="Promtail Log Collection Agent"
     ["grafana"]="Grafana Visualization Dashboard"
+    ["zookeeper"]="Apache ZooKeeper"
+    ["kafka"]="Apache Kafka Event Streaming"
+    ["mongodb"]="MongoDB Document Database"
 )
 
 # Function to print colored output
@@ -256,7 +259,7 @@ main_menu() {
                 cleanup
                 exit 0
                 ;;
-            [1-9]|1[0-8])
+            [1-9]|1[0-9]|2[01])
                 # Get service key by index
                 local service_keys=($(printf '%s\n' "${!SERVICES[@]}" | sort))
                 local selected_service=${service_keys[$((choice-1))]}
@@ -267,7 +270,7 @@ main_menu() {
                     print_error "Invalid selection"
                 fi
                 ;;
-            19)
+            22)
                 deploy_custom_application
                 show_deployed_jobs
                 ;;
