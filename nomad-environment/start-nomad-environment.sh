@@ -31,6 +31,7 @@ declare -A SERVICES=(
     ["jenkins"]="Jenkins CI/CD Server"
     ["nodejs"]="Node.js Backend API"
     ["mattermost"]="Mattermost Collaboration Tool"
+    ["keycloak"]="Keycloak Identity Management"
 )
 
 # Function to print colored output
@@ -249,7 +250,7 @@ main_menu() {
                 cleanup
                 exit 0
                 ;;
-            [1-9]|1[01])
+            [1-9]|1[0-2])
                 # Get service key by index
                 local service_keys=($(printf '%s\n' "${!SERVICES[@]}" | sort))
                 local selected_service=${service_keys[$((choice-1))]}
@@ -260,7 +261,7 @@ main_menu() {
                     print_error "Invalid selection"
                 fi
                 ;;
-            12)
+            13)
                 deploy_custom_application
                 show_deployed_jobs
                 ;;

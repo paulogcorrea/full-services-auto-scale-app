@@ -33,6 +33,7 @@ This environment manager supports the following services:
 - **Jenkins CI/CD Server** (Port 8088/50000) - Continuous integration and delivery server
 - **Node.js Backend API** (Port 3000) - Express.js REST API with CRUD operations
 - **Mattermost** (Port 8065) - Team collaboration and messaging platform
+- **Keycloak** (Port 8070) - Identity and access management server
 
 ## Quick Start
 
@@ -103,6 +104,7 @@ Once deployed, services will be available at:
 - **Jenkins**: http://localhost:8088 (admin/admin123), Agent port: 50000
 - **Node.js API**: http://localhost:3000 (REST API with /api/users and /api/todos endpoints)
 - **Mattermost**: http://localhost:8065 (Team collaboration - create account on first visit)
+- **Keycloak**: http://localhost:8070 (admin/admin123, includes development realm and test user)
 
 ## Directory Structure
 
@@ -120,7 +122,8 @@ nomad-environment/
 │   ├── rabbitmq.nomad
 │   ├── jenkins.nomad
 │   ├── nodejs.nomad
-│   └── mattermost.nomad
+│   ├── mattermost.nomad
+│   └── keycloak.nomad
 ├── configs/                     # Configuration files
 ├── scripts/                     # Additional utility scripts
 └── README.md                    # This file
