@@ -32,6 +32,7 @@ This environment manager supports the following services:
 - **RabbitMQ Message Broker** (Port 5672/15672) - Message queue with management UI
 - **Jenkins CI/CD Server** (Port 8088/50000) - Continuous integration and delivery server
 - **Node.js Backend API** (Port 3000) - Express.js REST API with CRUD operations
+- **Mattermost** (Port 8065) - Team collaboration and messaging platform
 
 ## Quick Start
 
@@ -101,6 +102,7 @@ Once deployed, services will be available at:
 - **RabbitMQ**: localhost:5672 (AMQP), http://localhost:15672 (Management UI - admin/admin123)
 - **Jenkins**: http://localhost:8088 (admin/admin123), Agent port: 50000
 - **Node.js API**: http://localhost:3000 (REST API with /api/users and /api/todos endpoints)
+- **Mattermost**: http://localhost:8065 (Team collaboration - create account on first visit)
 
 ## Directory Structure
 
@@ -117,7 +119,8 @@ nomad-environment/
 │   ├── java.nomad
 │   ├── rabbitmq.nomad
 │   ├── jenkins.nomad
-│   └── nodejs.nomad
+│   ├── nodejs.nomad
+│   └── mattermost.nomad
 ├── configs/                     # Configuration files
 ├── scripts/                     # Additional utility scripts
 └── README.md                    # This file

@@ -30,6 +30,7 @@ declare -A SERVICES=(
     ["rabbitmq"]="RabbitMQ Message Broker"
     ["jenkins"]="Jenkins CI/CD Server"
     ["nodejs"]="Node.js Backend API"
+    ["mattermost"]="Mattermost Collaboration Tool"
 )
 
 # Function to print colored output
@@ -248,7 +249,7 @@ main_menu() {
                 cleanup
                 exit 0
                 ;;
-            [1-9]|10)
+            [1-9]|1[01])
                 # Get service key by index
                 local service_keys=($(printf '%s\n' "${!SERVICES[@]}" | sort))
                 local selected_service=${service_keys[$((choice-1))]}
@@ -259,7 +260,7 @@ main_menu() {
                     print_error "Invalid selection"
                 fi
                 ;;
-            11)
+            12)
                 deploy_custom_application
                 show_deployed_jobs
                 ;;
