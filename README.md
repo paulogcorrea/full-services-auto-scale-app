@@ -1,0 +1,1 @@
+# full-services-auto-scale-app
