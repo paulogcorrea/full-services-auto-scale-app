@@ -45,6 +45,7 @@ This environment manager supports the following services:
 - **MongoDB** (Port 27017) - Document-oriented NoSQL database
 - **Redis** (Port 6379) - In-memory data store for caching and session management
 - **Traefik** (Port 80/8079) - Modern reverse proxy and load balancer with automatic service discovery
+- **MinIO** (Port 9000/9001) - S3-compatible object storage for files, backups, and media
 
 ## Quick Start
 
@@ -127,6 +128,7 @@ Once deployed, services will be available at:
 - **MongoDB**: localhost:27017 (admin/admin123, includes testdb with sample data)
 - **Redis**: localhost:6379 (In-memory data store, no authentication configured)
 - **Traefik**: http://localhost:8079 (Dashboard), Port 80 (Reverse proxy with custom domains)
+- **MinIO**: http://localhost:9001 (Console - minioadmin/minioadmin123), API: localhost:9000
 
 ### Traefik Domain Routing
 
@@ -183,7 +185,8 @@ nomad-environment/
 │   ├── kafka.nomad
 │   ├── mongodb.nomad
 │   ├── redis.nomad
-│   └── traefik.nomad
+│   ├── traefik.nomad
+│   └── minio.nomad
 ├── configs/                     # Configuration files
 ├── scripts/                     # Additional utility scripts
 └── README.md                    # This file

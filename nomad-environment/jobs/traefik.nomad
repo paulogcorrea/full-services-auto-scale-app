@@ -166,6 +166,13 @@ http:
       service: "java-service"
       entryPoints:
         - "web"
+    
+    # MinIO Console
+    minio-router:
+      rule: "Host(`minio.localhost`)"
+      service: "minio-service"
+      entryPoints:
+        - "web"
 
   services:
     # Service definitions
@@ -233,6 +240,11 @@ http:
       loadBalancer:
         servers:
           - url: "http://host.docker.internal:8090"
+    
+    minio-service:
+      loadBalancer:
+        servers:
+          - url: "http://host.docker.internal:9001"
 EOF
         destination = "local/dynamic.yml"
       }
