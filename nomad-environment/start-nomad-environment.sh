@@ -35,6 +35,9 @@ declare -A SERVICES=(
     ["prometheus"]="Prometheus Metrics Server"
     ["node-exporter"]="Node Exporter (System Metrics)"
     ["cadvisor"]="cAdvisor (Container Metrics)"
+    ["loki"]="Loki Log Aggregation"
+    ["promtail"]="Promtail Log Collection Agent"
+    ["grafana"]="Grafana Visualization Dashboard"
 )
 
 # Function to print colored output
@@ -253,7 +256,7 @@ main_menu() {
                 cleanup
                 exit 0
                 ;;
-            [1-9]|1[0-5])
+            [1-9]|1[0-8])
                 # Get service key by index
                 local service_keys=($(printf '%s\n' "${!SERVICES[@]}" | sort))
                 local selected_service=${service_keys[$((choice-1))]}
@@ -264,7 +267,7 @@ main_menu() {
                     print_error "Invalid selection"
                 fi
                 ;;
-            16)
+            19)
                 deploy_custom_application
                 show_deployed_jobs
                 ;;

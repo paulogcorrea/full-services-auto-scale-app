@@ -34,6 +34,12 @@ This environment manager supports the following services:
 - **Node.js Backend API** (Port 3000) - Express.js REST API with CRUD operations
 - **Mattermost** (Port 8065) - Team collaboration and messaging platform
 - **Keycloak** (Port 8070) - Identity and access management server
+- **Prometheus** (Port 9090) - Metrics collection and monitoring server
+- **Node Exporter** (Port 9100) - System metrics exporter
+- **cAdvisor** (Port 8083) - Container metrics and performance analysis
+- **Loki** (Port 3100) - Log aggregation system
+- **Promtail** (Port 9080) - Log collection agent
+- **Grafana** (Port 3001) - Unified observability dashboard for metrics and logs
 
 ## Quick Start
 
@@ -105,6 +111,12 @@ Once deployed, services will be available at:
 - **Node.js API**: http://localhost:3000 (REST API with /api/users and /api/todos endpoints)
 - **Mattermost**: http://localhost:8065 (Team collaboration - create account on first visit)
 - **Keycloak**: http://localhost:8070 (admin/admin123, includes development realm and test user)
+- **Prometheus**: http://localhost:9090 (Metrics dashboard and query interface)
+- **Node Exporter**: http://localhost:9100/metrics (System metrics endpoint)
+- **cAdvisor**: http://localhost:8083 (Container performance metrics and web UI)
+- **Loki**: http://localhost:3100 (Log aggregation API - typically accessed through Grafana)
+- **Promtail**: http://localhost:9080/metrics (Log collection agent metrics)
+- **Grafana**: http://localhost:3001 (admin/admin123 - Unified dashboard for metrics and logs)
 
 ## Directory Structure
 
@@ -123,7 +135,10 @@ nomad-environment/
 │   ├── jenkins.nomad
 │   ├── nodejs.nomad
 │   ├── mattermost.nomad
-│   └── keycloak.nomad
+│   ├── keycloak.nomad
+│   ├── prometheus.nomad
+│   ├── node-exporter.nomad
+│   └── cadvisor.nomad
 ├── configs/                     # Configuration files
 ├── scripts/                     # Additional utility scripts
 └── README.md                    # This file
