@@ -44,6 +44,7 @@ This environment manager supports the following services:
 - **Apache Kafka** (Port 9092) - Event streaming platform
 - **MongoDB** (Port 27017) - Document-oriented NoSQL database
 - **Redis** (Port 6379) - In-memory data store for caching and session management
+- **Traefik** (Port 80/8079) - Modern reverse proxy and load balancer with automatic service discovery
 
 ## Quick Start
 
@@ -125,6 +126,34 @@ Once deployed, services will be available at:
 - **Kafka**: localhost:9092 (Event streaming, bootstrap servers)
 - **MongoDB**: localhost:27017 (admin/admin123, includes testdb with sample data)
 - **Redis**: localhost:6379 (In-memory data store, no authentication configured)
+- **Traefik**: http://localhost:8079 (Dashboard), Port 80 (Reverse proxy with custom domains)
+
+### Traefik Domain Routing
+
+When Traefik is deployed, you can access services using custom domains (add to /etc/hosts):
+
+```
+127.0.0.1 php.localhost
+127.0.0.1 api.localhost
+127.0.0.1 grafana.localhost
+127.0.0.1 prometheus.localhost
+127.0.0.1 jenkins.localhost
+127.0.0.1 rabbitmq.localhost
+127.0.0.1 mattermost.localhost
+127.0.0.1 keycloak.localhost
+127.0.0.1 vault.localhost
+127.0.0.1 nexus.localhost
+127.0.0.1 artifactory.localhost
+127.0.0.1 cadvisor.localhost
+127.0.0.1 java.localhost
+```
+
+Then access services via:
+- http://php.localhost (PHP Server)
+- http://api.localhost (Node.js API)
+- http://grafana.localhost (Grafana Dashboard)
+- http://prometheus.localhost (Prometheus)
+- etc.
 
 ## Directory Structure
 
@@ -153,7 +182,8 @@ nomad-environment/
 │   ├── zookeeper.nomad
 │   ├── kafka.nomad
 │   ├── mongodb.nomad
-│   └── redis.nomad
+│   ├── redis.nomad
+│   └── traefik.nomad
 ├── configs/                     # Configuration files
 ├── scripts/                     # Additional utility scripts
 └── README.md                    # This file
