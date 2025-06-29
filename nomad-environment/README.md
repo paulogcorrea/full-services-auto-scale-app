@@ -30,6 +30,8 @@ This environment manager supports the following services:
 - **JFrog Artifactory** (Port 8082) - Universal artifact repository
 - **Java Application Server** (Port 8090) - Simple Java HTTP server
 - **RabbitMQ Message Broker** (Port 5672/15672) - Message queue with management UI
+- **Jenkins CI/CD Server** (Port 8088/50000) - Continuous integration and delivery server
+- **Node.js Backend API** (Port 3000) - Express.js REST API with CRUD operations
 
 ## Quick Start
 
@@ -97,6 +99,8 @@ Once deployed, services will be available at:
 - **Artifactory**: http://localhost:8082 (admin/password)
 - **Java Server**: http://localhost:8090
 - **RabbitMQ**: localhost:5672 (AMQP), http://localhost:15672 (Management UI - admin/admin123)
+- **Jenkins**: http://localhost:8088 (admin/admin123), Agent port: 50000
+- **Node.js API**: http://localhost:3000 (REST API with /api/users and /api/todos endpoints)
 
 ## Directory Structure
 
@@ -110,7 +114,10 @@ nomad-environment/
 │   ├── vault.nomad
 │   ├── nexus.nomad
 │   ├── artifactory.nomad
-│   └── java.nomad
+│   ├── java.nomad
+│   ├── rabbitmq.nomad
+│   ├── jenkins.nomad
+│   └── nodejs.nomad
 ├── configs/                     # Configuration files
 ├── scripts/                     # Additional utility scripts
 └── README.md                    # This file

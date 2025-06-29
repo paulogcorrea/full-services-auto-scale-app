@@ -75,7 +75,7 @@ setup_directories() {
     
     # Create data directories for persistent volumes
     mkdir -p ../nomad-data
-    mkdir -p ../volumes/{mysql-data,postgres-data,nexus-data,artifactory-data}
+    mkdir -p ../volumes/{mysql-data,postgres-data,nexus-data,artifactory-data,rabbitmq-data,jenkins-data}
     
     print_status "Directory structure created"
 }
