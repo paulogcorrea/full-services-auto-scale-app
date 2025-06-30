@@ -1,4 +1,4 @@
-job "traefik" {
+job "traefik-https" {
   datacenters = ["dc1"]
   type        = "service"
 
@@ -17,6 +17,12 @@ job "traefik" {
       }
     }
 
+    volume "traefik-certs" {
+      type      = "host"
+      read_only = false
+      source    = "traefik-certs"
+    }
+
     task "traefik" {
       driver = "docker"
 
@@ -26,7 +32,7 @@ job "traefik" {
         
         volumes = [
           "/var/run/docker.sock:/var/run/docker.sock:ro",
-          "traefik-data:/data"
+          "traefik-certs:/certs"
         ]
         
         mount {
@@ -39,12 +45,6 @@ job "traefik" {
           type   = "bind"
           source = "local/dynamic.yml"
           target = "/etc/traefik/dynamic.yml"
-        }
-        
-        mount {
-          type   = "bind"
-          source = "local/tls.yml"
-          target = "/etc/traefik/tls.yml"
         }
       }
 
@@ -77,14 +77,6 @@ providers:
     filename: "/etc/traefik/dynamic.yml"
     watch: true
 
-certificatesResolvers:
-  letsencrypt:
-    acme:
-      email: admin@localhost
-      storage: /data/acme.json
-      httpChallenge:
-        entryPoint: web
-
 log:
   level: INFO
 
@@ -109,105 +101,133 @@ http:
       entryPoints:
         - "websecure"
       tls:
-        certResolver: "letsencrypt"
+        options: "default"
     
     # Node.js API
     nodejs-router:
       rule: "Host(`api.localhost`)"
       service: "nodejs-service"
       entryPoints:
-        - "web"
+        - "websecure"
+      tls:
+        options: "default"
     
     # Grafana Dashboard
     grafana-router:
       rule: "Host(`grafana.localhost`)"
       service: "grafana-service"
       entryPoints:
-        - "web"
+        - "websecure"
+      tls:
+        options: "default"
     
     # Prometheus
     prometheus-router:
       rule: "Host(`prometheus.localhost`)"
       service: "prometheus-service"
       entryPoints:
-        - "web"
+        - "websecure"
+      tls:
+        options: "default"
     
     # Jenkins
     jenkins-router:
       rule: "Host(`jenkins.localhost`)"
       service: "jenkins-service"
       entryPoints:
-        - "web"
+        - "websecure"
+      tls:
+        options: "default"
     
     # RabbitMQ Management
     rabbitmq-router:
       rule: "Host(`rabbitmq.localhost`)"
       service: "rabbitmq-service"
       entryPoints:
-        - "web"
+        - "websecure"
+      tls:
+        options: "default"
     
     # Mattermost
     mattermost-router:
       rule: "Host(`mattermost.localhost`)"
       service: "mattermost-service"
       entryPoints:
-        - "web"
+        - "websecure"
+      tls:
+        options: "default"
     
     # Keycloak
     keycloak-router:
       rule: "Host(`keycloak.localhost`)"
       service: "keycloak-service"
       entryPoints:
-        - "web"
+        - "websecure"
+      tls:
+        options: "default"
     
     # Vault
     vault-router:
       rule: "Host(`vault.localhost`)"
       service: "vault-service"
       entryPoints:
-        - "web"
+        - "websecure"
+      tls:
+        options: "default"
     
     # Nexus
     nexus-router:
       rule: "Host(`nexus.localhost`)"
       service: "nexus-service"
       entryPoints:
-        - "web"
+        - "websecure"
+      tls:
+        options: "default"
     
     # Artifactory
     artifactory-router:
       rule: "Host(`artifactory.localhost`)"
       service: "artifactory-service"
       entryPoints:
-        - "web"
+        - "websecure"
+      tls:
+        options: "default"
     
     # cAdvisor
     cadvisor-router:
       rule: "Host(`cadvisor.localhost`)"
       service: "cadvisor-service"
       entryPoints:
-        - "web"
+        - "websecure"
+      tls:
+        options: "default"
     
     # Java Server
     java-router:
       rule: "Host(`java.localhost`)"
       service: "java-service"
       entryPoints:
-        - "web"
+        - "websecure"
+      tls:
+        options: "default"
     
     # MinIO Console
     minio-router:
       rule: "Host(`minio.localhost`)"
       service: "minio-service"
       entryPoints:
-        - "web"
+        - "websecure"
+      tls:
+        options: "default"
     
     # SonarQube
     sonarqube-router:
       rule: "Host(`sonarqube.localhost`)"
       service: "sonarqube-service"
       entryPoints:
-        - "web"
+        - "websecure"
+      tls:
+        options: "default"
 
   services:
     # Service definitions
@@ -285,6 +305,25 @@ http:
       loadBalancer:
         servers:
           - url: "http://host.docker.internal:9002"
+
+tls:
+  options:
+    default:
+      sslStrategies:
+        - "tls.SniStrict"
+      minVersion: "VersionTLS12"
+      cipherSuites:
+        - "TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384"
+        - "TLS_ECDHE_RSA_WITH_CHACHA20_POLY1305"
+        - "TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256"
+        - "TLS_RSA_WITH_AES_256_GCM_SHA384"
+        - "TLS_RSA_WITH_AES_128_GCM_SHA256"
+
+  certificates:
+    - certFile: "/certs/server-cert.pem"
+      keyFile: "/certs/server-key.pem"
+      stores:
+        - "default"
 EOF
         destination = "local/dynamic.yml"
       }
@@ -295,12 +334,11 @@ EOF
       }
 
       service {
-        name = "traefik"
-        port = "http"
+        name = "traefik-https"
+        port = "https"
 
         check {
-          type     = "http"
-          path     = "/health"
+          type     = "tcp"
           interval = "30s"
           timeout  = "10s"
         }

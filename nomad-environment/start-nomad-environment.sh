@@ -45,6 +45,7 @@ declare -A SERVICES=(
     ["traefik"]="Traefik Reverse Proxy"
     ["minio"]="MinIO S3-Compatible Object Storage"
     ["sonarqube"]="SonarQube Code Quality Analysis"
+    ["traefik-https"]="Traefik Reverse Proxy (HTTPS)"
 )
 
 # Function to print colored output
@@ -263,7 +264,7 @@ main_menu() {
                 cleanup
                 exit 0
                 ;;
-            [1-9]|1[0-9]|2[0-5])
+            [1-9]|1[0-9]|2[0-6])
                 # Get service key by index
                 local service_keys=($(printf '%s\n' "${!SERVICES[@]}" | sort))
                 local selected_service=${service_keys[$((choice-1))]}
@@ -274,7 +275,7 @@ main_menu() {
                     print_error "Invalid selection"
                 fi
                 ;;
-            26)
+            27)
                 deploy_custom_application
                 show_deployed_jobs
                 ;;
