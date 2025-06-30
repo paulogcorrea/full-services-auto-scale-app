@@ -134,15 +134,62 @@ stop_nomad_server() {
 
 # Function to show service menu
 show_service_menu() {
-    print_header "================== Available Services =================="
+    print_header "================== Available Services (26 Total) =================="
     echo
-    local i=1
-    for key in "${!SERVICES[@]}"; do
-        echo "$i) ${SERVICES[$key]} ($key)"
-        ((i++))
-    done
-    echo "$i) Deploy Custom Application"
-    echo "0) Exit"
+    
+    print_header "📊 OBSERVABILITY & MONITORING (6 services)"
+    echo " 1) Prometheus Metrics Server (prometheus)"
+    echo " 2) Grafana Visualization Dashboard (grafana)"
+    echo " 3) Loki Log Aggregation (loki)"
+    echo " 4) Promtail Log Collection Agent (promtail)"
+    echo " 5) Node Exporter (System Metrics) (node-exporter)"
+    echo " 6) cAdvisor (Container Metrics) (cadvisor)"
+    echo
+    
+    print_header "💾 DATABASES (4 services)"
+    echo " 7) MySQL Database Server (mysql)"
+    echo " 8) PostgreSQL Database Server (postgresql)"
+    echo " 9) MongoDB Document Database (mongodb)"
+    echo "10) Redis In-Memory Data Store (redis)"
+    echo
+    
+    print_header "🔄 MESSAGING & STREAMING (3 services)"
+    echo "11) Apache ZooKeeper (zookeeper)"
+    echo "12) Apache Kafka Event Streaming (kafka)"
+    echo "13) RabbitMQ Message Broker (rabbitmq)"
+    echo
+    
+    print_header "🌐 WEB SERVERS & APIs (3 services)"
+    echo "14) PHP Server (php)"
+    echo "15) Node.js Backend API (nodejs)"
+    echo "16) Java Application Server (java)"
+    echo
+    
+    print_header "🔧 DEVELOPMENT TOOLS (4 services)"
+    echo "17) Jenkins CI/CD Server (jenkins)"
+    echo "18) SonarQube Code Quality Analysis (sonarqube)"
+    echo "19) Sonatype Nexus Repository (nexus)"
+    echo "20) JFrog Artifactory (artifactory)"
+    echo
+    
+    print_header "🔐 SECURITY & STORAGE (4 services)"
+    echo "21) HashiCorp Vault (vault)"
+    echo "22) Keycloak Identity Management (keycloak)"
+    echo "23) MinIO S3-Compatible Object Storage (minio)"
+    echo "24) Mattermost Collaboration Tool (mattermost)"
+    echo
+    
+    print_header "🌍 NETWORKING & PROXY (2 services)"
+    echo "25) Traefik Reverse Proxy (traefik)"
+    echo "26) Traefik Reverse Proxy (HTTPS) (traefik-https)"
+    echo
+    
+    print_header "⚙️  ACTIONS"
+    echo "27) Deploy Custom Application"
+    echo "28) Deploy Multiple Services"
+    echo "29) Show All Running Services"
+    echo "30) Stop All Services"
+    echo " 0) Exit"
     echo
 }
 
@@ -278,6 +325,23 @@ main_menu() {
             27)
                 deploy_custom_application
                 show_deployed_jobs
+                ;;
+            28)
+                show_deployed_jobs
+                ;;
+            29)
+                print_warning "This will stop ALL running services. Are you sure? (y/N)"
+                read -p "Confirm: " confirm
+                if [[ $confirm =~ ^[Yy]$ ]]; then
+                    print_status "Stopping all services..."
+                    for job in $(nomad job status -short | tail -n +2 | awk '{print $1}'); do
+                        print_status "Stopping job: $job"
+                        nomad job stop "$job" || true
+                    done
+                    print_status "All services stopped."
+                else
+                    print_status "Operation cancelled."
+                fi
                 ;;
             *)
                 print_error "Invalid option. Please try again."
