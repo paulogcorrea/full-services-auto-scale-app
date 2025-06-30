@@ -51,6 +51,18 @@ install_nomad() {
     fi
 }
 
+# Install Consul
+install_consul() {
+    if ! command -v consul &> /dev/null; then
+        print_status "Installing HashiCorp Consul..."
+        brew install hashicorp/tap/consul
+        print_status "Consul installed successfully"
+    else
+        print_status "Consul is already installed"
+        consul version
+    fi
+}
+
 # Check Docker installation
 check_docker() {
     if ! command -v docker &> /dev/null; then
@@ -75,7 +87,7 @@ setup_directories() {
     
     # Create data directories for persistent volumes
     mkdir -p ../nomad-data
-    mkdir -p ../volumes/{mysql-data,postgres-data,nexus-data,artifactory-data,rabbitmq-data,jenkins-data,mattermost-data,mattermost-logs,mattermost-config,keycloak-data,prometheus-data,loki-data,grafana-data,zookeeper-data,zookeeper-logs,kafka-data,mongodb-data,redis-data,minio-data,sonarqube-data,sonarqube-logs,sonarqube-extensions,traefik-certs}
+    mkdir -p ../volumes/{mysql-data,postgres-data,nexus-data,artifactory-data,rabbitmq-data,jenkins-data,mattermost-data,mattermost-logs,mattermost-config,keycloak-data,prometheus-data,loki-data,grafana-data,zookeeper-data,zookeeper-logs,kafka-data,mongodb-data,redis-data,minio-data,sonarqube-data,sonarqube-logs,sonarqube-extensions,traefik-certs,consul-data}
     
     print_status "Directory structure created"
 }
@@ -95,6 +107,7 @@ main() {
     # Install dependencies
     check_homebrew
     install_nomad
+    install_consul
     
     # Check Docker (don't install automatically as it requires manual intervention)
     if ! check_docker; then

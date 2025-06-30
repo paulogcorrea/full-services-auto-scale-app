@@ -112,6 +112,17 @@ check_nomad_installation() {
     fi
 }
 
+# Function to check if Consul is installed
+check_consul_installation() {
+    if ! command -v consul &> /dev/null; then
+        print_error "Consul is not installed. Please install it first."
+        echo "You can install it using:"
+        echo "  brew tap hashicorp/tap"
+        echo "  brew install hashicorp/tap/consul"
+        exit 1
+    fi
+}
+
 # Function to check if Docker is running
 check_docker() {
     if ! docker info &> /dev/null; then
@@ -120,18 +131,56 @@ check_docker() {
     fi
 }
 
-# Function to start Nomad server
+# Function to start Consul server
+start_consul_server() {
+    # Check if Consul is already running
+    if consul members &> /dev/null; then
+        print_status "Consul server is already running"
+        return 0
+    fi
+    
+    print_status "Starting Consul server..."
+    
+    # Create data directory
+    mkdir -p "$(pwd)/consul-data"
+    
+    # Start Consul in development mode (background)
+    nohup consul agent -dev \
+        -client=0.0.0.0 \
+        -bind=127.0.0.1 \
+        -ui \
+        -data-dir="$(pwd)/consul-data" \
+        > consul.log 2>&1 &
+    
+    echo $! > consul.pid
+    
+    # Wait for Consul to start
+    print_status "Waiting for Consul to start..."
+    sleep 3
+    
+    # Check if Consul is running
+    if consul members &> /dev/null; then
+        print_status "Consul server started successfully!"
+        print_status "Consul UI available at: http://localhost:8500"
+    else
+        print_error "Failed to start Consul server"
+        exit 1
+    fi
+}
+
+# Function to start Nomad server with Consul integration
 start_nomad_server() {
-    print_status "Starting Nomad server..."
+    print_status "Starting Nomad server with Consul integration..."
     
     # Create data directory
     mkdir -p "$NOMAD_DATA_DIR"
     
-    # Start Nomad in development mode (background)
+    # Start Nomad in development mode with Consul integration (background)
     nohup nomad agent -dev \
         -bind=127.0.0.1 \
         -data-dir="$NOMAD_DATA_DIR" \
         -node=nomad-dev \
+        -consul-address=127.0.0.1:8500 \
         > nomad.log 2>&1 &
     
     echo $! > nomad.pid
@@ -147,6 +196,24 @@ start_nomad_server() {
     else
         print_error "Failed to start Nomad server"
         exit 1
+    fi
+}
+
+# Function to stop Consul server
+stop_consul_server() {
+    if [ -f consul.pid ]; then
+        PID=$(cat consul.pid)
+        if ps -p $PID > /dev/null; then
+            print_status "Stopping Consul server (PID: $PID)..."
+            kill $PID
+            rm consul.pid
+            print_status "Consul server stopped"
+        else
+            print_warning "Consul server not running"
+            rm consul.pid
+        fi
+    else
+        print_warning "No Consul PID file found"
     fi
 }
 
@@ -224,12 +291,13 @@ show_service_menu() {
     echo "27) Deploy Custom Application"
     echo "28) Deploy Multiple Services"
     echo "29) Show All Running Services"
-    echo "30) Stop All Services"
+    echo "30) Stop Specific Service"
+    echo "31) Stop All Services"
     echo " 0) Exit"
     echo
 }
 
-# Function to ensure Nomad is running
+# Function to ensure Nomad and Consul are running
 ensure_nomad_running() {
     # Check if Nomad is already running
     if nomad node status &> /dev/null; then
@@ -241,9 +309,13 @@ ensure_nomad_running() {
     
     # Pre-flight checks
     check_nomad_installation
+    check_consul_installation
     check_docker
     
-    # Start Nomad server
+    # Start Consul first (required for service discovery)
+    start_consul_server
+    
+    # Start Nomad server with Consul integration
     start_nomad_server
 }
 
@@ -323,6 +395,130 @@ deploy_multiple_services() {
     
     print_status "Multiple service deployment completed!"
     show_deployed_jobs
+}
+
+# Function to stop a specific service
+stop_specific_service() {
+    print_header "================== Stop Specific Service =================="
+    echo "Enter the service name or number to stop:"
+    echo
+    
+    # Show currently running services
+    print_status "Currently running services:"
+    if nomad node status &> /dev/null; then
+        nomad job status -short | tail -n +2
+        echo
+    else
+        print_warning "Nomad is not running."
+        return
+    fi
+    
+    read -p "Service name or number to stop: " service_input
+    
+    if [ -z "$service_input" ]; then
+        print_warning "No service specified."
+        return
+    fi
+    
+    local service_to_stop=""
+    
+    # Check if input is a number
+    if [[ "$service_input" =~ ^[0-9]+$ ]]; then
+        # It's a number, get service by number
+        if [ "$service_input" -ge 1 ] && [ "$service_input" -le 26 ]; then
+            local selected_service=$(get_service_key "$service_input")
+            if [ -n "$selected_service" ]; then
+                # Convert service key to job name
+                case $selected_service in
+                    "mysql") service_to_stop="mysql-server" ;;
+                    "postgresql") service_to_stop="postgresql-server" ;;
+                    "mongodb") service_to_stop="mongodb-server" ;;
+                    "redis") service_to_stop="redis-server" ;;
+                    "vault") service_to_stop="vault-server" ;;
+                    "jenkins") service_to_stop="jenkins-server" ;;
+                    "rabbitmq") service_to_stop="rabbitmq-server" ;;
+                    "mattermost") service_to_stop="mattermost-server" ;;
+                    "keycloak") service_to_stop="keycloak-server" ;;
+                    "prometheus") service_to_stop="prometheus-server" ;;
+                    "grafana") service_to_stop="grafana-server" ;;
+                    "loki") service_to_stop="loki-server" ;;
+                    "sonarqube") service_to_stop="sonarqube-server" ;;
+                    "minio") service_to_stop="minio-server" ;;
+                    "java") service_to_stop="java-server" ;;
+                    "nodejs") service_to_stop="nodejs-server" ;;
+                    "php") service_to_stop="php-server" ;;
+                    "nexus") service_to_stop="nexus-server" ;;
+                    "artifactory") service_to_stop="artifactory-server" ;;
+                    "zookeeper") service_to_stop="zookeeper-server" ;;
+                    "kafka") service_to_stop="kafka-server" ;;
+                    "traefik") service_to_stop="traefik" ;;
+                    "traefik-https") service_to_stop="traefik-https" ;;
+                    "node-exporter") service_to_stop="node-exporter" ;;
+                    "cadvisor") service_to_stop="cadvisor" ;;
+                    "promtail") service_to_stop="promtail" ;;
+                    *) service_to_stop="$selected_service" ;;
+                esac
+            else
+                print_error "Invalid service number: $service_input"
+                return
+            fi
+        else
+            print_error "Invalid service number: $service_input (must be 1-26)"
+            return
+        fi
+    else
+        # It's a name, use it directly or convert if it's a service key
+        local service_name=$(get_service_name "$service_input")
+        if [ "$service_name" != "Unknown Service" ]; then
+            # Convert service key to job name
+            case $service_input in
+                "mysql") service_to_stop="mysql-server" ;;
+                "postgresql") service_to_stop="postgresql-server" ;;
+                "mongodb") service_to_stop="mongodb-server" ;;
+                "redis") service_to_stop="redis-server" ;;
+                "vault") service_to_stop="vault-server" ;;
+                "jenkins") service_to_stop="jenkins-server" ;;
+                "rabbitmq") service_to_stop="rabbitmq-server" ;;
+                "mattermost") service_to_stop="mattermost-server" ;;
+                "keycloak") service_to_stop="keycloak-server" ;;
+                "prometheus") service_to_stop="prometheus-server" ;;
+                "grafana") service_to_stop="grafana-server" ;;
+                "loki") service_to_stop="loki-server" ;;
+                "sonarqube") service_to_stop="sonarqube-server" ;;
+                "minio") service_to_stop="minio-server" ;;
+                "java") service_to_stop="java-server" ;;
+                "nodejs") service_to_stop="nodejs-server" ;;
+                "php") service_to_stop="php-server" ;;
+                "nexus") service_to_stop="nexus-server" ;;
+                "artifactory") service_to_stop="artifactory-server" ;;
+                "zookeeper") service_to_stop="zookeeper-server" ;;
+                "kafka") service_to_stop="kafka-server" ;;
+                "traefik") service_to_stop="traefik" ;;
+                "traefik-https") service_to_stop="traefik-https" ;;
+                "node-exporter") service_to_stop="node-exporter" ;;
+                "cadvisor") service_to_stop="cadvisor" ;;
+                "promtail") service_to_stop="promtail" ;;
+                *) service_to_stop="$service_input" ;;
+            esac
+        else
+            # Assume it's a direct job name
+            service_to_stop="$service_input"
+        fi
+    fi
+    
+    # Confirm before stopping
+    print_warning "Are you sure you want to stop '$service_to_stop'? (y/N)"
+    read -p "Confirm: " confirm
+    if [[ $confirm =~ ^[Yy]$ ]]; then
+        print_status "Stopping service: $service_to_stop..."
+        if nomad job stop "$service_to_stop"; then
+            print_status "Service '$service_to_stop' stopped successfully!"
+        else
+            print_error "Failed to stop service '$service_to_stop' or service not found"
+        fi
+    else
+        print_status "Operation cancelled."
+    fi
 }
 
 # Function to deploy custom application
@@ -408,6 +604,9 @@ cleanup() {
     
     # Stop Nomad server
     stop_nomad_server
+    
+    # Stop Consul server
+    stop_consul_server
 }
 
 # Main menu loop

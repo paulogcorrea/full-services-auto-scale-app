@@ -1,3 +1,10 @@
 nomad.pid*
 nomad.log*
 consul.log*
+consul.pid*
+nomad-data/alloc/*
+node-id*
+consul-data/checks/*
+nomad-environment/nomad-data/alloc/*
+nomad-environment/consul-data/checks/*
+nomad-environment/consul-data/services/*
