@@ -1,2 +1,3 @@
 nomad.pid*
 nomad.log*
+consul.log*
