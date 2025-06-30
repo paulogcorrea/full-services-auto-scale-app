@@ -175,12 +175,14 @@ start_nomad_server() {
     # Create data directory
     mkdir -p "$NOMAD_DATA_DIR"
     
-    # Start Nomad in development mode with Consul integration (background)
-    nohup nomad agent -dev \
-        -bind=127.0.0.1 \
-        -data-dir="$NOMAD_DATA_DIR" \
-        -node=nomad-dev \
-        -consul-address=127.0.0.1:8500 \
+    # Check if configuration file exists
+    if [ ! -f "$NOMAD_CONFIG_FILE" ]; then
+        print_error "Nomad configuration file not found: $NOMAD_CONFIG_FILE"
+        exit 1
+    fi
+    
+    # Start Nomad with configuration file (background)
+    nohup nomad agent -config="$NOMAD_CONFIG_FILE" \
         > nomad.log 2>&1 &
     
     echo $! > nomad.pid
@@ -645,6 +647,9 @@ main_menu() {
                 show_deployed_jobs
                 ;;
             30)
+                stop_specific_service
+                ;;
+            31)
                 print_warning "This will stop ALL running services. Are you sure? (y/N)"
                 read -p "Confirm: " confirm
                 if [[ $confirm =~ ^[Yy]$ ]]; then
