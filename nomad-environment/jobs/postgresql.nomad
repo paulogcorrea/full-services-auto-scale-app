@@ -31,8 +31,8 @@ job "postgresql-server" {
 
       env {
         POSTGRES_DB       = "testdb"
-        POSTGRES_USER     = "postgres"
-        POSTGRES_PASSWORD = "postgres"
+        POSTGRES_USER     = "${POSTGRES_USER}"
+        POSTGRES_PASSWORD = "${POSTGRES_PASSWORD}"
         PGDATA           = "/var/lib/postgresql/data/pgdata"
       }
 

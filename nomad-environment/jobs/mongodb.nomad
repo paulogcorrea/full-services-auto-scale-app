@@ -36,8 +36,8 @@ job "mongodb-server" {
       }
       
       env {
-        MONGO_INITDB_ROOT_USERNAME = "admin"
-        MONGO_INITDB_ROOT_PASSWORD = "admin123"
+        MONGO_INITDB_ROOT_USERNAME = "${MONGODB_ROOT_USERNAME}"
+        MONGO_INITDB_ROOT_PASSWORD = "${MONGODB_ROOT_PASSWORD}"
         MONGO_INITDB_DATABASE      = "testdb"
       }
       

@@ -299,6 +299,22 @@ show_service_menu() {
     echo
 }
 
+# Function to load secrets from Ansible Vault
+load_secrets() {
+    echo -e "${BLUE}🔐 Loading encrypted secrets...${NC}"
+    if [[ -f "scripts/load-secrets.sh" ]]; then
+        # Source the secrets script to load environment variables
+        source scripts/load-secrets.sh > /dev/null 2>&1
+        if [[ $? -eq 0 ]]; then
+            echo -e "${GREEN}✅ Secrets loaded successfully${NC}"
+        else
+            echo -e "${YELLOW}⚠️  Failed to load secrets. Using default configuration.${NC}"
+        fi
+    else
+        echo -e "${YELLOW}⚠️  Secrets file not found. Using default configuration.${NC}"
+    fi
+}
+
 # Function to ensure Nomad and Consul are running
 ensure_nomad_running() {
     # Check if Nomad is already running
@@ -686,6 +702,10 @@ trap cleanup SIGTERM
 main() {
     print_header "🚀 Nomad Environment Manager"
     print_status "Welcome! Choose services to deploy in your development environment."
+    echo
+    
+    # Load secrets before showing menu
+    load_secrets
     echo
     
     # Show main menu immediately

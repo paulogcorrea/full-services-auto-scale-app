@@ -30,7 +30,7 @@ job "mysql-server" {
       }
 
       env {
-        MYSQL_ROOT_PASSWORD = "rootpassword"
+        MYSQL_ROOT_PASSWORD = "${MYSQL_ROOT_PASSWORD}"
         MYSQL_DATABASE      = "testdb"
         MYSQL_USER         = "testuser"
         MYSQL_PASSWORD     = "testpass"

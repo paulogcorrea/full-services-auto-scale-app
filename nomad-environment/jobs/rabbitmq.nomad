@@ -33,8 +33,8 @@ job "rabbitmq-server" {
       }
 
       env {
-        RABBITMQ_DEFAULT_USER     = "admin"
-        RABBITMQ_DEFAULT_PASS     = "admin123"
+        RABBITMQ_DEFAULT_USER     = "${RABBITMQ_DEFAULT_USER}"
+        RABBITMQ_DEFAULT_PASS     = "${RABBITMQ_DEFAULT_PASS}"
         RABBITMQ_DEFAULT_VHOST    = "/"
         RABBITMQ_ERLANG_COOKIE    = "SWQOKODSQALRPCLNMEQG"
       }

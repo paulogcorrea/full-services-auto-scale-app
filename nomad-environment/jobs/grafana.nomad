@@ -48,7 +48,7 @@ job "grafana-server" {
       }
 
       env {
-        GF_SECURITY_ADMIN_PASSWORD = "admin123"
+        GF_SECURITY_ADMIN_PASSWORD = "${GRAFANA_ADMIN_PASSWORD}"
         GF_USERS_ALLOW_SIGN_UP = "false"
         GF_INSTALL_PLUGINS = "grafana-piechart-panel"
       }
@@ -72,8 +72,8 @@ reporting_enabled = false
 check_for_updates = true
 
 [security]
-admin_user = admin
-admin_password = admin123
+admin_user = ${GRAFANA_ADMIN_USER}
+admin_password = ${GRAFANA_ADMIN_PASSWORD}
 secret_key = SW2YcwTIb9zpOOhoPsMm
 
 [snapshots]

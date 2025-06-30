@@ -40,8 +40,8 @@ job "minio-server" {
       }
 
       env {
-        MINIO_ROOT_USER     = "minioadmin"
-        MINIO_ROOT_PASSWORD = "minioadmin123"
+        MINIO_ROOT_USER     = "${MINIO_ROOT_USER}"
+        MINIO_ROOT_PASSWORD = "${MINIO_ROOT_PASSWORD}"
         MINIO_BROWSER_REDIRECT_URL = "http://localhost:9001"
       }
 
@@ -53,7 +53,7 @@ job "minio-server" {
 sleep 10
 
 # Configure MinIO client
-mc alias set local http://localhost:9000 minioadmin minioadmin123
+mc alias set local http://localhost:9000 ${MINIO_ROOT_USER} ${MINIO_ROOT_PASSWORD}
 
 # Create default buckets
 mc mb local/uploads --ignore-existing
@@ -128,7 +128,7 @@ EOF
       }
 
       env {
-        MC_HOST_local = "http://minioadmin:minioadmin123@${NOMAD_IP_api}:${NOMAD_PORT_api}"
+        MC_HOST_local = "http://${MINIO_ROOT_USER}:${MINIO_ROOT_PASSWORD}@${NOMAD_IP_api}:${NOMAD_PORT_api}"
       }
 
       template {
@@ -140,7 +140,7 @@ echo "Waiting for MinIO to be ready..."
 sleep 15
 
 # Configure MinIO client
-mc alias set local http://host.docker.internal:9000 minioadmin minioadmin123
+mc alias set local http://host.docker.internal:9000 ${MINIO_ROOT_USER} ${MINIO_ROOT_PASSWORD}
 
 # Wait for MinIO to be fully ready
 until mc admin info local > /dev/null 2>&1; do

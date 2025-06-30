@@ -34,8 +34,8 @@ job "keycloak-server" {
 
       env {
         # Admin user configuration
-        KEYCLOAK_ADMIN = "admin"
-        KEYCLOAK_ADMIN_PASSWORD = "admin123"
+        KEYCLOAK_ADMIN = "${KEYCLOAK_ADMIN_USER}"
+        KEYCLOAK_ADMIN_PASSWORD = "${KEYCLOAK_ADMIN_PASSWORD}"
         
         # Database configuration (using H2 for development)
         KC_DB = "h2-file"
