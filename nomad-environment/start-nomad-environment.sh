@@ -304,14 +304,16 @@ load_secrets() {
     echo -e "${BLUE}🔐 Loading encrypted secrets...${NC}"
     if [[ -f "scripts/load-secrets.sh" ]]; then
         # Source the secrets script to load environment variables
-        source scripts/load-secrets.sh > /dev/null 2>&1
-        if [[ $? -eq 0 ]]; then
+        # Don't suppress output so user can enter vault password
+        if source scripts/load-secrets.sh; then
             echo -e "${GREEN}✅ Secrets loaded successfully${NC}"
         else
             echo -e "${YELLOW}⚠️  Failed to load secrets. Using default configuration.${NC}"
+            echo -e "${YELLOW}💡 You can continue with default credentials or exit and fix the issue.${NC}"
         fi
     else
         echo -e "${YELLOW}⚠️  Secrets file not found. Using default configuration.${NC}"
+        echo -e "${YELLOW}💡 Run 'source scripts/load-secrets.sh' manually if you want to load secrets later.${NC}"
     fi
 }
 
