@@ -2,6 +2,12 @@ datacenter = "dc1"
 data_dir   = "/Users/paulo/projetos/full-services-auto-scale-app/nomad-environment/nomad-data"
 bind_addr  = "127.0.0.1"
 
+advertise {
+  http = "127.0.0.1:4646"
+  rpc  = "127.0.0.1:4647"
+  serf = "127.0.0.1:4648"
+}
+
 server {
   enabled          = true
   bootstrap_expect = 1
@@ -140,8 +146,4 @@ ports {
   http = 4646
   rpc  = 4647
   serf = 4648
-}
-
-ui_config {
-  enabled = true
 }

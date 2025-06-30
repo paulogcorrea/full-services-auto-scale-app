@@ -8,3 +8,7 @@ consul-data/checks/*
 nomad-environment/nomad-data/alloc/*
 nomad-environment/consul-data/checks/*
 nomad-environment/consul-data/services/*
+nomad-environment/nomad-data/client/*
+nomad-environment/nomad-data/server/raft/*
+nomad-environment/nomad-data/checkpoint-signature*
+nomad-environment/nomad-data/server/serf/*
