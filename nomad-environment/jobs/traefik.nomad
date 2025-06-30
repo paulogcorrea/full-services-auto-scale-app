@@ -173,6 +173,13 @@ http:
       service: "minio-service"
       entryPoints:
         - "web"
+    
+    # SonarQube
+    sonarqube-router:
+      rule: "Host(`sonarqube.localhost`)"
+      service: "sonarqube-service"
+      entryPoints:
+        - "web"
 
   services:
     # Service definitions
@@ -245,6 +252,11 @@ http:
       loadBalancer:
         servers:
           - url: "http://host.docker.internal:9001"
+    
+    sonarqube-service:
+      loadBalancer:
+        servers:
+          - url: "http://host.docker.internal:9002"
 EOF
         destination = "local/dynamic.yml"
       }
