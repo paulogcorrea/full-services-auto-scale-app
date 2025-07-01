@@ -68,6 +68,235 @@ get_service_name() {
     esac
 }
 
+# Function to get service endpoints
+get_service_endpoints() {
+    local service_key=$1
+    case $service_key in
+        "prometheus")
+            echo "🌐 Prometheus UI: http://localhost:9090"
+            echo "📊 Targets: http://localhost:9090/targets"
+            echo "📈 Graph: http://localhost:9090/graph"
+            ;;
+        "grafana")
+            echo "🌐 Grafana Dashboard: http://localhost:3001"
+            echo "👤 Login: admin / [vault password]"
+            echo "📊 Default Dashboard: http://localhost:3001/dashboards"
+            ;;
+        "loki")
+            echo "🌐 Loki API: http://localhost:3100"
+            echo "📋 Labels: http://localhost:3100/loki/api/v1/labels"
+            echo "🔍 Query: http://localhost:3100/loki/api/v1/query"
+            ;;
+        "node-exporter")
+            echo "🌐 Node Exporter: http://localhost:9100"
+            echo "📊 Metrics: http://localhost:9100/metrics"
+            ;;
+        "cadvisor")
+            echo "🌐 cAdvisor UI: http://localhost:8083"
+            echo "📊 Container Stats: http://localhost:8083/containers/"
+            echo "📈 Metrics: http://localhost:8083/metrics"
+            ;;
+        "mysql")
+            echo "🗄️ MySQL Database: localhost:3306"
+            echo "👤 Root User: root / [vault password]"
+            echo "🗃️ Test Database: testdb (user: testuser / pass: testpass)"
+            echo "📱 Connection: mysql -h localhost -P 3306 -u root -p"
+            ;;
+        "postgresql")
+            echo "🗄️ PostgreSQL Database: localhost:5432"
+            echo "👤 User: [vault username] / [vault password]"
+            echo "🗃️ Database: testdb"
+            echo "📱 Connection: psql -h localhost -p 5432 -U [username] -d testdb"
+            ;;
+        "mongodb")
+            echo "🗄️ MongoDB Database: localhost:27017"
+            echo "👤 User: [vault username] / [vault password]"
+            echo "🗃️ Database: testdb"
+            echo "📱 Connection: mongosh mongodb://[username]:[password]@localhost:27017/testdb"
+            ;;
+        "redis")
+            echo "⚡ Redis Server: localhost:6379"
+            echo "📱 Connection: redis-cli -h localhost -p 6379"
+            echo "🔑 Password: [vault password] (if auth enabled)"
+            ;;
+        "zookeeper")
+            echo "🐘 ZooKeeper: localhost:2181 (client)"
+            echo "📊 Admin: localhost:8080"
+            echo "🔧 JMX: localhost:7071"
+            echo "📱 CLI: zkCli.sh -server localhost:2181"
+            ;;
+        "kafka")
+            echo "📨 Kafka Broker: localhost:9092"
+            echo "🔧 JMX: localhost:7072"
+            echo "📱 Producer: kafka-console-producer --broker-list localhost:9092 --topic test"
+            echo "📱 Consumer: kafka-console-consumer --bootstrap-server localhost:9092 --topic test"
+            ;;
+        "rabbitmq")
+            echo "🐰 RabbitMQ AMQP: localhost:5672"
+            echo "🌐 Management UI: http://localhost:15672"
+            echo "👤 Login: [vault username] / [vault password]"
+            echo "📱 Connection: amqp://[username]:[password]@localhost:5672/"
+            ;;
+        "php")
+            echo "🌐 PHP Server: http://localhost:8080"
+            echo "📂 Document Root: /var/www/html"
+            echo "ℹ️ PHP Info: http://localhost:8080/phpinfo.php"
+            ;;
+        "nodejs")
+            echo "🌐 Node.js API: http://localhost:3000"
+            echo "📊 Health Check: http://localhost:3000/health"
+            echo "📈 Metrics: http://localhost:3000/metrics"
+            ;;
+        "java")
+            echo "🌐 Java Application: http://localhost:8090"
+            echo "📊 Health Check: http://localhost:8090/health"
+            echo "📱 API Docs: http://localhost:8090/swagger-ui.html"
+            ;;
+        "jenkins")
+            echo "🌐 Jenkins CI/CD: http://localhost:8088"
+            echo "👤 Login: [vault username] / [vault password]"
+            echo "🔧 Agent Port: localhost:50000"
+            echo "📱 CLI: java -jar jenkins-cli.jar -s http://localhost:8088/"
+            ;;
+        "sonarqube")
+            echo "🌐 SonarQube: http://localhost:9002"
+            echo "👤 Default Login: admin / admin (change on first login)"
+            echo "📊 Projects: http://localhost:9002/projects"
+            ;;
+        "nexus")
+            echo "🌐 Nexus Repository: http://localhost:8081"
+            echo "👤 Login: admin / [vault password]"
+            echo "📦 Maven Central: http://localhost:8081/repository/maven-central/"
+            echo "📤 Uploads: http://localhost:8081/repository/maven-releases/"
+            ;;
+        "artifactory")
+            echo "🌐 JFrog Artifactory: http://localhost:8082"
+            echo "👤 Login: [vault username] / [vault password]"
+            echo "📦 Repositories: http://localhost:8082/ui/repos/tree/General"
+            ;;
+        "vault")
+            echo "🌐 Vault UI: http://localhost:8200"
+            echo "🔑 Root Token: myroot (dev mode)"
+            echo "📱 CLI: vault auth -method=userpass username=admin"
+            echo "📋 API: http://localhost:8200/v1/sys/health"
+            ;;
+        "keycloak")
+            echo "🌐 Keycloak Admin: http://localhost:8070"
+            echo "👤 Admin Login: [vault username] / [vault password]"
+            echo "🏛️ Realms: http://localhost:8070/admin/master/console/"
+            ;;
+        "minio")
+            echo "🌐 MinIO Console: http://localhost:9001"
+            echo "📦 S3 API: http://localhost:9000"
+            echo "👤 Login: [vault username] / [vault password]"
+            echo "🪣 Buckets: uploads, backups, images, documents, logs"
+            ;;
+        "mattermost")
+            echo "🌐 Mattermost: http://localhost:8065"
+            echo "👤 Setup: Create admin account on first visit"
+            echo "💬 Team: http://localhost:8065/[team-name]"
+            ;;
+        "traefik")
+            echo "🌐 Traefik Dashboard: http://localhost:8079"
+            echo "🔀 HTTP Proxy: http://localhost:80"
+            echo "🔒 HTTPS Proxy: https://localhost:443"
+            echo "📊 API: http://localhost:8079/api/rawdata"
+            ;;
+        "traefik-https")
+            echo "🌐 Traefik Dashboard: http://localhost:8079"
+            echo "🔀 HTTP Proxy: http://localhost:80"
+            echo "🔒 HTTPS Proxy: https://localhost:443"
+            echo "📊 API: http://localhost:8079/api/rawdata"
+            echo "🔐 Certificate Management: Auto HTTPS with Let's Encrypt"
+            ;;
+        "promtail")
+            echo "📋 Promtail: localhost:9080 (metrics)"
+            echo "📤 Log Shipping: Sends logs to Loki at localhost:3100"
+            echo "📊 Metrics: http://localhost:9080/metrics"
+            ;;
+        *)
+            echo "ℹ️ Service endpoints not configured for: $service_key"
+            ;;
+    esac
+}
+
+# Function to display service info after successful deployment
+show_service_info() {
+    local service_key=$1
+    local service_name=$(get_service_name "$service_key")
+    
+    echo
+    print_header "🎉 $service_name Deployed Successfully!"
+    echo
+    
+    # Show endpoints
+    print_status "📍 Service Endpoints:"
+    get_service_endpoints "$service_key"
+    echo
+    
+    # Show Traefik proxy info if Traefik is available
+    if nomad job status traefik >/dev/null 2>&1 || nomad job status traefik-https >/dev/null 2>&1; then
+        case $service_key in
+            "grafana"|"prometheus"|"jenkins"|"rabbitmq"|"mattermost"|"keycloak"|"vault"|"nexus"|"artifactory"|"cadvisor"|"java"|"minio"|"sonarqube"|"php"|"nodejs")
+                print_status "🌍 Traefik Proxy URLs (if Traefik is running):"
+                case $service_key in
+                    "grafana") echo "   https://grafana.localhost (via Traefik)" ;;
+                    "prometheus") echo "   https://prometheus.localhost (via Traefik)" ;;
+                    "jenkins") echo "   https://jenkins.localhost (via Traefik)" ;;
+                    "rabbitmq") echo "   https://rabbitmq.localhost (via Traefik)" ;;
+                    "mattermost") echo "   https://mattermost.localhost (via Traefik)" ;;
+                    "keycloak") echo "   https://keycloak.localhost (via Traefik)" ;;
+                    "vault") echo "   https://vault.localhost (via Traefik)" ;;
+                    "nexus") echo "   https://nexus.localhost (via Traefik)" ;;
+                    "artifactory") echo "   https://artifactory.localhost (via Traefik)" ;;
+                    "cadvisor") echo "   https://cadvisor.localhost (via Traefik)" ;;
+                    "java") echo "   https://java.localhost (via Traefik)" ;;
+                    "minio") echo "   https://minio.localhost (via Traefik)" ;;
+                    "sonarqube") echo "   https://sonarqube.localhost (via Traefik)" ;;
+                    "php") echo "   https://php.localhost (via Traefik)" ;;
+                    "nodejs") echo "   https://api.localhost (via Traefik)" ;;
+                esac
+                echo
+                ;;
+        esac
+    fi
+    
+    # Show additional tips
+    case $service_key in
+        "mysql"|"postgresql"|"mongodb"|"redis")
+            print_status "💡 Database Tips:"
+            echo "   • Use these services as backends for your applications"
+            echo "   • Data is persisted in Docker volumes"
+            echo "   • Check Nomad UI for detailed service status: http://localhost:4646"
+            ;;
+        "prometheus")
+            print_status "💡 Monitoring Tips:"
+            echo "   • Prometheus scrapes metrics from all deployed services"
+            echo "   • Configure Grafana to use Prometheus as data source"
+            echo "   • Check service discovery: http://localhost:9090/targets"
+            ;;
+        "grafana")
+            print_status "💡 Visualization Tips:"
+            echo "   • Prometheus datasource is pre-configured"
+            echo "   • Import dashboards from grafana.com"
+            echo "   • Create custom dashboards for your applications"
+            ;;
+        "traefik"|"traefik-https")
+            print_status "💡 Proxy Tips:"
+            echo "   • Traefik automatically discovers services"
+            echo "   • Add .localhost domains to /etc/hosts for local development"
+            echo "   • Use labels in Nomad jobs for custom routing"
+            ;;
+    esac
+    
+    echo
+    print_status "🔗 Additional Resources:"
+    echo "   • Nomad UI: http://localhost:4646"
+    echo "   • Consul UI: http://localhost:8500"
+    echo "   • Service logs: nomad alloc logs [allocation-id]"
+    echo
+}
+
 # Function to get service key by number
 get_service_key() {
     case $1 in
@@ -648,8 +877,9 @@ main_menu() {
                 # Get service key by number
                 local selected_service=$(get_service_key "$choice")
                 if [ -n "$selected_service" ]; then
-                    deploy_service "$selected_service"
+deploy_service "$selected_service"
                     show_deployed_jobs
+                    show_service_info "$selected_service"
                 else
                     print_error "Invalid selection"
                 fi
