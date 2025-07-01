@@ -64,6 +64,7 @@ get_service_name() {
         "mattermost") echo "Mattermost Collaboration Tool" ;;
         "traefik") echo "Traefik Reverse Proxy" ;;
         "traefik-https") echo "Traefik Reverse Proxy (HTTPS)" ;;
+        "generic-docker") echo "Generic Docker Application" ;;
         *) echo "Unknown Service" ;;
     esac
 }
@@ -214,6 +215,16 @@ get_service_endpoints() {
             echo "📤 Log Shipping: Sends logs to Loki at localhost:3100"
             echo "📊 Metrics: http://localhost:9080/metrics"
             ;;
+        "generic-docker")
+            echo "🐳 Generic Docker App: http://localhost:8099"
+            echo "🌐 Application URL: http://localhost:8099"
+            echo "📋 App Name: ${APP_NAME:-'Custom App'}"
+            echo "🐋 Docker Image: ${DOCKER_IMAGE:-'User Provided'}"
+            echo "📱 Internal Port: ${APP_PORT:-'80'} -> 8099 (external)"
+            if [ -n "${CONTAINER_COMMAND}" ]; then
+                echo "⚙️ Custom Command: ${CONTAINER_COMMAND}"
+            fi
+            ;;
         *)
             echo "ℹ️ Service endpoints not configured for: $service_key"
             ;;
@@ -326,6 +337,7 @@ get_service_key() {
         24) echo "mattermost" ;;
         25) echo "traefik" ;;
         26) echo "traefik-https" ;;
+        27) echo "generic-docker" ;;
         *) echo "" ;;
     esac
 }
@@ -767,6 +779,71 @@ stop_specific_service() {
         fi
     else
         print_status "Operation cancelled."
+    fi
+}
+
+# Function to deploy generic Docker application
+deploy_generic_docker() {
+    print_header "================== Deploy Generic Docker Application =================="
+    echo "Please provide the following information for your Docker application:"
+    echo
+    
+    read -p "Docker image (e.g., nginx:latest, redis:alpine): " docker_image
+    if [ -z "$docker_image" ]; then
+        print_error "Docker image is required."
+        return
+    fi
+    
+    read -p "Application name (e.g., my-app): " app_name
+    if [ -z "$app_name" ]; then
+        print_error "Application name is required."
+        return
+    fi
+    
+    read -p "Internal container port (default: 80): " app_port
+    app_port=${app_port:-80}
+    
+    read -p "Container command (optional, press Enter to skip): " container_command
+    read -p "Container args (optional, press Enter to skip): " container_args
+    
+    echo
+    print_status "Optional environment variables (press Enter to skip):"
+    read -p "ENV_VAR_1 (format: KEY=VALUE): " env_var_1
+    read -p "ENV_VAR_2 (format: KEY=VALUE): " env_var_2
+    read -p "ENV_VAR_3 (format: KEY=VALUE): " env_var_3
+    
+    # Export environment variables for the job
+    export DOCKER_IMAGE="$docker_image"
+    export APP_PORT="$app_port"
+    export APP_NAME="$app_name"
+    export CONTAINER_COMMAND="$container_command"
+    export CONTAINER_ARGS="$container_args"
+    export ENV_VAR_1="$env_var_1"
+    export ENV_VAR_2="$env_var_2"
+    export ENV_VAR_3="$env_var_3"
+    
+    echo
+    print_status "Deployment Summary:"
+    echo "   • Docker Image: $docker_image"
+    echo "   • Application Name: $app_name"
+    echo "   • Internal Port: $app_port"
+    echo "   • External Port: 8099"
+    if [ -n "$container_command" ]; then
+        echo "   • Custom Command: $container_command"
+    fi
+    if [ -n "$container_args" ]; then
+        echo "   • Custom Args: $container_args"
+    fi
+    echo
+    
+    read -p "Proceed with deployment? (y/N): " confirm
+    if [[ $confirm =~ ^[Yy]$ ]]; then
+        print_status "Deploying Generic Docker Application: $app_name..."
+        deploy_service "generic-docker"
+        show_deployed_jobs
+        show_service_info "generic-docker"
+    else
+        print_status "Deployment cancelled."
     fi
 }
 
