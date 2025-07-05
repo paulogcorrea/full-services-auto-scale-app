@@ -225,6 +225,18 @@ The script includes cleanup functionality:
 
 ## Customization
 
+### CPU Requirements
+
+- **Total CPU for all services**: ~16.6 cores (16,644 MHz)
+- **Recommended for full deployment**: 20+ cores
+
+**Typical Scenarios:**
+- **Light Development (5-8 services)**: ~3-4 cores
+- **Medium Development (10-15 services)**: ~6-8 cores 
+- **Full Stack (20+ services)**: ~12-16 cores
+
+For a detailed breakdown, see `CPU_REQUIREMENTS.md`.
+
 ### Adding New Services
 
 1. Create a new `.nomad` file in the `jobs/` directory
