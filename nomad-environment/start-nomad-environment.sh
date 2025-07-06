@@ -12,6 +12,20 @@ YELLOW='\033[1;33m'
 BLUE='\033[0;34m'
 NC='\033[0m' # No Color
 
+# Function to get host IP address
+get_host_ip() {
+    # Get the first non-localhost IP address
+    local host_ip=$(ifconfig | grep -E "inet " | grep -v "127.0.0.1" | head -1 | awk '{print $2}')
+    if [ -z "$host_ip" ]; then
+        # Fallback to localhost if no IP found
+        host_ip="localhost"
+    fi
+    echo "$host_ip"
+}
+
+# Get the host IP at startup
+HOST_IP=$(get_host_ip)
+
 # Configuration
 NOMAD_DATA_DIR="$(pwd)/nomad-data"
 NOMAD_CONFIG_FILE="$(pwd)/configs/nomad-server.hcl"
@@ -74,150 +88,150 @@ get_service_endpoints() {
     local service_key=$1
     case $service_key in
         "prometheus")
-            echo "🌐 Prometheus UI: http://localhost:9090"
-            echo "📊 Targets: http://localhost:9090/targets"
-            echo "📈 Graph: http://localhost:9090/graph"
+            echo "🌐 Prometheus UI: http://${HOST_IP}:9090"
+            echo "📊 Targets: http://${HOST_IP}:9090/targets"
+            echo "📈 Graph: http://${HOST_IP}:9090/graph"
             ;;
         "grafana")
-            echo "🌐 Grafana Dashboard: http://localhost:3001"
+            echo "🌐 Grafana Dashboard: http://${HOST_IP}:3001"
             echo "👤 Login: admin / [vault password]"
-            echo "📊 Default Dashboard: http://localhost:3001/dashboards"
+            echo "📊 Default Dashboard: http://${HOST_IP}:3001/dashboards"
             ;;
         "loki")
-            echo "🌐 Loki API: http://localhost:3100"
-            echo "📋 Labels: http://localhost:3100/loki/api/v1/labels"
-            echo "🔍 Query: http://localhost:3100/loki/api/v1/query"
+            echo "🌐 Loki API: http://${HOST_IP}:3100"
+            echo "📋 Labels: http://${HOST_IP}:3100/loki/api/v1/labels"
+            echo "🔍 Query: http://${HOST_IP}:3100/loki/api/v1/query"
             ;;
         "node-exporter")
-            echo "🌐 Node Exporter: http://localhost:9100"
-            echo "📊 Metrics: http://localhost:9100/metrics"
+            echo "🌐 Node Exporter: http://${HOST_IP}:9100"
+            echo "📊 Metrics: http://${HOST_IP}:9100/metrics"
             ;;
         "cadvisor")
-            echo "🌐 cAdvisor UI: http://localhost:8083"
-            echo "📊 Container Stats: http://localhost:8083/containers/"
-            echo "📈 Metrics: http://localhost:8083/metrics"
+            echo "🌐 cAdvisor UI: http://${HOST_IP}:8083"
+            echo "📊 Container Stats: http://${HOST_IP}:8083/containers/"
+            echo "📈 Metrics: http://${HOST_IP}:8083/metrics"
             ;;
         "mysql")
-            echo "🗄️ MySQL Database: localhost:3306"
+            echo "🗄️ MySQL Database: ${HOST_IP}:3306"
             echo "👤 Root User: root / [vault password]"
             echo "🗃️ Test Database: testdb (user: testuser / pass: testpass)"
-            echo "📱 Connection: mysql -h localhost -P 3306 -u root -p"
+            echo "📱 Connection: mysql -h ${HOST_IP} -P 3306 -u root -p"
             ;;
         "postgresql")
-            echo "🗄️ PostgreSQL Database: localhost:5432"
+            echo "🗄️ PostgreSQL Database: ${HOST_IP}:5432"
             echo "👤 User: [vault username] / [vault password]"
             echo "🗃️ Database: testdb"
-            echo "📱 Connection: psql -h localhost -p 5432 -U [username] -d testdb"
+            echo "📱 Connection: psql -h ${HOST_IP} -p 5432 -U [username] -d testdb"
             ;;
         "mongodb")
-            echo "🗄️ MongoDB Database: localhost:27017"
+            echo "🗄️ MongoDB Database: ${HOST_IP}:27017"
             echo "👤 User: [vault username] / [vault password]"
             echo "🗃️ Database: testdb"
-            echo "📱 Connection: mongosh mongodb://[username]:[password]@localhost:27017/testdb"
+            echo "📱 Connection: mongosh mongodb://[username]:[password]@${HOST_IP}:27017/testdb"
             ;;
         "redis")
-            echo "⚡ Redis Server: localhost:6379"
-            echo "📱 Connection: redis-cli -h localhost -p 6379"
+            echo "⚡ Redis Server: ${HOST_IP}:6379"
+            echo "📱 Connection: redis-cli -h ${HOST_IP} -p 6379"
             echo "🔑 Password: [vault password] (if auth enabled)"
             ;;
         "zookeeper")
-            echo "🐘 ZooKeeper: localhost:2181 (client)"
-            echo "📊 Admin: localhost:8080"
-            echo "🔧 JMX: localhost:7071"
-            echo "📱 CLI: zkCli.sh -server localhost:2181"
+            echo "🐘 ZooKeeper: ${HOST_IP}:2181 (client)"
+            echo "📊 Admin: ${HOST_IP}:8080"
+            echo "🔧 JMX: ${HOST_IP}:7071"
+            echo "📱 CLI: zkCli.sh -server ${HOST_IP}:2181"
             ;;
         "kafka")
-            echo "📨 Kafka Broker: localhost:9092"
-            echo "🔧 JMX: localhost:7072"
-            echo "📱 Producer: kafka-console-producer --broker-list localhost:9092 --topic test"
-            echo "📱 Consumer: kafka-console-consumer --bootstrap-server localhost:9092 --topic test"
+            echo "📨 Kafka Broker: ${HOST_IP}:9092"
+            echo "🔧 JMX: ${HOST_IP}:7072"
+            echo "📱 Producer: kafka-console-producer --broker-list ${HOST_IP}:9092 --topic test"
+            echo "📱 Consumer: kafka-console-consumer --bootstrap-server ${HOST_IP}:9092 --topic test"
             ;;
         "rabbitmq")
-            echo "🐰 RabbitMQ AMQP: localhost:5672"
-            echo "🌐 Management UI: http://localhost:15672"
+            echo "🐰 RabbitMQ AMQP: ${HOST_IP}:5672"
+            echo "🌐 Management UI: http://${HOST_IP}:15672"
             echo "👤 Login: [vault username] / [vault password]"
-            echo "📱 Connection: amqp://[username]:[password]@localhost:5672/"
+            echo "📱 Connection: amqp://[username]:[password]@${HOST_IP}:5672/"
             ;;
         "php")
-            echo "🌐 PHP Server: http://localhost:8080"
+            echo "🌐 PHP Server: http://${HOST_IP}:8080"
             echo "📂 Document Root: /var/www/html"
-            echo "ℹ️ PHP Info: http://localhost:8080/phpinfo.php"
+            echo "ℹ️ PHP Info: http://${HOST_IP}:8080/phpinfo.php"
             ;;
         "nodejs")
-            echo "🌐 Node.js API: http://localhost:3000"
-            echo "📊 Health Check: http://localhost:3000/health"
-            echo "📈 Metrics: http://localhost:3000/metrics"
+            echo "🌐 Node.js API: http://${HOST_IP}:3000"
+            echo "📊 Health Check: http://${HOST_IP}:3000/health"
+            echo "📈 Metrics: http://${HOST_IP}:3000/metrics"
             ;;
         "java")
-            echo "🌐 Java Application: http://localhost:8090"
-            echo "📊 Health Check: http://localhost:8090/health"
-            echo "📱 API Docs: http://localhost:8090/swagger-ui.html"
+            echo "🌐 Java Application: http://${HOST_IP}:8090"
+            echo "📊 Health Check: http://${HOST_IP}:8090/health"
+            echo "📱 API Docs: http://${HOST_IP}:8090/swagger-ui.html"
             ;;
         "jenkins")
-            echo "🌐 Jenkins CI/CD: http://localhost:8088"
+            echo "🌐 Jenkins CI/CD: http://${HOST_IP}:8088"
             echo "👤 Login: [vault username] / [vault password]"
-            echo "🔧 Agent Port: localhost:50000"
-            echo "📱 CLI: java -jar jenkins-cli.jar -s http://localhost:8088/"
+            echo "🔧 Agent Port: ${HOST_IP}:50000"
+            echo "📱 CLI: java -jar jenkins-cli.jar -s http://${HOST_IP}:8088/"
             ;;
         "sonarqube")
-            echo "🌐 SonarQube: http://localhost:9002"
+            echo "🌐 SonarQube: http://${HOST_IP}:9002"
             echo "👤 Default Login: admin / admin (change on first login)"
-            echo "📊 Projects: http://localhost:9002/projects"
+            echo "📊 Projects: http://${HOST_IP}:9002/projects"
             ;;
         "nexus")
-            echo "🌐 Nexus Repository: http://localhost:8081"
+            echo "🌐 Nexus Repository: http://${HOST_IP}:8081"
             echo "👤 Login: admin / [vault password]"
-            echo "📦 Maven Central: http://localhost:8081/repository/maven-central/"
-            echo "📤 Uploads: http://localhost:8081/repository/maven-releases/"
+            echo "📦 Maven Central: http://${HOST_IP}:8081/repository/maven-central/"
+            echo "📤 Uploads: http://${HOST_IP}:8081/repository/maven-releases/"
             ;;
         "artifactory")
-            echo "🌐 JFrog Artifactory: http://localhost:8082"
+            echo "🌐 JFrog Artifactory: http://${HOST_IP}:8082"
             echo "👤 Login: [vault username] / [vault password]"
-            echo "📦 Repositories: http://localhost:8082/ui/repos/tree/General"
+            echo "📦 Repositories: http://${HOST_IP}:8082/ui/repos/tree/General"
             ;;
         "vault")
-            echo "🌐 Vault UI: http://localhost:8200"
+            echo "🌐 Vault UI: http://${HOST_IP}:8200"
             echo "🔑 Root Token: myroot (dev mode)"
             echo "📱 CLI: vault auth -method=userpass username=admin"
-            echo "📋 API: http://localhost:8200/v1/sys/health"
+            echo "📋 API: http://${HOST_IP}:8200/v1/sys/health"
             ;;
         "keycloak")
-            echo "🌐 Keycloak Admin: http://localhost:8070"
+            echo "🌐 Keycloak Admin: http://${HOST_IP}:8070"
             echo "👤 Admin Login: [vault username] / [vault password]"
-            echo "🏛️ Realms: http://localhost:8070/admin/master/console/"
+            echo "🏛️ Realms: http://${HOST_IP}:8070/admin/master/console/"
             ;;
         "minio")
-            echo "🌐 MinIO Console: http://localhost:9001"
-            echo "📦 S3 API: http://localhost:9000"
+            echo "🌐 MinIO Console: http://${HOST_IP}:9001"
+            echo "📦 S3 API: http://${HOST_IP}:9000"
             echo "👤 Login: [vault username] / [vault password]"
             echo "🪣 Buckets: uploads, backups, images, documents, logs"
             ;;
         "mattermost")
-            echo "🌐 Mattermost: http://localhost:8065"
+            echo "🌐 Mattermost: http://${HOST_IP}:8065"
             echo "👤 Setup: Create admin account on first visit"
-            echo "💬 Team: http://localhost:8065/[team-name]"
+            echo "💬 Team: http://${HOST_IP}:8065/[team-name]"
             ;;
         "traefik")
-            echo "🌐 Traefik Dashboard: http://localhost:8079"
-            echo "🔀 HTTP Proxy: http://localhost:80"
-            echo "🔒 HTTPS Proxy: https://localhost:443"
-            echo "📊 API: http://localhost:8079/api/rawdata"
+            echo "🌐 Traefik Dashboard: http://${HOST_IP}:8079"
+            echo "🔀 HTTP Proxy: http://${HOST_IP}:80"
+            echo "🔒 HTTPS Proxy: https://${HOST_IP}:443"
+            echo "📊 API: http://${HOST_IP}:8079/api/rawdata"
             ;;
         "traefik-https")
-            echo "🌐 Traefik Dashboard: http://localhost:8079"
-            echo "🔀 HTTP Proxy: http://localhost:80"
-            echo "🔒 HTTPS Proxy: https://localhost:443"
-            echo "📊 API: http://localhost:8079/api/rawdata"
+            echo "🌐 Traefik Dashboard: http://${HOST_IP}:8079"
+            echo "🔀 HTTP Proxy: http://${HOST_IP}:80"
+            echo "🔒 HTTPS Proxy: https://${HOST_IP}:443"
+            echo "📊 API: http://${HOST_IP}:8079/api/rawdata"
             echo "🔐 Certificate Management: Auto HTTPS with Let's Encrypt"
             ;;
         "promtail")
-            echo "📋 Promtail: localhost:9080 (metrics)"
-            echo "📤 Log Shipping: Sends logs to Loki at localhost:3100"
-            echo "📊 Metrics: http://localhost:9080/metrics"
+            echo "📋 Promtail: ${HOST_IP}:9080 (metrics)"
+            echo "📤 Log Shipping: Sends logs to Loki at ${HOST_IP}:3100"
+            echo "📊 Metrics: http://${HOST_IP}:9080/metrics"
             ;;
         "generic-docker")
-            echo "🐳 Generic Docker App: http://localhost:8099"
-            echo "🌐 Application URL: http://localhost:8099"
+            echo "🐳 Generic Docker App: http://${HOST_IP}:8099"
+            echo "🌐 Application URL: http://${HOST_IP}:8099"
             echo "📋 App Name: ${APP_NAME:-'Custom App'}"
             echo "🐋 Docker Image: ${DOCKER_IMAGE:-'User Provided'}"
             echo "📱 Internal Port: ${APP_PORT:-'80'} -> 8099 (external)"
@@ -1011,6 +1025,7 @@ trap cleanup SIGTERM
 main() {
     print_header "🚀 Nomad Environment Manager"
     print_status "Welcome! Choose services to deploy in your development environment."
+    print_status "🌐 Host IP detected: ${HOST_IP}"
     echo
     
     # Load secrets before showing menu
