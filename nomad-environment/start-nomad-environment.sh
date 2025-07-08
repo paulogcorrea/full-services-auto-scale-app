@@ -199,6 +199,8 @@ get_service_endpoints() {
             echo "🌐 Keycloak Admin: http://${HOST_IP}:8070"
             echo "👤 Admin Login: [vault username] / [vault password]"
             echo "🏛️ Realms: http://${HOST_IP}:8070/admin/master/console/"
+            echo "💾 Database: H2 file-based (default) or PostgreSQL (configurable)"
+            echo "🔧 To use PostgreSQL: Set KC_DB_TYPE=postgresql in environment"
             ;;
         "minio")
             echo "🌐 MinIO Console: http://${HOST_IP}:9001"

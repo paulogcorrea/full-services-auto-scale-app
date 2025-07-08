@@ -118,6 +118,9 @@ Once deployed, services will be available at:
 - **Node.js API**: http://localhost:3000 (REST API with /api/users and /api/todos endpoints)
 - **Mattermost**: http://localhost:8065 (Team collaboration - create account on first visit)
 - **Keycloak**: http://localhost:8070 (admin/admin123, includes development realm and test user)
+  - By default uses H2 file-based database
+  - Can be configured to use PostgreSQL by setting KC_DB_TYPE=postgresql
+  - Use `scripts/deploy-keycloak-with-postgresql.sh` for PostgreSQL setup
 - **Prometheus**: http://localhost:9090 (Metrics dashboard and query interface)
 - **Node Exporter**: http://localhost:9100/metrics (System metrics endpoint)
 - **cAdvisor**: http://localhost:8083 (Container performance metrics and web UI)

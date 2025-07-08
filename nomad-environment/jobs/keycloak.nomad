@@ -24,7 +24,6 @@ job "keycloak-server" {
         image = "quay.io/keycloak/keycloak:latest"
         ports = ["http"]
         
-        command = "/opt/keycloak/bin/kc.sh"
         args = ["start-dev"]
         
         volumes = [
@@ -34,12 +33,11 @@ job "keycloak-server" {
 
       env {
         # Admin user configuration
-        KEYCLOAK_ADMIN = "${KEYCLOAK_ADMIN_USER}"
-        KEYCLOAK_ADMIN_PASSWORD = "${KEYCLOAK_ADMIN_PASSWORD}"
+        KEYCLOAK_ADMIN = "admin"
+        KEYCLOAK_ADMIN_PASSWORD = "admin123"
         
-        # Database configuration (using H2 for development)
-        KC_DB = "h2-file"
-        KC_DB_URL = "jdbc:h2:file:/opt/keycloak/data/keycloak"
+        # Database configuration - Use dev-file for H2 development database
+        KC_DB = "dev-file"
         
         # Server configuration
         KC_HTTP_PORT = "8070"
