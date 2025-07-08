@@ -12,3 +12,6 @@ nomad-environment/nomad-data/client/*
 nomad-environment/nomad-data/server/raft/*
 nomad-environment/nomad-data/checkpoint-signature*
 nomad-environment/nomad-data/server/serf/*
+nomad-environment/certs/*.pem
+nomad-environment/certs/*.csr
+nomad-environment/certs/*.srl
