@@ -116,8 +116,7 @@ EOF
         port = "http"
 
         check {
-          type     = "http"
-          path     = "/health/ready"
+          type     = "tcp"
           interval = "30s"
           timeout  = "10s"
         }

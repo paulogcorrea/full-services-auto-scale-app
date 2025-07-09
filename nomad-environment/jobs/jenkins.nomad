@@ -30,9 +30,6 @@ job "jenkins-server" {
         volumes = [
           "jenkins-data:/var/jenkins_home"
         ]
-        
-        # Run as root to avoid permission issues in development
-        privileged = true
       }
 
       env {
