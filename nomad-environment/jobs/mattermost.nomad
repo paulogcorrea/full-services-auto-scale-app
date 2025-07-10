@@ -29,6 +29,13 @@ job "mattermost-server" {
       source    = "mattermost-config"
     }
 
+    restart {
+      attempts = 3
+      interval = "5m"
+      delay    = "25s"
+      mode     = "fail"
+    }
+
     task "mattermost" {
       driver = "docker"
 

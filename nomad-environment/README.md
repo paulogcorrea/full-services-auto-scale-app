@@ -121,6 +121,10 @@ Once deployed, services will be available at:
   - By default uses H2 file-based database
   - Can be configured to use PostgreSQL by setting KC_DB_TYPE=postgresql
   - Use `scripts/deploy-keycloak-with-postgresql.sh` for PostgreSQL setup
+- **Mattermost**: http://localhost:8065 (team collaboration platform)
+  - Uses dedicated MySQL instance (port 3307, separate from main MySQL)
+  - Use `scripts/deploy-mattermost-with-mysql.sh` for complete setup
+  - Database: mattermost (user: mmuser / mmuser_password)
 - **Prometheus**: http://localhost:9090 (Metrics dashboard and query interface)
 - **Node Exporter**: http://localhost:9100/metrics (System metrics endpoint)
 - **cAdvisor**: http://localhost:8083 (Container performance metrics and web UI)

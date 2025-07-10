@@ -11,12 +11,6 @@ job "mysql-mattermost" {
       }
     }
 
-    volume "mysql-mattermost-data" {
-      type      = "host"
-      read_only = false
-      source    = "mysql-mattermost-data"
-    }
-
     task "mysql" {
       driver = "docker"
 
@@ -31,11 +25,11 @@ job "mysql-mattermost" {
         # Add command to configure MySQL for Mattermost
         command = "mysqld"
         args = [
+          "--port=3307",
           "--character-set-server=utf8mb4",
           "--collation-server=utf8mb4_unicode_ci",
-          "--innodb-file-format=Barracuda",
-          "--innodb-large-prefix=1",
-          "--innodb-file-per-table=1"
+          "--innodb-file-per-table=1",
+          "--sql-mode=STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION"
         ]
       }
 
