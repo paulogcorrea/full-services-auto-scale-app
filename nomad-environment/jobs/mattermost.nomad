@@ -44,12 +44,12 @@ job "mattermost-server" {
       }
 
       env {
-        # Database configuration (using built-in SQLite for simplicity)
-        MM_SQLSETTINGS_DRIVERNAME = "sqlite3"
-        MM_SQLSETTINGS_DATASOURCE = "/mattermost/data/mattermost.db"
+        # Database configuration (using dedicated MySQL instance)
+        MM_SQLSETTINGS_DRIVERNAME = "mysql"
+        MM_SQLSETTINGS_DATASOURCE = "mmuser:mmuser_password@tcp(192.168.15.5:3307)/mattermost?charset=utf8mb4,utf8&readTimeout=30s&writeTimeout=30s"
         
         # Server configuration
-        MM_SERVICESETTINGS_SITEURL = "http://localhost:8065"
+        MM_SERVICESETTINGS_SITEURL = "http://192.168.15.5:8065"
         MM_SERVICESETTINGS_LISTENADDRESS = ":8065"
         MM_SERVICESETTINGS_ENABLELOCALMODE = "true"
         MM_SERVICESETTINGS_ENABLEDEVELOPER = "true"
