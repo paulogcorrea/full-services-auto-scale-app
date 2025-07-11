@@ -8,6 +8,7 @@ job "artifactory-server" {
     network {
       port "artifactory" {
         static = 8082
+        to = 8081
       }
     }
 
@@ -27,10 +28,6 @@ job "artifactory-server" {
         volumes = [
           "artifactory-data:/var/opt/jfrog/artifactory"
         ]
-        
-        port_map {
-          artifactory = 8081
-        }
       }
 
       env {
