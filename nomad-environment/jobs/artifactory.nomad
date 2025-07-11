@@ -21,7 +21,7 @@ job "artifactory-server" {
       driver = "docker"
 
       config {
-        image = "releases-docker.jfrog.io/jfrog/artifactory-oss:latest"
+        image = "docker.bintray.io/jfrog/artifactory-oss:6.23.41"
         ports = ["artifactory"]
         
         volumes = [
@@ -30,7 +30,15 @@ job "artifactory-server" {
       }
 
       env {
-        JF_SHARED_DATABASE_TYPE = "derby"
+        # Simplified configuration for version 6.x
+        DB_TYPE = "derby"
+      }
+
+      restart {
+        attempts = 5
+        interval = "10m"
+        delay    = "30s"
+        mode     = "fail"
       }
 
       resources {
@@ -44,9 +52,17 @@ job "artifactory-server" {
 
         check {
           type     = "http"
-          path     = "/artifactory/webapp/#/login"
-          interval = "30s"
-          timeout  = "10s"
+          path     = "/artifactory/api/system/ping"
+          interval = "60s"
+          timeout  = "15s"
+          initial_status = "passing"
+          success_before_passing = 2
+          failures_before_critical = 5
+          check_restart {
+            limit = 5
+            grace = "90s"
+            ignore_warnings = true
+          }
         }
       }
     }
