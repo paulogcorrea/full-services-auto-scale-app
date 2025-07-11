@@ -27,6 +27,10 @@ job "artifactory-server" {
         volumes = [
           "artifactory-data:/var/opt/jfrog/artifactory"
         ]
+        
+        port_map {
+          artifactory = 8081
+        }
       }
 
       env {
@@ -49,21 +53,22 @@ job "artifactory-server" {
       service {
         name = "artifactory"
         port = "artifactory"
-
-        check {
-          type     = "http"
-          path     = "/artifactory/api/system/ping"
-          interval = "60s"
-          timeout  = "15s"
-          initial_status = "passing"
-          success_before_passing = 2
-          failures_before_critical = 5
-          check_restart {
-            limit = 5
-            grace = "90s"
-            ignore_warnings = true
-          }
-        }
+        
+        # Health check disabled temporarily for troubleshooting
+        # check {
+        #   type     = "http"
+        #   path     = "/artifactory/api/system/ping"
+        #   interval = "60s"
+        #   timeout  = "15s"
+        #   initial_status = "passing"
+        #   success_before_passing = 2
+        #   failures_before_critical = 5
+        #   check_restart {
+        #     limit = 5
+        #     grace = "90s"
+        #     ignore_warnings = true
+        #   }
+        # }
       }
     }
   }
