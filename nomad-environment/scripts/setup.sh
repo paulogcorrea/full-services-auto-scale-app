@@ -87,7 +87,7 @@ setup_directories() {
     
     # Create data directories for persistent volumes
     mkdir -p ../nomad-data
-    mkdir -p ../volumes/{mysql-data,postgres-data,nexus-data,artifactory-data,rabbitmq-data,jenkins-data,mattermost-data,mattermost-logs,mattermost-config,keycloak-data,prometheus-data,loki-data,grafana-data,zookeeper-data,zookeeper-logs,kafka-data,mongodb-data,redis-data,minio-data,sonarqube-data,sonarqube-logs,sonarqube-extensions,traefik-certs,consul-data}
+    mkdir -p ../volumes/{mysql-data,postgres-data,nexus-data,artifactory-data,rabbitmq-data,jenkins-data,mattermost-data,mattermost-logs,mattermost-config,keycloak-data,prometheus-data,loki-data,grafana-data,zookeeper-data,zookeeper-logs,kafka-data,mongodb-data,redis-data,minio-data,sonarqube-data,sonarqube-logs,sonarqube-extensions,traefik-certs,consul-data,otel-config}
     
     print_status "Directory structure created"
 }

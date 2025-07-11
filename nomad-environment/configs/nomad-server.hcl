@@ -136,6 +136,11 @@ client {
     path      = "/Users/paulo/projetos/full-services-auto-scale-app/nomad-environment/volumes/traefik-certs"
     read_only = false
   }
+  
+  host_volume "otel-config" {
+    path      = "/Users/paulo/projetos/full-services-auto-scale-app/nomad-environment/volumes/otel-config"
+    read_only = false
+  }
 }
 
 consul {

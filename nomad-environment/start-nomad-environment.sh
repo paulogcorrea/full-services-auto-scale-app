@@ -58,6 +58,7 @@ get_service_name() {
         "promtail") echo "Promtail Log Collection Agent" ;;
         "node-exporter") echo "Node Exporter (System Metrics)" ;;
         "cadvisor") echo "cAdvisor (Container Metrics)" ;;
+        "opentelemetry") echo "OpenTelemetry Collector" ;;
         "mysql") echo "MySQL Database Server" ;;
         "postgresql") echo "PostgreSQL Database Server" ;;
         "mongodb") echo "MongoDB Document Database" ;;
@@ -110,6 +111,17 @@ get_service_endpoints() {
             echo "🌐 cAdvisor UI: http://${HOST_IP}:8083"
             echo "📊 Container Stats: http://${HOST_IP}:8083/containers/"
             echo "📈 Metrics: http://${HOST_IP}:8083/metrics"
+            ;;
+        "opentelemetry")
+            echo "🌐 OpenTelemetry Health: http://${HOST_IP}:13133"
+            echo "📊 OTLP gRPC: ${HOST_IP}:4317"
+            echo "📊 OTLP HTTP: http://${HOST_IP}:4318"
+            echo "📨 Jaeger gRPC: ${HOST_IP}:14250"
+            echo "📨 Jaeger HTTP: http://${HOST_IP}:14268"
+            echo "📨 Zipkin: http://${HOST_IP}:9411"
+            echo "📈 Prometheus Metrics: http://${HOST_IP}:8888/metrics"
+            echo "🔍 Z-Pages: http://${HOST_IP}:55679"
+            echo "🔧 pprof: http://${HOST_IP}:1777"
             ;;
         "mysql")
             echo "🗄️ MySQL Database: ${HOST_IP}:3306"
@@ -333,27 +345,28 @@ get_service_key() {
         4) echo "promtail" ;;
         5) echo "node-exporter" ;;
         6) echo "cadvisor" ;;
-        7) echo "mysql" ;;
-        8) echo "postgresql" ;;
-        9) echo "mongodb" ;;
-        10) echo "redis" ;;
-        11) echo "zookeeper" ;;
-        12) echo "kafka" ;;
-        13) echo "rabbitmq" ;;
-        14) echo "php" ;;
-        15) echo "nodejs" ;;
-        16) echo "java" ;;
-        17) echo "jenkins" ;;
-        18) echo "sonarqube" ;;
-        19) echo "nexus" ;;
-        20) echo "artifactory" ;;
-        21) echo "vault" ;;
-        22) echo "keycloak" ;;
-        23) echo "minio" ;;
-        24) echo "mattermost" ;;
-        25) echo "traefik" ;;
-        26) echo "traefik-https" ;;
-        27) echo "generic-docker" ;;
+        7) echo "opentelemetry" ;;
+        8) echo "mysql" ;;
+        9) echo "postgresql" ;;
+        10) echo "mongodb" ;;
+        11) echo "redis" ;;
+        12) echo "zookeeper" ;;
+        13) echo "kafka" ;;
+        14) echo "rabbitmq" ;;
+        15) echo "php" ;;
+        16) echo "nodejs" ;;
+        17) echo "java" ;;
+        18) echo "jenkins" ;;
+        19) echo "sonarqube" ;;
+        20) echo "nexus" ;;
+        21) echo "artifactory" ;;
+        22) echo "vault" ;;
+        23) echo "keycloak" ;;
+        24) echo "minio" ;;
+        25) echo "mattermost" ;;
+        26) echo "traefik" ;;
+        27) echo "traefik-https" ;;
+        28) echo "generic-docker" ;;
         *) echo "" ;;
     esac
 }
@@ -496,62 +509,63 @@ stop_nomad_server() {
 
 # Function to show service menu
 show_service_menu() {
-    print_header "================== Available Services (26 Total) =================="
+    print_header "================== Available Services (28 Total) =================="
     echo
     
-    print_header "📊 OBSERVABILITY & MONITORING (6 services)"
+    print_header "📊 OBSERVABILITY & MONITORING (7 services)"
     echo " 1) Prometheus Metrics Server (prometheus)"
     echo " 2) Grafana Visualization Dashboard (grafana)"
     echo " 3) Loki Log Aggregation (loki)"
     echo " 4) Promtail Log Collection Agent (promtail)"
     echo " 5) Node Exporter (System Metrics) (node-exporter)"
     echo " 6) cAdvisor (Container Metrics) (cadvisor)"
+    echo " 7) OpenTelemetry Collector (opentelemetry)"
     echo
     
     print_header "💾 DATABASES (4 services)"
-    echo " 7) MySQL Database Server (mysql)"
-    echo " 8) PostgreSQL Database Server (postgresql)"
-    echo " 9) MongoDB Document Database (mongodb)"
-    echo "10) Redis In-Memory Data Store (redis)"
+    echo " 8) MySQL Database Server (mysql)"
+    echo " 9) PostgreSQL Database Server (postgresql)"
+    echo "10) MongoDB Document Database (mongodb)"
+    echo "11) Redis In-Memory Data Store (redis)"
     echo
     
     print_header "🔄 MESSAGING & STREAMING (3 services)"
-    echo "11) Apache ZooKeeper (zookeeper)"
-    echo "12) Apache Kafka Event Streaming (kafka)"
-    echo "13) RabbitMQ Message Broker (rabbitmq)"
+    echo "12) Apache ZooKeeper (zookeeper)"
+    echo "13) Apache Kafka Event Streaming (kafka)"
+    echo "14) RabbitMQ Message Broker (rabbitmq)"
     echo
     
     print_header "🌐 WEB SERVERS & APIs (3 services)"
-    echo "14) PHP Server (php)"
-    echo "15) Node.js Backend API (nodejs)"
-    echo "16) Java Application Server (java)"
+    echo "15) PHP Server (php)"
+    echo "16) Node.js Backend API (nodejs)"
+    echo "17) Java Application Server (java)"
     echo
     
     print_header "🔧 DEVELOPMENT TOOLS (4 services)"
-    echo "17) Jenkins CI/CD Server (jenkins)"
-    echo "18) SonarQube Code Quality Analysis (sonarqube)"
-    echo "19) Sonatype Nexus Repository (nexus)"
-    echo "20) JFrog Artifactory (artifactory)"
+    echo "18) Jenkins CI/CD Server (jenkins)"
+    echo "19) SonarQube Code Quality Analysis (sonarqube)"
+    echo "20) Sonatype Nexus Repository (nexus)"
+    echo "21) JFrog Artifactory (artifactory)"
     echo
     
     print_header "🔐 SECURITY & STORAGE (4 services)"
-    echo "21) HashiCorp Vault (vault)"
-    echo "22) Keycloak Identity Management (keycloak)"
-    echo "23) MinIO S3-Compatible Object Storage (minio)"
-    echo "24) Mattermost Collaboration Tool (mattermost)"
+    echo "22) HashiCorp Vault (vault)"
+    echo "23) Keycloak Identity Management (keycloak)"
+    echo "24) MinIO S3-Compatible Object Storage (minio)"
+    echo "25) Mattermost Collaboration Tool (mattermost)"
     echo
     
     print_header "🌍 NETWORKING & PROXY (2 services)"
-    echo "25) Traefik Reverse Proxy (traefik)"
-    echo "26) Traefik Reverse Proxy (HTTPS) (traefik-https)"
+    echo "26) Traefik Reverse Proxy (traefik)"
+    echo "27) Traefik Reverse Proxy (HTTPS) (traefik-https)"
     echo
     
     print_header "⚙️  ACTIONS"
-    echo "27) Deploy Custom Application"
-    echo "28) Deploy Multiple Services"
-    echo "29) Show All Running Services"
-    echo "30) Stop Specific Service"
-    echo "31) Stop All Services"
+    echo "28) Deploy Custom Application"
+    echo "29) Deploy Multiple Services"
+    echo "30) Show All Running Services"
+    echo "31) Stop Specific Service"
+    echo "32) Stop All Services"
     echo " 0) Exit"
     echo
 }
@@ -648,7 +662,7 @@ deploy_multiple_services() {
         # Check if item is a number
         if [[ "$item" =~ ^[0-9]+$ ]]; then
             # It's a number, get service by number
-            if [ "$item" -ge 1 ] && [ "$item" -le 26 ]; then
+            if [ "$item" -ge 1 ] && [ "$item" -le 28 ]; then
                 local selected_service=$(get_service_key "$item")
                 if [ -n "$selected_service" ]; then
                     deploy_service "$selected_service"
@@ -656,7 +670,7 @@ deploy_multiple_services() {
                     print_error "Invalid service number: $item"
                 fi
             else
-                print_error "Invalid service number: $item (must be 1-26)"
+                print_error "Invalid service number: $item (must be 1-28)"
             fi
         else
             # It's a name, check if it exists
@@ -702,7 +716,7 @@ stop_specific_service() {
     # Check if input is a number
     if [[ "$service_input" =~ ^[0-9]+$ ]]; then
         # It's a number, get service by number
-        if [ "$service_input" -ge 1 ] && [ "$service_input" -le 26 ]; then
+        if [ "$service_input" -ge 1 ] && [ "$service_input" -le 28 ]; then
             local selected_service=$(get_service_key "$service_input")
             if [ -n "$selected_service" ]; then
                 # Convert service key to job name
@@ -733,6 +747,7 @@ stop_specific_service() {
                     "node-exporter") service_to_stop="node-exporter" ;;
                     "cadvisor") service_to_stop="cadvisor" ;;
                     "promtail") service_to_stop="promtail" ;;
+                    "opentelemetry") service_to_stop="opentelemetry-collector" ;;
                     *) service_to_stop="$selected_service" ;;
                 esac
             else
@@ -740,7 +755,7 @@ stop_specific_service() {
                 return
             fi
         else
-            print_error "Invalid service number: $service_input (must be 1-26)"
+            print_error "Invalid service number: $service_input (must be 1-28)"
             return
         fi
     else
@@ -966,7 +981,7 @@ main_menu() {
                 cleanup
                 exit 0
                 ;;
-            [1-9]|1[0-9]|2[0-6])
+            [1-9]|1[0-9]|2[0-8])
                 # Get service key by number
                 local selected_service=$(get_service_key "$choice")
                 if [ -n "$selected_service" ]; then
@@ -977,20 +992,20 @@ deploy_service "$selected_service"
                     print_error "Invalid selection"
                 fi
                 ;;
-            27)
-                deploy_custom_application
-                show_deployed_jobs
-                ;;
             28)
-                deploy_multiple_services
+                deploy_generic_docker
+                show_deployed_jobs
                 ;;
             29)
-                show_deployed_jobs
+                deploy_multiple_services
                 ;;
             30)
-                stop_specific_service
+                show_deployed_jobs
                 ;;
             31)
+                stop_specific_service
+                ;;
+            32)
                 print_warning "This will stop ALL running services. Are you sure? (y/N)"
                 read -p "Confirm: " confirm
                 if [[ $confirm =~ ^[Yy]$ ]]; then
