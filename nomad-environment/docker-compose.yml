@@ -113,7 +113,7 @@ services:
   # Frontend
   frontend:
     build:
-      context: ./frontend
+      context: ../frontend
       dockerfile: Dockerfile
     container_name: nomad-frontend
     ports:
