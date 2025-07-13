@@ -18,4 +18,4 @@ nomad-environment/certs/*.srl
 nomad-environment/volumes/*.pem
 frontend/node_modules/*
 frontend/dist/*
-nomad-environment/data/postgresql/*
+nomad-environment/data/*
