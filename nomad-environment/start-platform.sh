@@ -14,7 +14,7 @@ NC='\033[0m' # No Color
 
 # Configuration
 NOMAD_DIR="$(pwd)"
-BACKEND_DIR="$NOMAD_DIR/backend"
+BACKEND_DIR="$(dirname "$NOMAD_DIR")/backend"
 FRONTEND_DIR="$NOMAD_DIR/frontend"
 LOG_DIR="$NOMAD_DIR/logs"
 

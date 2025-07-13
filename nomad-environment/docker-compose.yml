@@ -74,7 +74,7 @@ services:
   # Backend API
   backend:
     build:
-      context: ./backend
+      context: ../backend
       dockerfile: Dockerfile
     container_name: nomad-backend
     ports:
