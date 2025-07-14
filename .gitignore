@@ -24,3 +24,4 @@ frontend/dist/*
 nomad-environment/data/*
 frontend/.angular/*
 frontend/node_modules/*
+nomad-environment/data/postgresql/base/1/*
