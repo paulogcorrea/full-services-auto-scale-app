@@ -3,6 +3,7 @@ package config
 import (
 	"os"
 	"strconv"
+	"strings"
 	"time"
 )
 
@@ -58,9 +59,7 @@ func Load() (*Config, error) {
 			Environment: getEnv("ENVIRONMENT", "development"),
 			LogLevel:    getEnv("LOG_LEVEL", "info"),
 			LogFile:     getEnv("LOG_FILE", ""),
-			CORSOrigins: []string{
-				getEnv("CORS_ORIGINS", "http://localhost:4200,http://localhost:3000"),
-			},
+			CORSOrigins: strings.Split(getEnv("CORS_ORIGINS", "http://localhost:4200,http://localhost:3000"), ","),
 		},
 		Database: DatabaseConfig{
 			Host:     getEnv("DB_HOST", "localhost"),
