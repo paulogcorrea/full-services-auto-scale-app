@@ -79,6 +79,7 @@ get_service_name() {
         "keycloak") echo "Keycloak Identity Management" ;;
         "minio") echo "MinIO S3-Compatible Object Storage" ;;
         "mattermost") echo "Mattermost Collaboration Tool" ;;
+        "gitlab-ce") echo "GitLab Community Edition" ;;
         "traefik") echo "Traefik Reverse Proxy" ;;
         "traefik-https") echo "Traefik Reverse Proxy (HTTPS)" ;;
         "generic-docker") echo "Generic Docker Application" ;;
@@ -227,6 +228,14 @@ get_service_endpoints() {
             echo "👤 Setup: Create admin account on first visit"
             echo "💬 Team: http://${HOST_IP}:8065/[team-name]"
             ;;
+        "gitlab-ce")
+            echo "🌐 GitLab CE Web: http://${HOST_IP}:8080"
+            echo "🔒 GitLab CE HTTPS: https://${HOST_IP}:8443"
+            echo "📨 GitLab CE SSH: ${HOST_IP}:2022"
+            echo "👤 Root Login: root / [check container logs for initial password]"
+            echo "📂 Projects: http://${HOST_IP}:8080/projects"
+            echo "⚙️ Admin: http://${HOST_IP}:8080/admin"
+            ;;
         "traefik")
             echo "🌐 Traefik Dashboard: http://${HOST_IP}:8079"
             echo "🔀 HTTP Proxy: http://${HOST_IP}:80"
@@ -366,9 +375,10 @@ get_service_key() {
         23) echo "keycloak" ;;
         24) echo "minio" ;;
         25) echo "mattermost" ;;
-        26) echo "traefik" ;;
-        27) echo "traefik-https" ;;
-        28) echo "generic-docker" ;;
+        26) echo "gitlab-ce" ;;
+        27) echo "traefik" ;;
+        28) echo "traefik-https" ;;
+        29) echo "generic-docker" ;;
         *) echo "" ;;
     esac
 }
@@ -516,7 +526,7 @@ stop_nomad_server() {
 
 # Function to show service menu
 show_service_menu() {
-    print_header "================== Available Services (28 Total) =================="
+    print_header "================== Available Services (29 Total) =================="
     echo
     
     print_header "📊 OBSERVABILITY & MONITORING (7 services)"
@@ -562,17 +572,21 @@ show_service_menu() {
     echo "25) Mattermost Collaboration Tool (mattermost)"
     echo
     
+    print_header "🔧 DEVOPS & VERSION CONTROL (1 service)"
+    echo "26) GitLab Community Edition (gitlab-ce)"
+    echo
+    
     print_header "🌍 NETWORKING & PROXY (2 services)"
-    echo "26) Traefik Reverse Proxy (traefik)"
-    echo "27) Traefik Reverse Proxy (HTTPS) (traefik-https)"
+    echo "27) Traefik Reverse Proxy (traefik)"
+    echo "28) Traefik Reverse Proxy (HTTPS) (traefik-https)"
     echo
     
     print_header "⚙️  ACTIONS"
-    echo "28) Deploy Custom Application"
-    echo "29) Deploy Multiple Services"
-    echo "30) Show All Running Services"
-    echo "31) Stop Specific Service"
-    echo "32) Stop All Services"
+    echo "29) Deploy Custom Application"
+    echo "30) Deploy Multiple Services"
+    echo "31) Show All Running Services"
+    echo "32) Stop Specific Service"
+    echo "33) Stop All Services"
     echo " 0) Exit"
     echo
 }
@@ -988,31 +1002,31 @@ main_menu() {
                 cleanup
                 exit 0
                 ;;
-            [1-9]|1[0-9]|2[0-8])
+            [1-9]|1[0-9]|2[0-9])
                 # Get service key by number
                 local selected_service=$(get_service_key "$choice")
                 if [ -n "$selected_service" ]; then
-deploy_service "$selected_service"
+                    deploy_service "$selected_service"
                     show_deployed_jobs
                     show_service_info "$selected_service"
                 else
                     print_error "Invalid selection"
                 fi
                 ;;
-            28)
+            29)
                 deploy_generic_docker
                 show_deployed_jobs
                 ;;
-            29)
+            30)
                 deploy_multiple_services
                 ;;
-            30)
+            31)
                 show_deployed_jobs
                 ;;
-            31)
+            32)
                 stop_specific_service
                 ;;
-            32)
+            33)
                 print_warning "This will stop ALL running services. Are you sure? (y/N)"
                 read -p "Confirm: " confirm
                 if [[ $confirm =~ ^[Yy]$ ]]; then
