@@ -655,3 +655,18 @@
 Please check https://pkg.go.dev/github.com/gin-gonic/gin#readme-don-t-trust-all-proxies for details.
 [GIN-debug] Listening and serving HTTP on :8080
 [GIN] 2025/07/13 - 17:20:28 | 200 |    1.393083ms |             ::1 | GET      "/health"
+[GIN] 2025/07/13 - 20:09:18 | 200 |    3.355042ms |             ::1 | GET      "/health"
+[GIN] 2025/07/13 - 20:24:13 | 200 |    4.711625ms |             ::1 | GET      "/health"
+[GIN] 2025/07/13 - 20:24:23 | 404 |       1.958µs |             ::1 | GET      "/api/v1"
+[GIN-debug] redirecting request 301: /api/v1/services/ --> /api/v1/services/
+[GIN] 2025/07/13 - 20:26:01 | 401 |    1.603167ms |             ::1 | GET      "/api/v1/services/"
+[GIN] 2025/07/13 - 20:26:23 | 400 |     24.9885ms |             ::1 | POST     "/api/v1/auth/register"
+
+2025/07/13 20:32:44 [31;1m/Users/paulo/projetos/full-services-auto-scale-app/nomad-environment/backend/internal/services/user_service.go:37 [35;1mfailed to connect to `host=localhost user=nomad_services database=nomad_services`: dial error (dial tcp 127.0.0.1:5432: connect: connection refused)
+[0m[33m[75.255ms] [34;1m[rows:0][0m SELECT * FROM "users" WHERE username = 'testuser' ORDER BY "users"."id" LIMIT 1
+
+2025/07/13 20:32:44 [31;1m/Users/paulo/projetos/full-services-auto-scale-app/nomad-environment/backend/internal/services/user_service.go:46 [35;1mfailed to connect to `host=localhost user=nomad_services database=nomad_services`: dial error (dial tcp 127.0.0.1:5432: connect: connection refused)
+[0m[33m[9.637ms] [34;1m[rows:0][0m SELECT * FROM "users" WHERE email = 'test@example.com' ORDER BY "users"."id" LIMIT 1
+[GIN] 2025/07/13 - 20:32:44 | 400 |  374.138917ms |             ::1 | POST     "/api/v1/auth/register"
+[GIN] 2025/07/14 - 00:08:42 | 403 |    2.334583ms |             ::1 | OPTIONS  "/api/v1/auth/login"
+[GIN] 2025/07/14 - 00:10:16 | 403 |      56.416µs |             ::1 | OPTIONS  "/api/v1/auth/login"
