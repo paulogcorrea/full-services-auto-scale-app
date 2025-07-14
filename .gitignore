@@ -19,5 +19,5 @@ nomad-environment/volumes/*.pem
 frontend/node_modules/*
 frontend/dist/*
 nomad-environment/data/*
-nomad-environment/frontend/.angular/*
-nomad-environment/frontend/node_modules/*
+frontend/.angular/*
+frontend/node_modules/*
