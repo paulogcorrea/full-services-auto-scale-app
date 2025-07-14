@@ -255,22 +255,48 @@ main() {
         
         # Wait for Angular dev server to start
         print_status "Waiting for Angular dev server to start..."
-        local max_attempts=60
+        local max_attempts=30
         local attempt=1
+        local compilation_started=false
         
         while [ $attempt -le $max_attempts ]; do
+            # Check if compilation has started by looking for webpack output
+            if [ "$compilation_started" = false ] && grep -q "webpack" "$LOG_DIR/frontend.log" 2>/dev/null; then
+                print_status "Angular compilation started..."
+                compilation_started=true
+            fi
+            
+            # Check if Angular dev server is responding
             if curl -s -f "http://localhost:4200" > /dev/null 2>&1; then
                 print_success "Frontend is ready!"
                 break
             fi
             
+            # Check for compilation errors
+            if grep -q "ERROR" "$LOG_DIR/frontend.log" 2>/dev/null; then
+                print_warning "Compilation errors detected, but continuing..."
+            fi
+            
+            # Check if server is bound but not ready (typical Angular behavior)
+            if curl -s "http://localhost:4200" 2>/dev/null | grep -q "Cannot GET" 2>/dev/null; then
+                print_status "Angular server is bound but still compiling..."
+            fi
+            
             if [ $attempt -eq $max_attempts ]; then
-                print_warning "Frontend may have compilation issues, but server is starting..."
+                print_warning "Angular dev server is taking longer than expected. Check logs at $LOG_DIR/frontend.log"
+                print_warning "The server might still be starting. You can check http://localhost:4200 manually."
                 break
             fi
             
-            echo -n "."
-            sleep 5
+            # Dynamic sleep based on compilation state
+            if [ "$compilation_started" = true ]; then
+                echo -n "."
+                sleep 2  # Faster polling once compilation started
+            else
+                echo -n "o"
+                sleep 3  # Slower polling initially
+            fi
+            
             attempt=$((attempt + 1))
         done
     else

@@ -51,6 +51,23 @@ export class NotificationService {
     });
   }
 
+  // Convenience methods for backward compatibility
+  success(message: string, title: string = 'Success'): void {
+    this.showSuccess(message, title);
+  }
+
+  error(message: string, title: string = 'Error'): void {
+    this.showError(message, title);
+  }
+
+  warning(message: string, title: string = 'Warning'): void {
+    this.showWarning(message, title);
+  }
+
+  info(message: string, title: string = 'Info'): void {
+    this.showInfo(message, title);
+  }
+
   private show(message: string, title: string, type: 'success' | 'error' | 'warning' | 'info'): void {
     const notification: Notification = {
       id: this.generateId(),

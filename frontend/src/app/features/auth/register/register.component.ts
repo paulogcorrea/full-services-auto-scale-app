@@ -38,6 +38,17 @@ import { LoadingService } from '../../../core/services/loading.service';
         <mat-card-content>
           <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
             <mat-form-field appearance="outline" class="full-width">
+              <mat-label>Username</mat-label>
+              <input matInput 
+                     formControlName="username" 
+                     placeholder="Enter your username"
+                     autocomplete="username">
+              <mat-error *ngIf="registerForm.get('username')?.hasError('required')">
+                Username is required
+              </mat-error>
+            </mat-form-field>
+
+            <mat-form-field appearance="outline" class="full-width">
               <mat-label>First Name</mat-label>
               <input matInput 
                      formControlName="firstName" 
@@ -190,6 +201,7 @@ export class RegisterComponent {
     private router: Router
   ) {
     this.registerForm = this.fb.group({
+      username: ['', [Validators.required]],
       firstName: ['', [Validators.required]],
       lastName: ['', [Validators.required]],
       email: ['', [Validators.required, Validators.email]],
@@ -216,8 +228,9 @@ export class RegisterComponent {
       const formValue = this.registerForm.value;
       
       this.authService.register({
-        firstName: formValue.firstName,
-        lastName: formValue.lastName,
+        username: formValue.username,
+        first_name: formValue.firstName,
+        last_name: formValue.lastName,
         email: formValue.email,
         password: formValue.password
       }).subscribe({

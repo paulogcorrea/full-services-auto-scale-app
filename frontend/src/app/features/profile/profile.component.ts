@@ -133,8 +133,8 @@ export class ProfileComponent implements OnInit {
       if (user) {
         this.currentUser = user;
         this.profileForm.patchValue({
-          firstName: user.firstName,
-          lastName: user.lastName,
+          firstName: user.first_name,
+          lastName: user.last_name,
           email: user.email
         });
       }
