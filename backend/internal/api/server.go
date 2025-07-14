@@ -37,6 +37,10 @@ func NewServer(
 	router.Use(gin.Logger())
 	router.Use(gin.Recovery())
 
+	// Disable automatic redirects to prevent CORS issues
+	router.RedirectTrailingSlash = false
+	router.RedirectFixedPath = false
+
 	// CORS configuration
 	corsConfig := cors.DefaultConfig()
 	corsConfig.AllowOrigins = cfg.Server.CORSOrigins
@@ -96,6 +100,11 @@ func (s *Server) setupRoutes() {
 				servicesGroup.GET("/:id/logs", s.getServiceLogs)
 				servicesGroup.GET("/:id/metrics", s.getServiceMetrics)
 			}
+
+			// Add routes without trailing slash for better compatibility
+			protected.POST("/services", s.createService)
+			protected.GET("/services", s.listServices)
+			protected.GET("/templates", s.listServiceTemplates)
 
 			// Service templates routes
 			templates := protected.Group("/templates")
