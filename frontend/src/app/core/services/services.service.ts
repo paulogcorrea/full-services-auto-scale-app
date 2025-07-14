@@ -106,6 +106,14 @@ export class ServicesService {
       );
   }
 
+  toggleService(id: string, action: 'start' | 'stop'): Observable<{ message: string; deployment?: ServiceDeployment }> {
+    if (action === 'start') {
+      return this.startService(id);
+    } else {
+      return this.stopService(id);
+    }
+  }
+
   // Service Monitoring
   getServiceLogs(id: string): Observable<ServiceLogsResponse> {
     return this.http.get<ServiceLogsResponse>(`${environment.apiUrl}/services/${id}/logs`);

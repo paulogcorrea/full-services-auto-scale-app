@@ -158,4 +158,16 @@ export class AuthService {
       });
     }
   }
+
+  updateProfile(profileData: { firstName: string; lastName: string; email: string }): Observable<User> {
+    return this.http.put<User>(`${environment.apiUrl}/users/me`, profileData)
+      .pipe(
+        tap(user => {
+          this.updateCurrentUser(user);
+        }),
+        catchError(error => {
+          return throwError(() => error);
+        })
+      );
+  }
 }
