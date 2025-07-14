@@ -1,0 +1,53 @@
+
+> nomad-services-frontend@1.0.0 start
+> ng serve
+
+Node.js version v23.11.0 detected.
+Odd numbered Node.js versions will not enter LTS status and should not be used for production. For more information, please see https://nodejs.org/en/about/previous-releases/.
+- Generating browser application bundles (phase: setup)...
+✔ Browser application bundle generation complete.
+
+Initial chunk files                                                                                     | Names                                           |  Raw size
+vendor.js                                                                                               | vendor                                          |   4.84 MB | 
+polyfills.js                                                                                            | polyfills                                       | 238.93 kB | 
+styles.css, styles.js                                                                                   | styles                                          | 227.03 kB | 
+main.js                                                                                                 | main                                            |  52.12 kB | 
+runtime.js                                                                                              | runtime                                         |  12.95 kB | 
+
+                                                                                                        | Initial total                                   |   5.37 MB
+
+Lazy chunk files                                                                                        | Names                                           |  Raw size
+default-src_app_core_services_services_service_ts-node_modules_angular_material_fesm2022_chips_mjs.js   | services-list-component                         | 247.16 kB | 
+node_modules_angular_animations_fesm2022_browser_mjs.js                                                 | angular-animations-browser                      | 234.08 kB | 
+default-node_modules_angular_material_fesm2022_error-options-DCNQlTOA_mjs-node_modules_angula-dbdfd6.js | login-login-component                           | 164.09 kB | 
+default-node_modules_angular_material_fesm2022_input_mjs.js                                             | login-login-component                           |  63.04 kB | 
+default-node_modules_angular_material_fesm2022_card_mjs.js                                              | shared-components-not-found-not-found-component |  33.38 kB | 
+src_app_features_dashboard_dashboard_component_ts.js                                                    | dashboard-component                             |  29.11 kB | 
+src_app_features_services_service-detail_component_ts.js                                                | service-detail-component                        |  28.51 kB | 
+src_app_features_auth_register_register_component_ts.js                                                 | register-register-component                     |  26.55 kB | 
+src_app_features_services_services-list_component_ts.js                                                 | services-list-component                         |  23.43 kB | 
+src_app_features_auth_login_login_component_ts.js                                                       | login-login-component                           |  18.59 kB | 
+src_app_features_profile_profile_component_ts.js                                                        | profile-component                               |  16.24 kB | 
+src_app_features_admin_admin_component_ts.js                                                            | admin-component                                 |   9.44 kB | 
+src_app_shared_components_not-found_not-found_component_ts.js                                           | shared-components-not-found-not-found-component |   7.65 kB | 
+src_app_features_services_services_routes_ts.js                                                         | features-services-services-routes               |   1.99 kB | 
+src_app_features_auth_auth_routes_ts.js                                                                 | features-auth-auth-routes                       |   1.90 kB | 
+src_app_features_profile_profile_routes_ts.js                                                           | features-profile-profile-routes                 |   1.30 kB | 
+src_app_features_dashboard_dashboard_routes_ts.js                                                       | features-dashboard-dashboard-routes             |   1.13 kB | 
+src_app_features_admin_admin_routes_ts.js                                                               | features-admin-admin-routes                     |   1.06 kB | 
+
+Build at: 2025-07-14T03:10:03.586Z - Hash: 51cbf628af6853db - Time: 2763ms
+
+** Angular Live Development Server is listening on localhost:4200, open your browser on http://localhost:4200/ **
+
+
+✔ Compiled successfully.
+✔ Browser application bundle generation complete.
+
+
+
+23 unchanged chunks
+
+Build at: 2025-07-14T03:10:04.032Z - Hash: 51cbf628af6853db - Time: 390ms
+
+✔ Compiled successfully.
