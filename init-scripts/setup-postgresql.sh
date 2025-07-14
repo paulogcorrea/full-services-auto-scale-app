@@ -88,6 +88,7 @@ start_postgres() {
         -p "${POSTGRES_PORT}:5432" \
         -v "${PWD}/${POSTGRES_DATA_DIR}:/var/lib/postgresql/data" \
         -v "${PWD}/${POSTGRES_BACKUP_DIR}:/backups" \
+        -v "${PWD}/init-scripts:/docker-entrypoint-initdb.d" \
         postgres:13-alpine
     
     print_success "PostgreSQL container started"

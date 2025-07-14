@@ -32,7 +32,7 @@ SELECT
     attname,
     n_distinct,
     correlation,
-    most_common_vals,
+    most_common_vals::text,
     most_common_freqs
 FROM pg_stats
 WHERE schemaname = 'public';

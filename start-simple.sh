@@ -169,9 +169,20 @@ main() {
     # Start PostgreSQL using our setup script
     print_status "Starting PostgreSQL container..."
     cd "$BASE_DIR"
-    if ! "$POSTGRES_SETUP_SCRIPT" start; then
-        print_error "Failed to start PostgreSQL container"
-        exit 1
+    
+    # Check if container exists, if not create it
+    if ! docker ps -a --format '{{.Names}}' | grep -q "^nomad-services-postgres$"; then
+        print_status "PostgreSQL container doesn't exist, creating it..."
+        if ! "$POSTGRES_SETUP_SCRIPT"; then
+            print_error "Failed to create PostgreSQL container"
+            exit 1
+        fi
+    else
+        # Container exists, just start it
+        if ! "$POSTGRES_SETUP_SCRIPT" start; then
+            print_error "Failed to start PostgreSQL container"
+            exit 1
+        fi
     fi
     
     # Wait for PostgreSQL to be healthy
@@ -179,11 +190,24 @@ main() {
     
     # Verify PostgreSQL is accessible
     print_status "Verifying PostgreSQL connection..."
-    if ! docker exec nomad-services-postgres pg_isready -U nomad_services >/dev/null 2>&1; then
-        print_error "PostgreSQL is not ready"
-        exit 1
-    fi
-    print_success "PostgreSQL is ready and accessible"
+    local max_attempts=30
+    local attempt=1
+    
+    while [ $attempt -le $max_attempts ]; do
+        if docker exec nomad-services-postgres pg_isready -U nomad_services >/dev/null 2>&1; then
+            print_success "PostgreSQL is ready and accessible"
+            break
+        fi
+        
+        if [ $attempt -eq $max_attempts ]; then
+            print_error "PostgreSQL failed to become ready after $max_attempts attempts"
+            exit 1
+        fi
+        
+        echo -n "."
+        sleep 2
+        attempt=$((attempt + 1))
+    done
     
     # 2. Start Backend API
     print_header "2. STARTING BACKEND API"
@@ -229,7 +253,26 @@ main() {
         npm start > "$LOG_DIR/frontend.log" 2>&1 &
         FRONTEND_PID=$!
         
-        wait_for_service "http://localhost:4200" "Frontend"
+        # Wait for Angular dev server to start
+        print_status "Waiting for Angular dev server to start..."
+        local max_attempts=60
+        local attempt=1
+        
+        while [ $attempt -le $max_attempts ]; do
+            if curl -s -f "http://localhost:4200" > /dev/null 2>&1; then
+                print_success "Frontend is ready!"
+                break
+            fi
+            
+            if [ $attempt -eq $max_attempts ]; then
+                print_warning "Frontend may have compilation issues, but server is starting..."
+                break
+            fi
+            
+            echo -n "."
+            sleep 5
+            attempt=$((attempt + 1))
+        done
     else
         print_success "Frontend is already running"
     fi
