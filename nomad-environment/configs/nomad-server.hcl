@@ -16,6 +16,15 @@ server {
 client {
   enabled = true
   
+  # Enable Docker volumes
+  driver "docker" {
+    config {
+      volumes {
+        enabled = true
+      }
+    }
+  }
+  
   # Host volume definitions for persistent storage
   host_volume "keycloak-data" {
     path      = "/Users/paulo/projetos/full-services-auto-scale-app/nomad-environment/volumes/keycloak-data"
@@ -139,6 +148,21 @@ client {
   
   host_volume "otel-config" {
     path      = "/Users/paulo/projetos/full-services-auto-scale-app/nomad-environment/volumes/otel-config"
+    read_only = false
+  }
+  
+  host_volume "gitlab_config" {
+    path      = "/Users/paulo/projetos/full-services-auto-scale-app/nomad-environment/volumes/gitlab-config"
+    read_only = false
+  }
+  
+  host_volume "gitlab_logs" {
+    path      = "/Users/paulo/projetos/full-services-auto-scale-app/nomad-environment/volumes/gitlab-logs"
+    read_only = false
+  }
+  
+  host_volume "gitlab_data" {
+    path      = "/Users/paulo/projetos/full-services-auto-scale-app/nomad-environment/volumes/gitlab-data"
     read_only = false
   }
 }

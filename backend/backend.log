@@ -1,628 +1,628 @@
 
-2025/07/14 14:51:59 [32m/Users/paulo/projetos/full-services-auto-scale-app/backend/internal/database/database.go:52
-[0m[33m[24.376ms] [34;1m[rows:1][0m SELECT count(*) FROM information_schema.tables WHERE table_schema = CURRENT_SCHEMA() AND table_name = 'tenants' AND table_type = 'BASE TABLE'
+2025/07/14 18:42:40 [32m/Users/paulo/projetos/full-services-auto-scale-app/backend/internal/database/database.go:52
+[0m[33m[62.113ms] [34;1m[rows:1][0m SELECT count(*) FROM information_schema.tables WHERE table_schema = CURRENT_SCHEMA() AND table_name = 'tenants' AND table_type = 'BASE TABLE'
 
-2025/07/14 14:51:59 [32m/Users/paulo/projetos/full-services-auto-scale-app/backend/internal/database/database.go:52
-[0m[33m[0.901ms] [34;1m[rows:1][0m SELECT CURRENT_DATABASE()
+2025/07/14 18:42:40 [32m/Users/paulo/projetos/full-services-auto-scale-app/backend/internal/database/database.go:52
+[0m[33m[1.064ms] [34;1m[rows:1][0m SELECT CURRENT_DATABASE()
 
-2025/07/14 14:51:59 [32m/Users/paulo/projetos/full-services-auto-scale-app/backend/internal/database/database.go:52
-[0m[33m[25.889ms] [34;1m[rows:-][0m SELECT c.column_name, c.is_nullable = 'YES', c.udt_name, c.character_maximum_length, c.numeric_precision, c.numeric_precision_radix, c.numeric_scale, c.datetime_precision, 8 * typlen, c.column_default, pd.description, c.identity_increment FROM information_schema.columns AS c JOIN pg_type AS pgt ON c.udt_name = pgt.typname LEFT JOIN pg_catalog.pg_description as pd ON pd.objsubid = c.ordinal_position AND pd.objoid = (SELECT oid FROM pg_catalog.pg_class WHERE relname = c.table_name AND relnamespace = (SELECT oid FROM pg_catalog.pg_namespace WHERE nspname = c.table_schema)) where table_catalog = 'nomad_services' AND table_schema = CURRENT_SCHEMA() AND table_name = 'tenants'
+2025/07/14 18:42:40 [32m/Users/paulo/projetos/full-services-auto-scale-app/backend/internal/database/database.go:52
+[0m[33m[39.548ms] [34;1m[rows:-][0m SELECT c.column_name, c.is_nullable = 'YES', c.udt_name, c.character_maximum_length, c.numeric_precision, c.numeric_precision_radix, c.numeric_scale, c.datetime_precision, 8 * typlen, c.column_default, pd.description, c.identity_increment FROM information_schema.columns AS c JOIN pg_type AS pgt ON c.udt_name = pgt.typname LEFT JOIN pg_catalog.pg_description as pd ON pd.objsubid = c.ordinal_position AND pd.objoid = (SELECT oid FROM pg_catalog.pg_class WHERE relname = c.table_name AND relnamespace = (SELECT oid FROM pg_catalog.pg_namespace WHERE nspname = c.table_schema)) where table_catalog = 'nomad_services' AND table_schema = CURRENT_SCHEMA() AND table_name = 'tenants'
 
-2025/07/14 14:51:59 [32m/Users/paulo/projetos/full-services-auto-scale-app/backend/internal/database/database.go:52
-[0m[33m[1.350ms] [34;1m[rows:-][0m SELECT * FROM "tenants" LIMIT 1
+2025/07/14 18:42:40 [32m/Users/paulo/projetos/full-services-auto-scale-app/backend/internal/database/database.go:52
+[0m[33m[2.775ms] [34;1m[rows:-][0m SELECT * FROM "tenants" LIMIT 1
 
-2025/07/14 14:51:59 [32m/Users/paulo/projetos/full-services-auto-scale-app/backend/internal/database/database.go:52
-[0m[33m[20.673ms] [34;1m[rows:-][0m SELECT constraint_name FROM information_schema.table_constraints tc JOIN information_schema.constraint_column_usage AS ccu USING (constraint_schema, constraint_name) JOIN information_schema.columns AS c ON c.table_schema = tc.constraint_schema AND tc.table_name = c.table_name AND ccu.column_name = c.column_name WHERE constraint_type IN ('PRIMARY KEY', 'UNIQUE') AND c.table_catalog = 'nomad_services' AND c.table_schema = CURRENT_SCHEMA() AND c.table_name = 'tenants' AND constraint_type = 'UNIQUE'
+2025/07/14 18:42:40 [32m/Users/paulo/projetos/full-services-auto-scale-app/backend/internal/database/database.go:52
+[0m[33m[26.031ms] [34;1m[rows:-][0m SELECT constraint_name FROM information_schema.table_constraints tc JOIN information_schema.constraint_column_usage AS ccu USING (constraint_schema, constraint_name) JOIN information_schema.columns AS c ON c.table_schema = tc.constraint_schema AND tc.table_name = c.table_name AND ccu.column_name = c.column_name WHERE constraint_type IN ('PRIMARY KEY', 'UNIQUE') AND c.table_catalog = 'nomad_services' AND c.table_schema = CURRENT_SCHEMA() AND c.table_name = 'tenants' AND constraint_type = 'UNIQUE'
 
-2025/07/14 14:51:59 [32m/Users/paulo/projetos/full-services-auto-scale-app/backend/internal/database/database.go:52
-[0m[33m[11.004ms] [34;1m[rows:-][0m SELECT c.column_name, constraint_name, constraint_type FROM information_schema.table_constraints tc JOIN information_schema.constraint_column_usage AS ccu USING (constraint_schema, constraint_name) JOIN information_schema.columns AS c ON c.table_schema = tc.constraint_schema AND tc.table_name = c.table_name AND ccu.column_name = c.column_name WHERE constraint_type IN ('PRIMARY KEY', 'UNIQUE') AND c.table_catalog = 'nomad_services' AND c.table_schema = CURRENT_SCHEMA() AND c.table_name = 'tenants'
+2025/07/14 18:42:40 [32m/Users/paulo/projetos/full-services-auto-scale-app/backend/internal/database/database.go:52
+[0m[33m[10.703ms] [34;1m[rows:-][0m SELECT c.column_name, constraint_name, constraint_type FROM information_schema.table_constraints tc JOIN information_schema.constraint_column_usage AS ccu USING (constraint_schema, constraint_name) JOIN information_schema.columns AS c ON c.table_schema = tc.constraint_schema AND tc.table_name = c.table_name AND ccu.column_name = c.column_name WHERE constraint_type IN ('PRIMARY KEY', 'UNIQUE') AND c.table_catalog = 'nomad_services' AND c.table_schema = CURRENT_SCHEMA() AND c.table_name = 'tenants'
 
-2025/07/14 14:51:59 [32m/Users/paulo/projetos/full-services-auto-scale-app/backend/internal/database/database.go:52
-[0m[33m[1.326ms] [34;1m[rows:-][0m SELECT a.attname as column_name, format_type(a.atttypid, a.atttypmod) AS data_type
+2025/07/14 18:42:40 [32m/Users/paulo/projetos/full-services-auto-scale-app/backend/internal/database/database.go:52
+[0m[33m[2.216ms] [34;1m[rows:-][0m SELECT a.attname as column_name, format_type(a.atttypid, a.atttypmod) AS data_type
 		FROM pg_attribute a JOIN pg_class b ON a.attrelid = b.oid AND relnamespace = (SELECT oid FROM pg_catalog.pg_namespace WHERE nspname = CURRENT_SCHEMA())
 		WHERE a.attnum > 0 -- hide internal columns
 		AND NOT a.attisdropped -- hide deleted columns
 		AND b.relname = 'tenants'
 
-2025/07/14 14:51:59 [32m/Users/paulo/projetos/full-services-auto-scale-app/backend/internal/database/database.go:52
-[0m[33m[2.698ms] [34;1m[rows:0][0m SELECT description FROM pg_catalog.pg_description WHERE objsubid = (SELECT ordinal_position FROM information_schema.columns WHERE table_schema = CURRENT_SCHEMA() AND table_name = 'tenants' AND column_name = 'id') AND objoid = (SELECT oid FROM pg_catalog.pg_class WHERE relname = 'tenants' AND relnamespace = (SELECT oid FROM pg_catalog.pg_namespace WHERE nspname = CURRENT_SCHEMA()))
+2025/07/14 18:42:40 [32m/Users/paulo/projetos/full-services-auto-scale-app/backend/internal/database/database.go:52
+[0m[33m[4.269ms] [34;1m[rows:0][0m SELECT description FROM pg_catalog.pg_description WHERE objsubid = (SELECT ordinal_position FROM information_schema.columns WHERE table_schema = CURRENT_SCHEMA() AND table_name = 'tenants' AND column_name = 'id') AND objoid = (SELECT oid FROM pg_catalog.pg_class WHERE relname = 'tenants' AND relnamespace = (SELECT oid FROM pg_catalog.pg_namespace WHERE nspname = CURRENT_SCHEMA()))
 
-2025/07/14 14:51:59 [32m/Users/paulo/projetos/full-services-auto-scale-app/backend/internal/database/database.go:52
-[0m[33m[1.780ms] [34;1m[rows:0][0m SELECT description FROM pg_catalog.pg_description WHERE objsubid = (SELECT ordinal_position FROM information_schema.columns WHERE table_schema = CURRENT_SCHEMA() AND table_name = 'tenants' AND column_name = 'name') AND objoid = (SELECT oid FROM pg_catalog.pg_class WHERE relname = 'tenants' AND relnamespace = (SELECT oid FROM pg_catalog.pg_namespace WHERE nspname = CURRENT_SCHEMA()))
+2025/07/14 18:42:40 [32m/Users/paulo/projetos/full-services-auto-scale-app/backend/internal/database/database.go:52
+[0m[33m[1.823ms] [34;1m[rows:0][0m SELECT description FROM pg_catalog.pg_description WHERE objsubid = (SELECT ordinal_position FROM information_schema.columns WHERE table_schema = CURRENT_SCHEMA() AND table_name = 'tenants' AND column_name = 'name') AND objoid = (SELECT oid FROM pg_catalog.pg_class WHERE relname = 'tenants' AND relnamespace = (SELECT oid FROM pg_catalog.pg_namespace WHERE nspname = CURRENT_SCHEMA()))
 
-2025/07/14 14:51:59 [32m
-[0m[33m[0.601ms] [34;1m[rows:1][0m SELECT CURRENT_DATABASE()
+2025/07/14 18:42:40 [32m
+[0m[33m[0.308ms] [34;1m[rows:1][0m SELECT CURRENT_DATABASE()
 
-2025/07/14 14:51:59 [32m
-[0m[33m[3.848ms] [34;1m[rows:-][0m SELECT c.column_name, c.is_nullable = 'YES', c.udt_name, c.character_maximum_length, c.numeric_precision, c.numeric_precision_radix, c.numeric_scale, c.datetime_precision, 8 * typlen, c.column_default, pd.description, c.identity_increment FROM information_schema.columns AS c JOIN pg_type AS pgt ON c.udt_name = pgt.typname LEFT JOIN pg_catalog.pg_description as pd ON pd.objsubid = c.ordinal_position AND pd.objoid = (SELECT oid FROM pg_catalog.pg_class WHERE relname = c.table_name AND relnamespace = (SELECT oid FROM pg_catalog.pg_namespace WHERE nspname = c.table_schema)) where table_catalog = 'nomad_services' AND table_schema = CURRENT_SCHEMA() AND table_name = 'tenants'
+2025/07/14 18:42:40 [32m
+[0m[33m[5.771ms] [34;1m[rows:-][0m SELECT c.column_name, c.is_nullable = 'YES', c.udt_name, c.character_maximum_length, c.numeric_precision, c.numeric_precision_radix, c.numeric_scale, c.datetime_precision, 8 * typlen, c.column_default, pd.description, c.identity_increment FROM information_schema.columns AS c JOIN pg_type AS pgt ON c.udt_name = pgt.typname LEFT JOIN pg_catalog.pg_description as pd ON pd.objsubid = c.ordinal_position AND pd.objoid = (SELECT oid FROM pg_catalog.pg_class WHERE relname = c.table_name AND relnamespace = (SELECT oid FROM pg_catalog.pg_namespace WHERE nspname = c.table_schema)) where table_catalog = 'nomad_services' AND table_schema = CURRENT_SCHEMA() AND table_name = 'tenants'
 
-2025/07/14 14:51:59 [32m
-[0m[33m[0.276ms] [34;1m[rows:-][0m SELECT * FROM "tenants" LIMIT 1
+2025/07/14 18:42:40 [32m
+[0m[33m[0.906ms] [34;1m[rows:-][0m SELECT * FROM "tenants" LIMIT 1
 
-2025/07/14 14:51:59 [32m
-[0m[33m[7.994ms] [34;1m[rows:-][0m SELECT constraint_name FROM information_schema.table_constraints tc JOIN information_schema.constraint_column_usage AS ccu USING (constraint_schema, constraint_name) JOIN information_schema.columns AS c ON c.table_schema = tc.constraint_schema AND tc.table_name = c.table_name AND ccu.column_name = c.column_name WHERE constraint_type IN ('PRIMARY KEY', 'UNIQUE') AND c.table_catalog = 'nomad_services' AND c.table_schema = CURRENT_SCHEMA() AND c.table_name = 'tenants' AND constraint_type = 'UNIQUE'
+2025/07/14 18:42:40 [32m
+[0m[33m[10.635ms] [34;1m[rows:-][0m SELECT constraint_name FROM information_schema.table_constraints tc JOIN information_schema.constraint_column_usage AS ccu USING (constraint_schema, constraint_name) JOIN information_schema.columns AS c ON c.table_schema = tc.constraint_schema AND tc.table_name = c.table_name AND ccu.column_name = c.column_name WHERE constraint_type IN ('PRIMARY KEY', 'UNIQUE') AND c.table_catalog = 'nomad_services' AND c.table_schema = CURRENT_SCHEMA() AND c.table_name = 'tenants' AND constraint_type = 'UNIQUE'
 
-2025/07/14 14:51:59 [32m
-[0m[33m[7.652ms] [34;1m[rows:-][0m SELECT c.column_name, constraint_name, constraint_type FROM information_schema.table_constraints tc JOIN information_schema.constraint_column_usage AS ccu USING (constraint_schema, constraint_name) JOIN information_schema.columns AS c ON c.table_schema = tc.constraint_schema AND tc.table_name = c.table_name AND ccu.column_name = c.column_name WHERE constraint_type IN ('PRIMARY KEY', 'UNIQUE') AND c.table_catalog = 'nomad_services' AND c.table_schema = CURRENT_SCHEMA() AND c.table_name = 'tenants'
+2025/07/14 18:42:40 [32m
+[0m[33m[7.172ms] [34;1m[rows:-][0m SELECT c.column_name, constraint_name, constraint_type FROM information_schema.table_constraints tc JOIN information_schema.constraint_column_usage AS ccu USING (constraint_schema, constraint_name) JOIN information_schema.columns AS c ON c.table_schema = tc.constraint_schema AND tc.table_name = c.table_name AND ccu.column_name = c.column_name WHERE constraint_type IN ('PRIMARY KEY', 'UNIQUE') AND c.table_catalog = 'nomad_services' AND c.table_schema = CURRENT_SCHEMA() AND c.table_name = 'tenants'
 
-2025/07/14 14:52:00 [32m
-[0m[33m[0.883ms] [34;1m[rows:-][0m SELECT a.attname as column_name, format_type(a.atttypid, a.atttypmod) AS data_type
+2025/07/14 18:42:40 [32m
+[0m[33m[0.701ms] [34;1m[rows:-][0m SELECT a.attname as column_name, format_type(a.atttypid, a.atttypmod) AS data_type
 		FROM pg_attribute a JOIN pg_class b ON a.attrelid = b.oid AND relnamespace = (SELECT oid FROM pg_catalog.pg_namespace WHERE nspname = CURRENT_SCHEMA())
 		WHERE a.attnum > 0 -- hide internal columns
 		AND NOT a.attisdropped -- hide deleted columns
 		AND b.relname = 'tenants'
 
-2025/07/14 14:52:00 [32m
-[0m[33m[3.841ms] [34;1m[rows:1][0m SELECT count(*) FROM pg_indexes WHERE tablename = 'tenants' AND indexname = 'idx_tenants_slug' AND schemaname = CURRENT_SCHEMA()
+2025/07/14 18:42:40 [32m
+[0m[33m[4.854ms] [34;1m[rows:1][0m SELECT count(*) FROM pg_indexes WHERE tablename = 'tenants' AND indexname = 'idx_tenants_slug' AND schemaname = CURRENT_SCHEMA()
 
-2025/07/14 14:52:00 [32m/Users/paulo/projetos/full-services-auto-scale-app/backend/internal/database/database.go:52
-[0m[33m[2.003ms] [34;1m[rows:0][0m SELECT description FROM pg_catalog.pg_description WHERE objsubid = (SELECT ordinal_position FROM information_schema.columns WHERE table_schema = CURRENT_SCHEMA() AND table_name = 'tenants' AND column_name = 'slug') AND objoid = (SELECT oid FROM pg_catalog.pg_class WHERE relname = 'tenants' AND relnamespace = (SELECT oid FROM pg_catalog.pg_namespace WHERE nspname = CURRENT_SCHEMA()))
+2025/07/14 18:42:40 [32m/Users/paulo/projetos/full-services-auto-scale-app/backend/internal/database/database.go:52
+[0m[33m[2.126ms] [34;1m[rows:0][0m SELECT description FROM pg_catalog.pg_description WHERE objsubid = (SELECT ordinal_position FROM information_schema.columns WHERE table_schema = CURRENT_SCHEMA() AND table_name = 'tenants' AND column_name = 'slug') AND objoid = (SELECT oid FROM pg_catalog.pg_class WHERE relname = 'tenants' AND relnamespace = (SELECT oid FROM pg_catalog.pg_namespace WHERE nspname = CURRENT_SCHEMA()))
 
-2025/07/14 14:52:00 [32m/Users/paulo/projetos/full-services-auto-scale-app/backend/internal/database/database.go:52
-[0m[33m[1.775ms] [34;1m[rows:0][0m SELECT description FROM pg_catalog.pg_description WHERE objsubid = (SELECT ordinal_position FROM information_schema.columns WHERE table_schema = CURRENT_SCHEMA() AND table_name = 'tenants' AND column_name = 'description') AND objoid = (SELECT oid FROM pg_catalog.pg_class WHERE relname = 'tenants' AND relnamespace = (SELECT oid FROM pg_catalog.pg_namespace WHERE nspname = CURRENT_SCHEMA()))
+2025/07/14 18:42:40 [32m/Users/paulo/projetos/full-services-auto-scale-app/backend/internal/database/database.go:52
+[0m[33m[1.970ms] [34;1m[rows:0][0m SELECT description FROM pg_catalog.pg_description WHERE objsubid = (SELECT ordinal_position FROM information_schema.columns WHERE table_schema = CURRENT_SCHEMA() AND table_name = 'tenants' AND column_name = 'description') AND objoid = (SELECT oid FROM pg_catalog.pg_class WHERE relname = 'tenants' AND relnamespace = (SELECT oid FROM pg_catalog.pg_namespace WHERE nspname = CURRENT_SCHEMA()))
 
-2025/07/14 14:52:00 [32m
-[0m[33m[0.330ms] [34;1m[rows:1][0m SELECT CURRENT_DATABASE()
+2025/07/14 18:42:40 [32m
+[0m[33m[0.619ms] [34;1m[rows:1][0m SELECT CURRENT_DATABASE()
 
-2025/07/14 14:52:00 [32m
-[0m[33m[5.874ms] [34;1m[rows:-][0m SELECT c.column_name, c.is_nullable = 'YES', c.udt_name, c.character_maximum_length, c.numeric_precision, c.numeric_precision_radix, c.numeric_scale, c.datetime_precision, 8 * typlen, c.column_default, pd.description, c.identity_increment FROM information_schema.columns AS c JOIN pg_type AS pgt ON c.udt_name = pgt.typname LEFT JOIN pg_catalog.pg_description as pd ON pd.objsubid = c.ordinal_position AND pd.objoid = (SELECT oid FROM pg_catalog.pg_class WHERE relname = c.table_name AND relnamespace = (SELECT oid FROM pg_catalog.pg_namespace WHERE nspname = c.table_schema)) where table_catalog = 'nomad_services' AND table_schema = CURRENT_SCHEMA() AND table_name = 'tenants'
+2025/07/14 18:42:40 [32m
+[0m[33m[4.813ms] [34;1m[rows:-][0m SELECT c.column_name, c.is_nullable = 'YES', c.udt_name, c.character_maximum_length, c.numeric_precision, c.numeric_precision_radix, c.numeric_scale, c.datetime_precision, 8 * typlen, c.column_default, pd.description, c.identity_increment FROM information_schema.columns AS c JOIN pg_type AS pgt ON c.udt_name = pgt.typname LEFT JOIN pg_catalog.pg_description as pd ON pd.objsubid = c.ordinal_position AND pd.objoid = (SELECT oid FROM pg_catalog.pg_class WHERE relname = c.table_name AND relnamespace = (SELECT oid FROM pg_catalog.pg_namespace WHERE nspname = c.table_schema)) where table_catalog = 'nomad_services' AND table_schema = CURRENT_SCHEMA() AND table_name = 'tenants'
 
-2025/07/14 14:52:00 [32m
-[0m[33m[0.509ms] [34;1m[rows:-][0m SELECT * FROM "tenants" LIMIT 1
+2025/07/14 18:42:40 [32m
+[0m[33m[0.544ms] [34;1m[rows:-][0m SELECT * FROM "tenants" LIMIT 1
 
-2025/07/14 14:52:00 [32m
-[0m[33m[6.844ms] [34;1m[rows:-][0m SELECT constraint_name FROM information_schema.table_constraints tc JOIN information_schema.constraint_column_usage AS ccu USING (constraint_schema, constraint_name) JOIN information_schema.columns AS c ON c.table_schema = tc.constraint_schema AND tc.table_name = c.table_name AND ccu.column_name = c.column_name WHERE constraint_type IN ('PRIMARY KEY', 'UNIQUE') AND c.table_catalog = 'nomad_services' AND c.table_schema = CURRENT_SCHEMA() AND c.table_name = 'tenants' AND constraint_type = 'UNIQUE'
+2025/07/14 18:42:40 [32m
+[0m[33m[7.998ms] [34;1m[rows:-][0m SELECT constraint_name FROM information_schema.table_constraints tc JOIN information_schema.constraint_column_usage AS ccu USING (constraint_schema, constraint_name) JOIN information_schema.columns AS c ON c.table_schema = tc.constraint_schema AND tc.table_name = c.table_name AND ccu.column_name = c.column_name WHERE constraint_type IN ('PRIMARY KEY', 'UNIQUE') AND c.table_catalog = 'nomad_services' AND c.table_schema = CURRENT_SCHEMA() AND c.table_name = 'tenants' AND constraint_type = 'UNIQUE'
 
-2025/07/14 14:52:00 [32m
-[0m[33m[7.618ms] [34;1m[rows:-][0m SELECT c.column_name, constraint_name, constraint_type FROM information_schema.table_constraints tc JOIN information_schema.constraint_column_usage AS ccu USING (constraint_schema, constraint_name) JOIN information_schema.columns AS c ON c.table_schema = tc.constraint_schema AND tc.table_name = c.table_name AND ccu.column_name = c.column_name WHERE constraint_type IN ('PRIMARY KEY', 'UNIQUE') AND c.table_catalog = 'nomad_services' AND c.table_schema = CURRENT_SCHEMA() AND c.table_name = 'tenants'
+2025/07/14 18:42:40 [32m
+[0m[33m[8.235ms] [34;1m[rows:-][0m SELECT c.column_name, constraint_name, constraint_type FROM information_schema.table_constraints tc JOIN information_schema.constraint_column_usage AS ccu USING (constraint_schema, constraint_name) JOIN information_schema.columns AS c ON c.table_schema = tc.constraint_schema AND tc.table_name = c.table_name AND ccu.column_name = c.column_name WHERE constraint_type IN ('PRIMARY KEY', 'UNIQUE') AND c.table_catalog = 'nomad_services' AND c.table_schema = CURRENT_SCHEMA() AND c.table_name = 'tenants'
 
-2025/07/14 14:52:00 [32m
-[0m[33m[0.856ms] [34;1m[rows:-][0m SELECT a.attname as column_name, format_type(a.atttypid, a.atttypmod) AS data_type
+2025/07/14 18:42:40 [32m
+[0m[33m[1.669ms] [34;1m[rows:-][0m SELECT a.attname as column_name, format_type(a.atttypid, a.atttypmod) AS data_type
 		FROM pg_attribute a JOIN pg_class b ON a.attrelid = b.oid AND relnamespace = (SELECT oid FROM pg_catalog.pg_namespace WHERE nspname = CURRENT_SCHEMA())
 		WHERE a.attnum > 0 -- hide internal columns
 		AND NOT a.attisdropped -- hide deleted columns
 		AND b.relname = 'tenants'
 
-2025/07/14 14:52:00 [32m
-[0m[33m[1.266ms] [34;1m[rows:1][0m SELECT count(*) FROM pg_indexes WHERE tablename = 'tenants' AND indexname = 'idx_tenants_domain' AND schemaname = CURRENT_SCHEMA()
+2025/07/14 18:42:40 [32m
+[0m[33m[0.886ms] [34;1m[rows:1][0m SELECT count(*) FROM pg_indexes WHERE tablename = 'tenants' AND indexname = 'idx_tenants_domain' AND schemaname = CURRENT_SCHEMA()
 
-2025/07/14 14:52:00 [32m/Users/paulo/projetos/full-services-auto-scale-app/backend/internal/database/database.go:52
-[0m[33m[2.141ms] [34;1m[rows:0][0m SELECT description FROM pg_catalog.pg_description WHERE objsubid = (SELECT ordinal_position FROM information_schema.columns WHERE table_schema = CURRENT_SCHEMA() AND table_name = 'tenants' AND column_name = 'domain') AND objoid = (SELECT oid FROM pg_catalog.pg_class WHERE relname = 'tenants' AND relnamespace = (SELECT oid FROM pg_catalog.pg_namespace WHERE nspname = CURRENT_SCHEMA()))
+2025/07/14 18:42:40 [32m/Users/paulo/projetos/full-services-auto-scale-app/backend/internal/database/database.go:52
+[0m[33m[3.558ms] [34;1m[rows:0][0m SELECT description FROM pg_catalog.pg_description WHERE objsubid = (SELECT ordinal_position FROM information_schema.columns WHERE table_schema = CURRENT_SCHEMA() AND table_name = 'tenants' AND column_name = 'domain') AND objoid = (SELECT oid FROM pg_catalog.pg_class WHERE relname = 'tenants' AND relnamespace = (SELECT oid FROM pg_catalog.pg_namespace WHERE nspname = CURRENT_SCHEMA()))
 
-2025/07/14 14:52:00 [32m/Users/paulo/projetos/full-services-auto-scale-app/backend/internal/database/database.go:52
-[0m[33m[1.895ms] [34;1m[rows:0][0m SELECT description FROM pg_catalog.pg_description WHERE objsubid = (SELECT ordinal_position FROM information_schema.columns WHERE table_schema = CURRENT_SCHEMA() AND table_name = 'tenants' AND column_name = 'is_active') AND objoid = (SELECT oid FROM pg_catalog.pg_class WHERE relname = 'tenants' AND relnamespace = (SELECT oid FROM pg_catalog.pg_namespace WHERE nspname = CURRENT_SCHEMA()))
+2025/07/14 18:42:40 [32m/Users/paulo/projetos/full-services-auto-scale-app/backend/internal/database/database.go:52
+[0m[33m[2.401ms] [34;1m[rows:0][0m SELECT description FROM pg_catalog.pg_description WHERE objsubid = (SELECT ordinal_position FROM information_schema.columns WHERE table_schema = CURRENT_SCHEMA() AND table_name = 'tenants' AND column_name = 'is_active') AND objoid = (SELECT oid FROM pg_catalog.pg_class WHERE relname = 'tenants' AND relnamespace = (SELECT oid FROM pg_catalog.pg_namespace WHERE nspname = CURRENT_SCHEMA()))
 
-2025/07/14 14:52:00 [32m/Users/paulo/projetos/full-services-auto-scale-app/backend/internal/database/database.go:52
-[0m[33m[0.526ms] [34;1m[rows:0][0m SELECT description FROM pg_catalog.pg_description WHERE objsubid = (SELECT ordinal_position FROM information_schema.columns WHERE table_schema = CURRENT_SCHEMA() AND table_name = 'tenants' AND column_name = 'plan') AND objoid = (SELECT oid FROM pg_catalog.pg_class WHERE relname = 'tenants' AND relnamespace = (SELECT oid FROM pg_catalog.pg_namespace WHERE nspname = CURRENT_SCHEMA()))
+2025/07/14 18:42:40 [32m/Users/paulo/projetos/full-services-auto-scale-app/backend/internal/database/database.go:52
+[0m[33m[0.574ms] [34;1m[rows:0][0m SELECT description FROM pg_catalog.pg_description WHERE objsubid = (SELECT ordinal_position FROM information_schema.columns WHERE table_schema = CURRENT_SCHEMA() AND table_name = 'tenants' AND column_name = 'plan') AND objoid = (SELECT oid FROM pg_catalog.pg_class WHERE relname = 'tenants' AND relnamespace = (SELECT oid FROM pg_catalog.pg_namespace WHERE nspname = CURRENT_SCHEMA()))
 
-2025/07/14 14:52:00 [32m/Users/paulo/projetos/full-services-auto-scale-app/backend/internal/database/database.go:52
-[0m[33m[0.648ms] [34;1m[rows:0][0m SELECT description FROM pg_catalog.pg_description WHERE objsubid = (SELECT ordinal_position FROM information_schema.columns WHERE table_schema = CURRENT_SCHEMA() AND table_name = 'tenants' AND column_name = 'max_services') AND objoid = (SELECT oid FROM pg_catalog.pg_class WHERE relname = 'tenants' AND relnamespace = (SELECT oid FROM pg_catalog.pg_namespace WHERE nspname = CURRENT_SCHEMA()))
+2025/07/14 18:42:40 [32m/Users/paulo/projetos/full-services-auto-scale-app/backend/internal/database/database.go:52
+[0m[33m[0.525ms] [34;1m[rows:0][0m SELECT description FROM pg_catalog.pg_description WHERE objsubid = (SELECT ordinal_position FROM information_schema.columns WHERE table_schema = CURRENT_SCHEMA() AND table_name = 'tenants' AND column_name = 'max_services') AND objoid = (SELECT oid FROM pg_catalog.pg_class WHERE relname = 'tenants' AND relnamespace = (SELECT oid FROM pg_catalog.pg_namespace WHERE nspname = CURRENT_SCHEMA()))
 
-2025/07/14 14:52:00 [32m/Users/paulo/projetos/full-services-auto-scale-app/backend/internal/database/database.go:52
-[0m[33m[0.537ms] [34;1m[rows:0][0m SELECT description FROM pg_catalog.pg_description WHERE objsubid = (SELECT ordinal_position FROM information_schema.columns WHERE table_schema = CURRENT_SCHEMA() AND table_name = 'tenants' AND column_name = 'created_at') AND objoid = (SELECT oid FROM pg_catalog.pg_class WHERE relname = 'tenants' AND relnamespace = (SELECT oid FROM pg_catalog.pg_namespace WHERE nspname = CURRENT_SCHEMA()))
+2025/07/14 18:42:40 [32m/Users/paulo/projetos/full-services-auto-scale-app/backend/internal/database/database.go:52
+[0m[33m[0.573ms] [34;1m[rows:0][0m SELECT description FROM pg_catalog.pg_description WHERE objsubid = (SELECT ordinal_position FROM information_schema.columns WHERE table_schema = CURRENT_SCHEMA() AND table_name = 'tenants' AND column_name = 'created_at') AND objoid = (SELECT oid FROM pg_catalog.pg_class WHERE relname = 'tenants' AND relnamespace = (SELECT oid FROM pg_catalog.pg_namespace WHERE nspname = CURRENT_SCHEMA()))
 
-2025/07/14 14:52:00 [32m/Users/paulo/projetos/full-services-auto-scale-app/backend/internal/database/database.go:52
-[0m[33m[0.436ms] [34;1m[rows:0][0m SELECT description FROM pg_catalog.pg_description WHERE objsubid = (SELECT ordinal_position FROM information_schema.columns WHERE table_schema = CURRENT_SCHEMA() AND table_name = 'tenants' AND column_name = 'updated_at') AND objoid = (SELECT oid FROM pg_catalog.pg_class WHERE relname = 'tenants' AND relnamespace = (SELECT oid FROM pg_catalog.pg_namespace WHERE nspname = CURRENT_SCHEMA()))
+2025/07/14 18:42:40 [32m/Users/paulo/projetos/full-services-auto-scale-app/backend/internal/database/database.go:52
+[0m[33m[3.372ms] [34;1m[rows:0][0m SELECT description FROM pg_catalog.pg_description WHERE objsubid = (SELECT ordinal_position FROM information_schema.columns WHERE table_schema = CURRENT_SCHEMA() AND table_name = 'tenants' AND column_name = 'updated_at') AND objoid = (SELECT oid FROM pg_catalog.pg_class WHERE relname = 'tenants' AND relnamespace = (SELECT oid FROM pg_catalog.pg_namespace WHERE nspname = CURRENT_SCHEMA()))
 
-2025/07/14 14:52:00 [32m/Users/paulo/projetos/full-services-auto-scale-app/backend/internal/database/database.go:52
-[0m[33m[1.000ms] [34;1m[rows:1][0m SELECT count(*) FROM pg_indexes WHERE tablename = 'tenants' AND indexname = 'idx_tenants_slug' AND schemaname = CURRENT_SCHEMA()
+2025/07/14 18:42:40 [32m/Users/paulo/projetos/full-services-auto-scale-app/backend/internal/database/database.go:52
+[0m[33m[1.174ms] [34;1m[rows:1][0m SELECT count(*) FROM pg_indexes WHERE tablename = 'tenants' AND indexname = 'idx_tenants_slug' AND schemaname = CURRENT_SCHEMA()
 
-2025/07/14 14:52:00 [32m/Users/paulo/projetos/full-services-auto-scale-app/backend/internal/database/database.go:52
-[0m[33m[0.772ms] [34;1m[rows:1][0m SELECT count(*) FROM pg_indexes WHERE tablename = 'tenants' AND indexname = 'idx_tenants_domain' AND schemaname = CURRENT_SCHEMA()
+2025/07/14 18:42:40 [32m/Users/paulo/projetos/full-services-auto-scale-app/backend/internal/database/database.go:52
+[0m[33m[0.874ms] [34;1m[rows:1][0m SELECT count(*) FROM pg_indexes WHERE tablename = 'tenants' AND indexname = 'idx_tenants_domain' AND schemaname = CURRENT_SCHEMA()
 
-2025/07/14 14:52:00 [32m/Users/paulo/projetos/full-services-auto-scale-app/backend/internal/database/database.go:52
-[0m[33m[0.862ms] [34;1m[rows:1][0m SELECT count(*) FROM information_schema.tables WHERE table_schema = CURRENT_SCHEMA() AND table_name = 'users' AND table_type = 'BASE TABLE'
+2025/07/14 18:42:40 [32m/Users/paulo/projetos/full-services-auto-scale-app/backend/internal/database/database.go:52
+[0m[33m[0.622ms] [34;1m[rows:1][0m SELECT count(*) FROM information_schema.tables WHERE table_schema = CURRENT_SCHEMA() AND table_name = 'users' AND table_type = 'BASE TABLE'
 
-2025/07/14 14:52:00 [32m/Users/paulo/projetos/full-services-auto-scale-app/backend/internal/database/database.go:52
-[0m[33m[0.315ms] [34;1m[rows:1][0m SELECT CURRENT_DATABASE()
+2025/07/14 18:42:40 [32m/Users/paulo/projetos/full-services-auto-scale-app/backend/internal/database/database.go:52
+[0m[33m[0.344ms] [34;1m[rows:1][0m SELECT CURRENT_DATABASE()
 
-2025/07/14 14:52:00 [32m/Users/paulo/projetos/full-services-auto-scale-app/backend/internal/database/database.go:52
-[0m[33m[5.164ms] [34;1m[rows:-][0m SELECT c.column_name, c.is_nullable = 'YES', c.udt_name, c.character_maximum_length, c.numeric_precision, c.numeric_precision_radix, c.numeric_scale, c.datetime_precision, 8 * typlen, c.column_default, pd.description, c.identity_increment FROM information_schema.columns AS c JOIN pg_type AS pgt ON c.udt_name = pgt.typname LEFT JOIN pg_catalog.pg_description as pd ON pd.objsubid = c.ordinal_position AND pd.objoid = (SELECT oid FROM pg_catalog.pg_class WHERE relname = c.table_name AND relnamespace = (SELECT oid FROM pg_catalog.pg_namespace WHERE nspname = c.table_schema)) where table_catalog = 'nomad_services' AND table_schema = CURRENT_SCHEMA() AND table_name = 'users'
+2025/07/14 18:42:40 [32m/Users/paulo/projetos/full-services-auto-scale-app/backend/internal/database/database.go:52
+[0m[33m[7.379ms] [34;1m[rows:-][0m SELECT c.column_name, c.is_nullable = 'YES', c.udt_name, c.character_maximum_length, c.numeric_precision, c.numeric_precision_radix, c.numeric_scale, c.datetime_precision, 8 * typlen, c.column_default, pd.description, c.identity_increment FROM information_schema.columns AS c JOIN pg_type AS pgt ON c.udt_name = pgt.typname LEFT JOIN pg_catalog.pg_description as pd ON pd.objsubid = c.ordinal_position AND pd.objoid = (SELECT oid FROM pg_catalog.pg_class WHERE relname = c.table_name AND relnamespace = (SELECT oid FROM pg_catalog.pg_namespace WHERE nspname = c.table_schema)) where table_catalog = 'nomad_services' AND table_schema = CURRENT_SCHEMA() AND table_name = 'users'
 
-2025/07/14 14:52:00 [32m/Users/paulo/projetos/full-services-auto-scale-app/backend/internal/database/database.go:52
-[0m[33m[1.400ms] [34;1m[rows:-][0m SELECT * FROM "users" LIMIT 1
+2025/07/14 18:42:40 [32m/Users/paulo/projetos/full-services-auto-scale-app/backend/internal/database/database.go:52
+[0m[33m[2.746ms] [34;1m[rows:-][0m SELECT * FROM "users" LIMIT 1
 
-2025/07/14 14:52:00 [32m/Users/paulo/projetos/full-services-auto-scale-app/backend/internal/database/database.go:52
-[0m[33m[12.800ms] [34;1m[rows:-][0m SELECT constraint_name FROM information_schema.table_constraints tc JOIN information_schema.constraint_column_usage AS ccu USING (constraint_schema, constraint_name) JOIN information_schema.columns AS c ON c.table_schema = tc.constraint_schema AND tc.table_name = c.table_name AND ccu.column_name = c.column_name WHERE constraint_type IN ('PRIMARY KEY', 'UNIQUE') AND c.table_catalog = 'nomad_services' AND c.table_schema = CURRENT_SCHEMA() AND c.table_name = 'users' AND constraint_type = 'UNIQUE'
+2025/07/14 18:42:40 [32m/Users/paulo/projetos/full-services-auto-scale-app/backend/internal/database/database.go:52
+[0m[33m[9.796ms] [34;1m[rows:-][0m SELECT constraint_name FROM information_schema.table_constraints tc JOIN information_schema.constraint_column_usage AS ccu USING (constraint_schema, constraint_name) JOIN information_schema.columns AS c ON c.table_schema = tc.constraint_schema AND tc.table_name = c.table_name AND ccu.column_name = c.column_name WHERE constraint_type IN ('PRIMARY KEY', 'UNIQUE') AND c.table_catalog = 'nomad_services' AND c.table_schema = CURRENT_SCHEMA() AND c.table_name = 'users' AND constraint_type = 'UNIQUE'
 
-2025/07/14 14:52:00 [32m/Users/paulo/projetos/full-services-auto-scale-app/backend/internal/database/database.go:52
-[0m[33m[9.871ms] [34;1m[rows:-][0m SELECT c.column_name, constraint_name, constraint_type FROM information_schema.table_constraints tc JOIN information_schema.constraint_column_usage AS ccu USING (constraint_schema, constraint_name) JOIN information_schema.columns AS c ON c.table_schema = tc.constraint_schema AND tc.table_name = c.table_name AND ccu.column_name = c.column_name WHERE constraint_type IN ('PRIMARY KEY', 'UNIQUE') AND c.table_catalog = 'nomad_services' AND c.table_schema = CURRENT_SCHEMA() AND c.table_name = 'users'
+2025/07/14 18:42:40 [32m/Users/paulo/projetos/full-services-auto-scale-app/backend/internal/database/database.go:52
+[0m[33m[7.716ms] [34;1m[rows:-][0m SELECT c.column_name, constraint_name, constraint_type FROM information_schema.table_constraints tc JOIN information_schema.constraint_column_usage AS ccu USING (constraint_schema, constraint_name) JOIN information_schema.columns AS c ON c.table_schema = tc.constraint_schema AND tc.table_name = c.table_name AND ccu.column_name = c.column_name WHERE constraint_type IN ('PRIMARY KEY', 'UNIQUE') AND c.table_catalog = 'nomad_services' AND c.table_schema = CURRENT_SCHEMA() AND c.table_name = 'users'
 
-2025/07/14 14:52:00 [32m/Users/paulo/projetos/full-services-auto-scale-app/backend/internal/database/database.go:52
-[0m[33m[0.593ms] [34;1m[rows:-][0m SELECT a.attname as column_name, format_type(a.atttypid, a.atttypmod) AS data_type
+2025/07/14 18:42:40 [32m/Users/paulo/projetos/full-services-auto-scale-app/backend/internal/database/database.go:52
+[0m[33m[0.716ms] [34;1m[rows:-][0m SELECT a.attname as column_name, format_type(a.atttypid, a.atttypmod) AS data_type
 		FROM pg_attribute a JOIN pg_class b ON a.attrelid = b.oid AND relnamespace = (SELECT oid FROM pg_catalog.pg_namespace WHERE nspname = CURRENT_SCHEMA())
 		WHERE a.attnum > 0 -- hide internal columns
 		AND NOT a.attisdropped -- hide deleted columns
 		AND b.relname = 'users'
 
-2025/07/14 14:52:00 [32m/Users/paulo/projetos/full-services-auto-scale-app/backend/internal/database/database.go:52
-[0m[33m[0.493ms] [34;1m[rows:0][0m SELECT description FROM pg_catalog.pg_description WHERE objsubid = (SELECT ordinal_position FROM information_schema.columns WHERE table_schema = CURRENT_SCHEMA() AND table_name = 'users' AND column_name = 'id') AND objoid = (SELECT oid FROM pg_catalog.pg_class WHERE relname = 'users' AND relnamespace = (SELECT oid FROM pg_catalog.pg_namespace WHERE nspname = CURRENT_SCHEMA()))
+2025/07/14 18:42:40 [32m/Users/paulo/projetos/full-services-auto-scale-app/backend/internal/database/database.go:52
+[0m[33m[0.641ms] [34;1m[rows:0][0m SELECT description FROM pg_catalog.pg_description WHERE objsubid = (SELECT ordinal_position FROM information_schema.columns WHERE table_schema = CURRENT_SCHEMA() AND table_name = 'users' AND column_name = 'id') AND objoid = (SELECT oid FROM pg_catalog.pg_class WHERE relname = 'users' AND relnamespace = (SELECT oid FROM pg_catalog.pg_namespace WHERE nspname = CURRENT_SCHEMA()))
 
-2025/07/14 14:52:00 [32m
-[0m[33m[0.472ms] [34;1m[rows:1][0m SELECT CURRENT_DATABASE()
+2025/07/14 18:42:40 [32m
+[0m[33m[0.235ms] [34;1m[rows:1][0m SELECT CURRENT_DATABASE()
 
-2025/07/14 14:52:00 [32m
-[0m[33m[3.869ms] [34;1m[rows:-][0m SELECT c.column_name, c.is_nullable = 'YES', c.udt_name, c.character_maximum_length, c.numeric_precision, c.numeric_precision_radix, c.numeric_scale, c.datetime_precision, 8 * typlen, c.column_default, pd.description, c.identity_increment FROM information_schema.columns AS c JOIN pg_type AS pgt ON c.udt_name = pgt.typname LEFT JOIN pg_catalog.pg_description as pd ON pd.objsubid = c.ordinal_position AND pd.objoid = (SELECT oid FROM pg_catalog.pg_class WHERE relname = c.table_name AND relnamespace = (SELECT oid FROM pg_catalog.pg_namespace WHERE nspname = c.table_schema)) where table_catalog = 'nomad_services' AND table_schema = CURRENT_SCHEMA() AND table_name = 'users'
+2025/07/14 18:42:40 [32m
+[0m[33m[4.205ms] [34;1m[rows:-][0m SELECT c.column_name, c.is_nullable = 'YES', c.udt_name, c.character_maximum_length, c.numeric_precision, c.numeric_precision_radix, c.numeric_scale, c.datetime_precision, 8 * typlen, c.column_default, pd.description, c.identity_increment FROM information_schema.columns AS c JOIN pg_type AS pgt ON c.udt_name = pgt.typname LEFT JOIN pg_catalog.pg_description as pd ON pd.objsubid = c.ordinal_position AND pd.objoid = (SELECT oid FROM pg_catalog.pg_class WHERE relname = c.table_name AND relnamespace = (SELECT oid FROM pg_catalog.pg_namespace WHERE nspname = c.table_schema)) where table_catalog = 'nomad_services' AND table_schema = CURRENT_SCHEMA() AND table_name = 'users'
 
-2025/07/14 14:52:00 [32m
-[0m[33m[0.544ms] [34;1m[rows:-][0m SELECT * FROM "users" LIMIT 1
+2025/07/14 18:42:40 [32m
+[0m[33m[1.827ms] [34;1m[rows:-][0m SELECT * FROM "users" LIMIT 1
 
-2025/07/14 14:52:00 [32m
-[0m[33m[6.429ms] [34;1m[rows:-][0m SELECT constraint_name FROM information_schema.table_constraints tc JOIN information_schema.constraint_column_usage AS ccu USING (constraint_schema, constraint_name) JOIN information_schema.columns AS c ON c.table_schema = tc.constraint_schema AND tc.table_name = c.table_name AND ccu.column_name = c.column_name WHERE constraint_type IN ('PRIMARY KEY', 'UNIQUE') AND c.table_catalog = 'nomad_services' AND c.table_schema = CURRENT_SCHEMA() AND c.table_name = 'users' AND constraint_type = 'UNIQUE'
+2025/07/14 18:42:40 [32m
+[0m[33m[7.824ms] [34;1m[rows:-][0m SELECT constraint_name FROM information_schema.table_constraints tc JOIN information_schema.constraint_column_usage AS ccu USING (constraint_schema, constraint_name) JOIN information_schema.columns AS c ON c.table_schema = tc.constraint_schema AND tc.table_name = c.table_name AND ccu.column_name = c.column_name WHERE constraint_type IN ('PRIMARY KEY', 'UNIQUE') AND c.table_catalog = 'nomad_services' AND c.table_schema = CURRENT_SCHEMA() AND c.table_name = 'users' AND constraint_type = 'UNIQUE'
 
-2025/07/14 14:52:00 [32m
-[0m[33m[10.653ms] [34;1m[rows:-][0m SELECT c.column_name, constraint_name, constraint_type FROM information_schema.table_constraints tc JOIN information_schema.constraint_column_usage AS ccu USING (constraint_schema, constraint_name) JOIN information_schema.columns AS c ON c.table_schema = tc.constraint_schema AND tc.table_name = c.table_name AND ccu.column_name = c.column_name WHERE constraint_type IN ('PRIMARY KEY', 'UNIQUE') AND c.table_catalog = 'nomad_services' AND c.table_schema = CURRENT_SCHEMA() AND c.table_name = 'users'
+2025/07/14 18:42:40 [32m
+[0m[33m[7.854ms] [34;1m[rows:-][0m SELECT c.column_name, constraint_name, constraint_type FROM information_schema.table_constraints tc JOIN information_schema.constraint_column_usage AS ccu USING (constraint_schema, constraint_name) JOIN information_schema.columns AS c ON c.table_schema = tc.constraint_schema AND tc.table_name = c.table_name AND ccu.column_name = c.column_name WHERE constraint_type IN ('PRIMARY KEY', 'UNIQUE') AND c.table_catalog = 'nomad_services' AND c.table_schema = CURRENT_SCHEMA() AND c.table_name = 'users'
 
-2025/07/14 14:52:00 [32m
-[0m[33m[0.928ms] [34;1m[rows:-][0m SELECT a.attname as column_name, format_type(a.atttypid, a.atttypmod) AS data_type
+2025/07/14 18:42:40 [32m
+[0m[33m[2.811ms] [34;1m[rows:-][0m SELECT a.attname as column_name, format_type(a.atttypid, a.atttypmod) AS data_type
 		FROM pg_attribute a JOIN pg_class b ON a.attrelid = b.oid AND relnamespace = (SELECT oid FROM pg_catalog.pg_namespace WHERE nspname = CURRENT_SCHEMA())
 		WHERE a.attnum > 0 -- hide internal columns
 		AND NOT a.attisdropped -- hide deleted columns
 		AND b.relname = 'users'
 
-2025/07/14 14:52:00 [32m
-[0m[33m[0.857ms] [34;1m[rows:1][0m SELECT count(*) FROM pg_indexes WHERE tablename = 'users' AND indexname = 'idx_users_email' AND schemaname = CURRENT_SCHEMA()
+2025/07/14 18:42:40 [32m
+[0m[33m[1.101ms] [34;1m[rows:1][0m SELECT count(*) FROM pg_indexes WHERE tablename = 'users' AND indexname = 'idx_users_email' AND schemaname = CURRENT_SCHEMA()
 
-2025/07/14 14:52:00 [32m/Users/paulo/projetos/full-services-auto-scale-app/backend/internal/database/database.go:52
-[0m[33m[0.745ms] [34;1m[rows:0][0m SELECT description FROM pg_catalog.pg_description WHERE objsubid = (SELECT ordinal_position FROM information_schema.columns WHERE table_schema = CURRENT_SCHEMA() AND table_name = 'users' AND column_name = 'email') AND objoid = (SELECT oid FROM pg_catalog.pg_class WHERE relname = 'users' AND relnamespace = (SELECT oid FROM pg_catalog.pg_namespace WHERE nspname = CURRENT_SCHEMA()))
+2025/07/14 18:42:40 [32m/Users/paulo/projetos/full-services-auto-scale-app/backend/internal/database/database.go:52
+[0m[33m[0.615ms] [34;1m[rows:0][0m SELECT description FROM pg_catalog.pg_description WHERE objsubid = (SELECT ordinal_position FROM information_schema.columns WHERE table_schema = CURRENT_SCHEMA() AND table_name = 'users' AND column_name = 'email') AND objoid = (SELECT oid FROM pg_catalog.pg_class WHERE relname = 'users' AND relnamespace = (SELECT oid FROM pg_catalog.pg_namespace WHERE nspname = CURRENT_SCHEMA()))
 
-2025/07/14 14:52:00 [32m
-[0m[33m[0.301ms] [34;1m[rows:1][0m SELECT CURRENT_DATABASE()
+2025/07/14 18:42:40 [32m
+[0m[33m[0.318ms] [34;1m[rows:1][0m SELECT CURRENT_DATABASE()
 
-2025/07/14 14:52:00 [32m
-[0m[33m[3.933ms] [34;1m[rows:-][0m SELECT c.column_name, c.is_nullable = 'YES', c.udt_name, c.character_maximum_length, c.numeric_precision, c.numeric_precision_radix, c.numeric_scale, c.datetime_precision, 8 * typlen, c.column_default, pd.description, c.identity_increment FROM information_schema.columns AS c JOIN pg_type AS pgt ON c.udt_name = pgt.typname LEFT JOIN pg_catalog.pg_description as pd ON pd.objsubid = c.ordinal_position AND pd.objoid = (SELECT oid FROM pg_catalog.pg_class WHERE relname = c.table_name AND relnamespace = (SELECT oid FROM pg_catalog.pg_namespace WHERE nspname = c.table_schema)) where table_catalog = 'nomad_services' AND table_schema = CURRENT_SCHEMA() AND table_name = 'users'
+2025/07/14 18:42:40 [32m
+[0m[33m[4.630ms] [34;1m[rows:-][0m SELECT c.column_name, c.is_nullable = 'YES', c.udt_name, c.character_maximum_length, c.numeric_precision, c.numeric_precision_radix, c.numeric_scale, c.datetime_precision, 8 * typlen, c.column_default, pd.description, c.identity_increment FROM information_schema.columns AS c JOIN pg_type AS pgt ON c.udt_name = pgt.typname LEFT JOIN pg_catalog.pg_description as pd ON pd.objsubid = c.ordinal_position AND pd.objoid = (SELECT oid FROM pg_catalog.pg_class WHERE relname = c.table_name AND relnamespace = (SELECT oid FROM pg_catalog.pg_namespace WHERE nspname = c.table_schema)) where table_catalog = 'nomad_services' AND table_schema = CURRENT_SCHEMA() AND table_name = 'users'
 
-2025/07/14 14:52:00 [32m
-[0m[33m[0.366ms] [34;1m[rows:-][0m SELECT * FROM "users" LIMIT 1
+2025/07/14 18:42:40 [32m
+[0m[33m[0.399ms] [34;1m[rows:-][0m SELECT * FROM "users" LIMIT 1
 
-2025/07/14 14:52:00 [32m
-[0m[33m[7.312ms] [34;1m[rows:-][0m SELECT constraint_name FROM information_schema.table_constraints tc JOIN information_schema.constraint_column_usage AS ccu USING (constraint_schema, constraint_name) JOIN information_schema.columns AS c ON c.table_schema = tc.constraint_schema AND tc.table_name = c.table_name AND ccu.column_name = c.column_name WHERE constraint_type IN ('PRIMARY KEY', 'UNIQUE') AND c.table_catalog = 'nomad_services' AND c.table_schema = CURRENT_SCHEMA() AND c.table_name = 'users' AND constraint_type = 'UNIQUE'
+2025/07/14 18:42:40 [32m
+[0m[33m[6.981ms] [34;1m[rows:-][0m SELECT constraint_name FROM information_schema.table_constraints tc JOIN information_schema.constraint_column_usage AS ccu USING (constraint_schema, constraint_name) JOIN information_schema.columns AS c ON c.table_schema = tc.constraint_schema AND tc.table_name = c.table_name AND ccu.column_name = c.column_name WHERE constraint_type IN ('PRIMARY KEY', 'UNIQUE') AND c.table_catalog = 'nomad_services' AND c.table_schema = CURRENT_SCHEMA() AND c.table_name = 'users' AND constraint_type = 'UNIQUE'
 
-2025/07/14 14:52:00 [32m
-[0m[33m[6.048ms] [34;1m[rows:-][0m SELECT c.column_name, constraint_name, constraint_type FROM information_schema.table_constraints tc JOIN information_schema.constraint_column_usage AS ccu USING (constraint_schema, constraint_name) JOIN information_schema.columns AS c ON c.table_schema = tc.constraint_schema AND tc.table_name = c.table_name AND ccu.column_name = c.column_name WHERE constraint_type IN ('PRIMARY KEY', 'UNIQUE') AND c.table_catalog = 'nomad_services' AND c.table_schema = CURRENT_SCHEMA() AND c.table_name = 'users'
+2025/07/14 18:42:40 [32m
+[0m[33m[8.237ms] [34;1m[rows:-][0m SELECT c.column_name, constraint_name, constraint_type FROM information_schema.table_constraints tc JOIN information_schema.constraint_column_usage AS ccu USING (constraint_schema, constraint_name) JOIN information_schema.columns AS c ON c.table_schema = tc.constraint_schema AND tc.table_name = c.table_name AND ccu.column_name = c.column_name WHERE constraint_type IN ('PRIMARY KEY', 'UNIQUE') AND c.table_catalog = 'nomad_services' AND c.table_schema = CURRENT_SCHEMA() AND c.table_name = 'users'
 
-2025/07/14 14:52:00 [32m
-[0m[33m[0.640ms] [34;1m[rows:-][0m SELECT a.attname as column_name, format_type(a.atttypid, a.atttypmod) AS data_type
+2025/07/14 18:42:40 [32m
+[0m[33m[0.673ms] [34;1m[rows:-][0m SELECT a.attname as column_name, format_type(a.atttypid, a.atttypmod) AS data_type
 		FROM pg_attribute a JOIN pg_class b ON a.attrelid = b.oid AND relnamespace = (SELECT oid FROM pg_catalog.pg_namespace WHERE nspname = CURRENT_SCHEMA())
 		WHERE a.attnum > 0 -- hide internal columns
 		AND NOT a.attisdropped -- hide deleted columns
 		AND b.relname = 'users'
 
-2025/07/14 14:52:00 [32m
-[0m[33m[0.649ms] [34;1m[rows:1][0m SELECT count(*) FROM pg_indexes WHERE tablename = 'users' AND indexname = 'idx_users_username' AND schemaname = CURRENT_SCHEMA()
+2025/07/14 18:42:40 [32m
+[0m[33m[0.698ms] [34;1m[rows:1][0m SELECT count(*) FROM pg_indexes WHERE tablename = 'users' AND indexname = 'idx_users_username' AND schemaname = CURRENT_SCHEMA()
 
-2025/07/14 14:52:00 [32m/Users/paulo/projetos/full-services-auto-scale-app/backend/internal/database/database.go:52
-[0m[33m[0.558ms] [34;1m[rows:0][0m SELECT description FROM pg_catalog.pg_description WHERE objsubid = (SELECT ordinal_position FROM information_schema.columns WHERE table_schema = CURRENT_SCHEMA() AND table_name = 'users' AND column_name = 'username') AND objoid = (SELECT oid FROM pg_catalog.pg_class WHERE relname = 'users' AND relnamespace = (SELECT oid FROM pg_catalog.pg_namespace WHERE nspname = CURRENT_SCHEMA()))
+2025/07/14 18:42:40 [32m/Users/paulo/projetos/full-services-auto-scale-app/backend/internal/database/database.go:52
+[0m[33m[0.436ms] [34;1m[rows:0][0m SELECT description FROM pg_catalog.pg_description WHERE objsubid = (SELECT ordinal_position FROM information_schema.columns WHERE table_schema = CURRENT_SCHEMA() AND table_name = 'users' AND column_name = 'username') AND objoid = (SELECT oid FROM pg_catalog.pg_class WHERE relname = 'users' AND relnamespace = (SELECT oid FROM pg_catalog.pg_namespace WHERE nspname = CURRENT_SCHEMA()))
 
-2025/07/14 14:52:00 [32m/Users/paulo/projetos/full-services-auto-scale-app/backend/internal/database/database.go:52
-[0m[33m[2.657ms] [34;1m[rows:0][0m SELECT description FROM pg_catalog.pg_description WHERE objsubid = (SELECT ordinal_position FROM information_schema.columns WHERE table_schema = CURRENT_SCHEMA() AND table_name = 'users' AND column_name = 'password') AND objoid = (SELECT oid FROM pg_catalog.pg_class WHERE relname = 'users' AND relnamespace = (SELECT oid FROM pg_catalog.pg_namespace WHERE nspname = CURRENT_SCHEMA()))
+2025/07/14 18:42:40 [32m/Users/paulo/projetos/full-services-auto-scale-app/backend/internal/database/database.go:52
+[0m[33m[0.412ms] [34;1m[rows:0][0m SELECT description FROM pg_catalog.pg_description WHERE objsubid = (SELECT ordinal_position FROM information_schema.columns WHERE table_schema = CURRENT_SCHEMA() AND table_name = 'users' AND column_name = 'password') AND objoid = (SELECT oid FROM pg_catalog.pg_class WHERE relname = 'users' AND relnamespace = (SELECT oid FROM pg_catalog.pg_namespace WHERE nspname = CURRENT_SCHEMA()))
 
-2025/07/14 14:52:00 [32m/Users/paulo/projetos/full-services-auto-scale-app/backend/internal/database/database.go:52
-[0m[33m[4.493ms] [34;1m[rows:0][0m SELECT description FROM pg_catalog.pg_description WHERE objsubid = (SELECT ordinal_position FROM information_schema.columns WHERE table_schema = CURRENT_SCHEMA() AND table_name = 'users' AND column_name = 'first_name') AND objoid = (SELECT oid FROM pg_catalog.pg_class WHERE relname = 'users' AND relnamespace = (SELECT oid FROM pg_catalog.pg_namespace WHERE nspname = CURRENT_SCHEMA()))
+2025/07/14 18:42:40 [32m/Users/paulo/projetos/full-services-auto-scale-app/backend/internal/database/database.go:52
+[0m[33m[0.444ms] [34;1m[rows:0][0m SELECT description FROM pg_catalog.pg_description WHERE objsubid = (SELECT ordinal_position FROM information_schema.columns WHERE table_schema = CURRENT_SCHEMA() AND table_name = 'users' AND column_name = 'first_name') AND objoid = (SELECT oid FROM pg_catalog.pg_class WHERE relname = 'users' AND relnamespace = (SELECT oid FROM pg_catalog.pg_namespace WHERE nspname = CURRENT_SCHEMA()))
 
-2025/07/14 14:52:00 [32m/Users/paulo/projetos/full-services-auto-scale-app/backend/internal/database/database.go:52
-[0m[33m[0.630ms] [34;1m[rows:0][0m SELECT description FROM pg_catalog.pg_description WHERE objsubid = (SELECT ordinal_position FROM information_schema.columns WHERE table_schema = CURRENT_SCHEMA() AND table_name = 'users' AND column_name = 'last_name') AND objoid = (SELECT oid FROM pg_catalog.pg_class WHERE relname = 'users' AND relnamespace = (SELECT oid FROM pg_catalog.pg_namespace WHERE nspname = CURRENT_SCHEMA()))
+2025/07/14 18:42:40 [32m/Users/paulo/projetos/full-services-auto-scale-app/backend/internal/database/database.go:52
+[0m[33m[0.445ms] [34;1m[rows:0][0m SELECT description FROM pg_catalog.pg_description WHERE objsubid = (SELECT ordinal_position FROM information_schema.columns WHERE table_schema = CURRENT_SCHEMA() AND table_name = 'users' AND column_name = 'last_name') AND objoid = (SELECT oid FROM pg_catalog.pg_class WHERE relname = 'users' AND relnamespace = (SELECT oid FROM pg_catalog.pg_namespace WHERE nspname = CURRENT_SCHEMA()))
 
-2025/07/14 14:52:00 [32m/Users/paulo/projetos/full-services-auto-scale-app/backend/internal/database/database.go:52
-[0m[33m[0.538ms] [34;1m[rows:0][0m SELECT description FROM pg_catalog.pg_description WHERE objsubid = (SELECT ordinal_position FROM information_schema.columns WHERE table_schema = CURRENT_SCHEMA() AND table_name = 'users' AND column_name = 'role') AND objoid = (SELECT oid FROM pg_catalog.pg_class WHERE relname = 'users' AND relnamespace = (SELECT oid FROM pg_catalog.pg_namespace WHERE nspname = CURRENT_SCHEMA()))
+2025/07/14 18:42:40 [32m/Users/paulo/projetos/full-services-auto-scale-app/backend/internal/database/database.go:52
+[0m[33m[0.406ms] [34;1m[rows:0][0m SELECT description FROM pg_catalog.pg_description WHERE objsubid = (SELECT ordinal_position FROM information_schema.columns WHERE table_schema = CURRENT_SCHEMA() AND table_name = 'users' AND column_name = 'role') AND objoid = (SELECT oid FROM pg_catalog.pg_class WHERE relname = 'users' AND relnamespace = (SELECT oid FROM pg_catalog.pg_namespace WHERE nspname = CURRENT_SCHEMA()))
 
-2025/07/14 14:52:00 [32m/Users/paulo/projetos/full-services-auto-scale-app/backend/internal/database/database.go:52
-[0m[33m[0.938ms] [34;1m[rows:0][0m SELECT description FROM pg_catalog.pg_description WHERE objsubid = (SELECT ordinal_position FROM information_schema.columns WHERE table_schema = CURRENT_SCHEMA() AND table_name = 'users' AND column_name = 'is_active') AND objoid = (SELECT oid FROM pg_catalog.pg_class WHERE relname = 'users' AND relnamespace = (SELECT oid FROM pg_catalog.pg_namespace WHERE nspname = CURRENT_SCHEMA()))
+2025/07/14 18:42:40 [32m/Users/paulo/projetos/full-services-auto-scale-app/backend/internal/database/database.go:52
+[0m[33m[0.383ms] [34;1m[rows:0][0m SELECT description FROM pg_catalog.pg_description WHERE objsubid = (SELECT ordinal_position FROM information_schema.columns WHERE table_schema = CURRENT_SCHEMA() AND table_name = 'users' AND column_name = 'is_active') AND objoid = (SELECT oid FROM pg_catalog.pg_class WHERE relname = 'users' AND relnamespace = (SELECT oid FROM pg_catalog.pg_namespace WHERE nspname = CURRENT_SCHEMA()))
 
-2025/07/14 14:52:00 [32m/Users/paulo/projetos/full-services-auto-scale-app/backend/internal/database/database.go:52
-[0m[33m[0.470ms] [34;1m[rows:0][0m SELECT description FROM pg_catalog.pg_description WHERE objsubid = (SELECT ordinal_position FROM information_schema.columns WHERE table_schema = CURRENT_SCHEMA() AND table_name = 'users' AND column_name = 'tenant_id') AND objoid = (SELECT oid FROM pg_catalog.pg_class WHERE relname = 'users' AND relnamespace = (SELECT oid FROM pg_catalog.pg_namespace WHERE nspname = CURRENT_SCHEMA()))
+2025/07/14 18:42:40 [32m/Users/paulo/projetos/full-services-auto-scale-app/backend/internal/database/database.go:52
+[0m[33m[0.699ms] [34;1m[rows:0][0m SELECT description FROM pg_catalog.pg_description WHERE objsubid = (SELECT ordinal_position FROM information_schema.columns WHERE table_schema = CURRENT_SCHEMA() AND table_name = 'users' AND column_name = 'tenant_id') AND objoid = (SELECT oid FROM pg_catalog.pg_class WHERE relname = 'users' AND relnamespace = (SELECT oid FROM pg_catalog.pg_namespace WHERE nspname = CURRENT_SCHEMA()))
 
-2025/07/14 14:52:00 [32m/Users/paulo/projetos/full-services-auto-scale-app/backend/internal/database/database.go:52
-[0m[33m[0.468ms] [34;1m[rows:0][0m SELECT description FROM pg_catalog.pg_description WHERE objsubid = (SELECT ordinal_position FROM information_schema.columns WHERE table_schema = CURRENT_SCHEMA() AND table_name = 'users' AND column_name = 'created_at') AND objoid = (SELECT oid FROM pg_catalog.pg_class WHERE relname = 'users' AND relnamespace = (SELECT oid FROM pg_catalog.pg_namespace WHERE nspname = CURRENT_SCHEMA()))
+2025/07/14 18:42:40 [32m/Users/paulo/projetos/full-services-auto-scale-app/backend/internal/database/database.go:52
+[0m[33m[0.739ms] [34;1m[rows:0][0m SELECT description FROM pg_catalog.pg_description WHERE objsubid = (SELECT ordinal_position FROM information_schema.columns WHERE table_schema = CURRENT_SCHEMA() AND table_name = 'users' AND column_name = 'created_at') AND objoid = (SELECT oid FROM pg_catalog.pg_class WHERE relname = 'users' AND relnamespace = (SELECT oid FROM pg_catalog.pg_namespace WHERE nspname = CURRENT_SCHEMA()))
 
-2025/07/14 14:52:00 [32m/Users/paulo/projetos/full-services-auto-scale-app/backend/internal/database/database.go:52
-[0m[33m[0.440ms] [34;1m[rows:0][0m SELECT description FROM pg_catalog.pg_description WHERE objsubid = (SELECT ordinal_position FROM information_schema.columns WHERE table_schema = CURRENT_SCHEMA() AND table_name = 'users' AND column_name = 'updated_at') AND objoid = (SELECT oid FROM pg_catalog.pg_class WHERE relname = 'users' AND relnamespace = (SELECT oid FROM pg_catalog.pg_namespace WHERE nspname = CURRENT_SCHEMA()))
+2025/07/14 18:42:40 [32m/Users/paulo/projetos/full-services-auto-scale-app/backend/internal/database/database.go:52
+[0m[33m[7.279ms] [34;1m[rows:0][0m SELECT description FROM pg_catalog.pg_description WHERE objsubid = (SELECT ordinal_position FROM information_schema.columns WHERE table_schema = CURRENT_SCHEMA() AND table_name = 'users' AND column_name = 'updated_at') AND objoid = (SELECT oid FROM pg_catalog.pg_class WHERE relname = 'users' AND relnamespace = (SELECT oid FROM pg_catalog.pg_namespace WHERE nspname = CURRENT_SCHEMA()))
 
-2025/07/14 14:52:00 [32m/Users/paulo/projetos/full-services-auto-scale-app/backend/internal/database/database.go:52
-[0m[33m[1.262ms] [34;1m[rows:1][0m SELECT count(*) FROM INFORMATION_SCHEMA.table_constraints WHERE table_schema = CURRENT_SCHEMA() AND table_name = 'users' AND constraint_name = 'fk_tenants_users'
+2025/07/14 18:42:40 [32m/Users/paulo/projetos/full-services-auto-scale-app/backend/internal/database/database.go:52
+[0m[33m[1.996ms] [34;1m[rows:1][0m SELECT count(*) FROM INFORMATION_SCHEMA.table_constraints WHERE table_schema = CURRENT_SCHEMA() AND table_name = 'users' AND constraint_name = 'fk_tenants_users'
 
-2025/07/14 14:52:00 [32m/Users/paulo/projetos/full-services-auto-scale-app/backend/internal/database/database.go:52
-[0m[33m[0.315ms] [34;1m[rows:1][0m SELECT count(*) FROM pg_indexes WHERE tablename = 'users' AND indexname = 'idx_users_email' AND schemaname = CURRENT_SCHEMA()
+2025/07/14 18:42:40 [32m/Users/paulo/projetos/full-services-auto-scale-app/backend/internal/database/database.go:52
+[0m[33m[0.404ms] [34;1m[rows:1][0m SELECT count(*) FROM pg_indexes WHERE tablename = 'users' AND indexname = 'idx_users_email' AND schemaname = CURRENT_SCHEMA()
 
-2025/07/14 14:52:00 [32m/Users/paulo/projetos/full-services-auto-scale-app/backend/internal/database/database.go:52
-[0m[33m[0.283ms] [34;1m[rows:1][0m SELECT count(*) FROM pg_indexes WHERE tablename = 'users' AND indexname = 'idx_users_username' AND schemaname = CURRENT_SCHEMA()
+2025/07/14 18:42:40 [32m/Users/paulo/projetos/full-services-auto-scale-app/backend/internal/database/database.go:52
+[0m[33m[0.407ms] [34;1m[rows:1][0m SELECT count(*) FROM pg_indexes WHERE tablename = 'users' AND indexname = 'idx_users_username' AND schemaname = CURRENT_SCHEMA()
 
-2025/07/14 14:52:00 [32m/Users/paulo/projetos/full-services-auto-scale-app/backend/internal/database/database.go:52
-[0m[33m[0.648ms] [34;1m[rows:1][0m SELECT count(*) FROM information_schema.tables WHERE table_schema = CURRENT_SCHEMA() AND table_name = 'services' AND table_type = 'BASE TABLE'
+2025/07/14 18:42:40 [32m/Users/paulo/projetos/full-services-auto-scale-app/backend/internal/database/database.go:52
+[0m[33m[1.180ms] [34;1m[rows:1][0m SELECT count(*) FROM information_schema.tables WHERE table_schema = CURRENT_SCHEMA() AND table_name = 'services' AND table_type = 'BASE TABLE'
 
-2025/07/14 14:52:00 [32m/Users/paulo/projetos/full-services-auto-scale-app/backend/internal/database/database.go:52
-[0m[33m[0.202ms] [34;1m[rows:1][0m SELECT CURRENT_DATABASE()
+2025/07/14 18:42:40 [32m/Users/paulo/projetos/full-services-auto-scale-app/backend/internal/database/database.go:52
+[0m[33m[0.502ms] [34;1m[rows:1][0m SELECT CURRENT_DATABASE()
 
-2025/07/14 14:52:00 [32m/Users/paulo/projetos/full-services-auto-scale-app/backend/internal/database/database.go:52
-[0m[33m[1.176ms] [34;1m[rows:-][0m SELECT c.column_name, c.is_nullable = 'YES', c.udt_name, c.character_maximum_length, c.numeric_precision, c.numeric_precision_radix, c.numeric_scale, c.datetime_precision, 8 * typlen, c.column_default, pd.description, c.identity_increment FROM information_schema.columns AS c JOIN pg_type AS pgt ON c.udt_name = pgt.typname LEFT JOIN pg_catalog.pg_description as pd ON pd.objsubid = c.ordinal_position AND pd.objoid = (SELECT oid FROM pg_catalog.pg_class WHERE relname = c.table_name AND relnamespace = (SELECT oid FROM pg_catalog.pg_namespace WHERE nspname = c.table_schema)) where table_catalog = 'nomad_services' AND table_schema = CURRENT_SCHEMA() AND table_name = 'services'
+2025/07/14 18:42:40 [32m/Users/paulo/projetos/full-services-auto-scale-app/backend/internal/database/database.go:52
+[0m[33m[1.948ms] [34;1m[rows:-][0m SELECT c.column_name, c.is_nullable = 'YES', c.udt_name, c.character_maximum_length, c.numeric_precision, c.numeric_precision_radix, c.numeric_scale, c.datetime_precision, 8 * typlen, c.column_default, pd.description, c.identity_increment FROM information_schema.columns AS c JOIN pg_type AS pgt ON c.udt_name = pgt.typname LEFT JOIN pg_catalog.pg_description as pd ON pd.objsubid = c.ordinal_position AND pd.objoid = (SELECT oid FROM pg_catalog.pg_class WHERE relname = c.table_name AND relnamespace = (SELECT oid FROM pg_catalog.pg_namespace WHERE nspname = c.table_schema)) where table_catalog = 'nomad_services' AND table_schema = CURRENT_SCHEMA() AND table_name = 'services'
 
-2025/07/14 14:52:00 [32m/Users/paulo/projetos/full-services-auto-scale-app/backend/internal/database/database.go:52
-[0m[33m[0.669ms] [34;1m[rows:-][0m SELECT * FROM "services" LIMIT 1
+2025/07/14 18:42:40 [32m/Users/paulo/projetos/full-services-auto-scale-app/backend/internal/database/database.go:52
+[0m[33m[1.452ms] [34;1m[rows:-][0m SELECT * FROM "services" LIMIT 1
 
-2025/07/14 14:52:00 [32m/Users/paulo/projetos/full-services-auto-scale-app/backend/internal/database/database.go:52
-[0m[33m[2.650ms] [34;1m[rows:-][0m SELECT constraint_name FROM information_schema.table_constraints tc JOIN information_schema.constraint_column_usage AS ccu USING (constraint_schema, constraint_name) JOIN information_schema.columns AS c ON c.table_schema = tc.constraint_schema AND tc.table_name = c.table_name AND ccu.column_name = c.column_name WHERE constraint_type IN ('PRIMARY KEY', 'UNIQUE') AND c.table_catalog = 'nomad_services' AND c.table_schema = CURRENT_SCHEMA() AND c.table_name = 'services' AND constraint_type = 'UNIQUE'
+2025/07/14 18:42:40 [32m/Users/paulo/projetos/full-services-auto-scale-app/backend/internal/database/database.go:52
+[0m[33m[1.913ms] [34;1m[rows:-][0m SELECT constraint_name FROM information_schema.table_constraints tc JOIN information_schema.constraint_column_usage AS ccu USING (constraint_schema, constraint_name) JOIN information_schema.columns AS c ON c.table_schema = tc.constraint_schema AND tc.table_name = c.table_name AND ccu.column_name = c.column_name WHERE constraint_type IN ('PRIMARY KEY', 'UNIQUE') AND c.table_catalog = 'nomad_services' AND c.table_schema = CURRENT_SCHEMA() AND c.table_name = 'services' AND constraint_type = 'UNIQUE'
 
-2025/07/14 14:52:00 [32m/Users/paulo/projetos/full-services-auto-scale-app/backend/internal/database/database.go:52
-[0m[33m[3.652ms] [34;1m[rows:-][0m SELECT c.column_name, constraint_name, constraint_type FROM information_schema.table_constraints tc JOIN information_schema.constraint_column_usage AS ccu USING (constraint_schema, constraint_name) JOIN information_schema.columns AS c ON c.table_schema = tc.constraint_schema AND tc.table_name = c.table_name AND ccu.column_name = c.column_name WHERE constraint_type IN ('PRIMARY KEY', 'UNIQUE') AND c.table_catalog = 'nomad_services' AND c.table_schema = CURRENT_SCHEMA() AND c.table_name = 'services'
+2025/07/14 18:42:40 [32m/Users/paulo/projetos/full-services-auto-scale-app/backend/internal/database/database.go:52
+[0m[33m[2.170ms] [34;1m[rows:-][0m SELECT c.column_name, constraint_name, constraint_type FROM information_schema.table_constraints tc JOIN information_schema.constraint_column_usage AS ccu USING (constraint_schema, constraint_name) JOIN information_schema.columns AS c ON c.table_schema = tc.constraint_schema AND tc.table_name = c.table_name AND ccu.column_name = c.column_name WHERE constraint_type IN ('PRIMARY KEY', 'UNIQUE') AND c.table_catalog = 'nomad_services' AND c.table_schema = CURRENT_SCHEMA() AND c.table_name = 'services'
 
-2025/07/14 14:52:00 [32m/Users/paulo/projetos/full-services-auto-scale-app/backend/internal/database/database.go:52
-[0m[33m[0.375ms] [34;1m[rows:-][0m SELECT a.attname as column_name, format_type(a.atttypid, a.atttypmod) AS data_type
+2025/07/14 18:42:40 [32m/Users/paulo/projetos/full-services-auto-scale-app/backend/internal/database/database.go:52
+[0m[33m[0.432ms] [34;1m[rows:-][0m SELECT a.attname as column_name, format_type(a.atttypid, a.atttypmod) AS data_type
 		FROM pg_attribute a JOIN pg_class b ON a.attrelid = b.oid AND relnamespace = (SELECT oid FROM pg_catalog.pg_namespace WHERE nspname = CURRENT_SCHEMA())
 		WHERE a.attnum > 0 -- hide internal columns
 		AND NOT a.attisdropped -- hide deleted columns
 		AND b.relname = 'services'
 
-2025/07/14 14:52:00 [32m/Users/paulo/projetos/full-services-auto-scale-app/backend/internal/database/database.go:52
-[0m[33m[0.452ms] [34;1m[rows:0][0m SELECT description FROM pg_catalog.pg_description WHERE objsubid = (SELECT ordinal_position FROM information_schema.columns WHERE table_schema = CURRENT_SCHEMA() AND table_name = 'services' AND column_name = 'id') AND objoid = (SELECT oid FROM pg_catalog.pg_class WHERE relname = 'services' AND relnamespace = (SELECT oid FROM pg_catalog.pg_namespace WHERE nspname = CURRENT_SCHEMA()))
+2025/07/14 18:42:40 [32m/Users/paulo/projetos/full-services-auto-scale-app/backend/internal/database/database.go:52
+[0m[33m[1.121ms] [34;1m[rows:0][0m SELECT description FROM pg_catalog.pg_description WHERE objsubid = (SELECT ordinal_position FROM information_schema.columns WHERE table_schema = CURRENT_SCHEMA() AND table_name = 'services' AND column_name = 'id') AND objoid = (SELECT oid FROM pg_catalog.pg_class WHERE relname = 'services' AND relnamespace = (SELECT oid FROM pg_catalog.pg_namespace WHERE nspname = CURRENT_SCHEMA()))
 
-2025/07/14 14:52:00 [32m/Users/paulo/projetos/full-services-auto-scale-app/backend/internal/database/database.go:52
-[0m[33m[0.658ms] [34;1m[rows:0][0m SELECT description FROM pg_catalog.pg_description WHERE objsubid = (SELECT ordinal_position FROM information_schema.columns WHERE table_schema = CURRENT_SCHEMA() AND table_name = 'services' AND column_name = 'name') AND objoid = (SELECT oid FROM pg_catalog.pg_class WHERE relname = 'services' AND relnamespace = (SELECT oid FROM pg_catalog.pg_namespace WHERE nspname = CURRENT_SCHEMA()))
+2025/07/14 18:42:40 [32m/Users/paulo/projetos/full-services-auto-scale-app/backend/internal/database/database.go:52
+[0m[33m[1.434ms] [34;1m[rows:0][0m SELECT description FROM pg_catalog.pg_description WHERE objsubid = (SELECT ordinal_position FROM information_schema.columns WHERE table_schema = CURRENT_SCHEMA() AND table_name = 'services' AND column_name = 'name') AND objoid = (SELECT oid FROM pg_catalog.pg_class WHERE relname = 'services' AND relnamespace = (SELECT oid FROM pg_catalog.pg_namespace WHERE nspname = CURRENT_SCHEMA()))
 
-2025/07/14 14:52:00 [32m/Users/paulo/projetos/full-services-auto-scale-app/backend/internal/database/database.go:52
-[0m[33m[0.426ms] [34;1m[rows:0][0m SELECT description FROM pg_catalog.pg_description WHERE objsubid = (SELECT ordinal_position FROM information_schema.columns WHERE table_schema = CURRENT_SCHEMA() AND table_name = 'services' AND column_name = 'type') AND objoid = (SELECT oid FROM pg_catalog.pg_class WHERE relname = 'services' AND relnamespace = (SELECT oid FROM pg_catalog.pg_namespace WHERE nspname = CURRENT_SCHEMA()))
+2025/07/14 18:42:40 [32m/Users/paulo/projetos/full-services-auto-scale-app/backend/internal/database/database.go:52
+[0m[33m[0.633ms] [34;1m[rows:0][0m SELECT description FROM pg_catalog.pg_description WHERE objsubid = (SELECT ordinal_position FROM information_schema.columns WHERE table_schema = CURRENT_SCHEMA() AND table_name = 'services' AND column_name = 'type') AND objoid = (SELECT oid FROM pg_catalog.pg_class WHERE relname = 'services' AND relnamespace = (SELECT oid FROM pg_catalog.pg_namespace WHERE nspname = CURRENT_SCHEMA()))
 
-2025/07/14 14:52:00 [32m/Users/paulo/projetos/full-services-auto-scale-app/backend/internal/database/database.go:52
-[0m[33m[0.420ms] [34;1m[rows:0][0m SELECT description FROM pg_catalog.pg_description WHERE objsubid = (SELECT ordinal_position FROM information_schema.columns WHERE table_schema = CURRENT_SCHEMA() AND table_name = 'services' AND column_name = 'status') AND objoid = (SELECT oid FROM pg_catalog.pg_class WHERE relname = 'services' AND relnamespace = (SELECT oid FROM pg_catalog.pg_namespace WHERE nspname = CURRENT_SCHEMA()))
+2025/07/14 18:42:40 [32m/Users/paulo/projetos/full-services-auto-scale-app/backend/internal/database/database.go:52
+[0m[33m[0.654ms] [34;1m[rows:0][0m SELECT description FROM pg_catalog.pg_description WHERE objsubid = (SELECT ordinal_position FROM information_schema.columns WHERE table_schema = CURRENT_SCHEMA() AND table_name = 'services' AND column_name = 'status') AND objoid = (SELECT oid FROM pg_catalog.pg_class WHERE relname = 'services' AND relnamespace = (SELECT oid FROM pg_catalog.pg_namespace WHERE nspname = CURRENT_SCHEMA()))
 
-2025/07/14 14:52:00 [32m/Users/paulo/projetos/full-services-auto-scale-app/backend/internal/database/database.go:52
-[0m[33m[0.425ms] [34;1m[rows:0][0m SELECT description FROM pg_catalog.pg_description WHERE objsubid = (SELECT ordinal_position FROM information_schema.columns WHERE table_schema = CURRENT_SCHEMA() AND table_name = 'services' AND column_name = 'description') AND objoid = (SELECT oid FROM pg_catalog.pg_class WHERE relname = 'services' AND relnamespace = (SELECT oid FROM pg_catalog.pg_namespace WHERE nspname = CURRENT_SCHEMA()))
+2025/07/14 18:42:40 [32m/Users/paulo/projetos/full-services-auto-scale-app/backend/internal/database/database.go:52
+[0m[33m[0.593ms] [34;1m[rows:0][0m SELECT description FROM pg_catalog.pg_description WHERE objsubid = (SELECT ordinal_position FROM information_schema.columns WHERE table_schema = CURRENT_SCHEMA() AND table_name = 'services' AND column_name = 'description') AND objoid = (SELECT oid FROM pg_catalog.pg_class WHERE relname = 'services' AND relnamespace = (SELECT oid FROM pg_catalog.pg_namespace WHERE nspname = CURRENT_SCHEMA()))
 
-2025/07/14 14:52:00 [32m/Users/paulo/projetos/full-services-auto-scale-app/backend/internal/database/database.go:52
-[0m[33m[0.430ms] [34;1m[rows:0][0m SELECT description FROM pg_catalog.pg_description WHERE objsubid = (SELECT ordinal_position FROM information_schema.columns WHERE table_schema = CURRENT_SCHEMA() AND table_name = 'services' AND column_name = 'config') AND objoid = (SELECT oid FROM pg_catalog.pg_class WHERE relname = 'services' AND relnamespace = (SELECT oid FROM pg_catalog.pg_namespace WHERE nspname = CURRENT_SCHEMA()))
+2025/07/14 18:42:40 [32m/Users/paulo/projetos/full-services-auto-scale-app/backend/internal/database/database.go:52
+[0m[33m[0.582ms] [34;1m[rows:0][0m SELECT description FROM pg_catalog.pg_description WHERE objsubid = (SELECT ordinal_position FROM information_schema.columns WHERE table_schema = CURRENT_SCHEMA() AND table_name = 'services' AND column_name = 'config') AND objoid = (SELECT oid FROM pg_catalog.pg_class WHERE relname = 'services' AND relnamespace = (SELECT oid FROM pg_catalog.pg_namespace WHERE nspname = CURRENT_SCHEMA()))
 
-2025/07/14 14:52:00 [32m/Users/paulo/projetos/full-services-auto-scale-app/backend/internal/database/database.go:52
-[0m[33m[0.458ms] [34;1m[rows:0][0m SELECT description FROM pg_catalog.pg_description WHERE objsubid = (SELECT ordinal_position FROM information_schema.columns WHERE table_schema = CURRENT_SCHEMA() AND table_name = 'services' AND column_name = 'tenant_id') AND objoid = (SELECT oid FROM pg_catalog.pg_class WHERE relname = 'services' AND relnamespace = (SELECT oid FROM pg_catalog.pg_namespace WHERE nspname = CURRENT_SCHEMA()))
+2025/07/14 18:42:40 [32m/Users/paulo/projetos/full-services-auto-scale-app/backend/internal/database/database.go:52
+[0m[33m[0.644ms] [34;1m[rows:0][0m SELECT description FROM pg_catalog.pg_description WHERE objsubid = (SELECT ordinal_position FROM information_schema.columns WHERE table_schema = CURRENT_SCHEMA() AND table_name = 'services' AND column_name = 'tenant_id') AND objoid = (SELECT oid FROM pg_catalog.pg_class WHERE relname = 'services' AND relnamespace = (SELECT oid FROM pg_catalog.pg_namespace WHERE nspname = CURRENT_SCHEMA()))
 
-2025/07/14 14:52:00 [32m/Users/paulo/projetos/full-services-auto-scale-app/backend/internal/database/database.go:52
-[0m[33m[0.491ms] [34;1m[rows:0][0m SELECT description FROM pg_catalog.pg_description WHERE objsubid = (SELECT ordinal_position FROM information_schema.columns WHERE table_schema = CURRENT_SCHEMA() AND table_name = 'services' AND column_name = 'created_by') AND objoid = (SELECT oid FROM pg_catalog.pg_class WHERE relname = 'services' AND relnamespace = (SELECT oid FROM pg_catalog.pg_namespace WHERE nspname = CURRENT_SCHEMA()))
+2025/07/14 18:42:40 [32m/Users/paulo/projetos/full-services-auto-scale-app/backend/internal/database/database.go:52
+[0m[33m[0.528ms] [34;1m[rows:0][0m SELECT description FROM pg_catalog.pg_description WHERE objsubid = (SELECT ordinal_position FROM information_schema.columns WHERE table_schema = CURRENT_SCHEMA() AND table_name = 'services' AND column_name = 'created_by') AND objoid = (SELECT oid FROM pg_catalog.pg_class WHERE relname = 'services' AND relnamespace = (SELECT oid FROM pg_catalog.pg_namespace WHERE nspname = CURRENT_SCHEMA()))
 
-2025/07/14 14:52:00 [32m/Users/paulo/projetos/full-services-auto-scale-app/backend/internal/database/database.go:52
-[0m[33m[0.402ms] [34;1m[rows:0][0m SELECT description FROM pg_catalog.pg_description WHERE objsubid = (SELECT ordinal_position FROM information_schema.columns WHERE table_schema = CURRENT_SCHEMA() AND table_name = 'services' AND column_name = 'created_at') AND objoid = (SELECT oid FROM pg_catalog.pg_class WHERE relname = 'services' AND relnamespace = (SELECT oid FROM pg_catalog.pg_namespace WHERE nspname = CURRENT_SCHEMA()))
+2025/07/14 18:42:40 [32m/Users/paulo/projetos/full-services-auto-scale-app/backend/internal/database/database.go:52
+[0m[33m[0.536ms] [34;1m[rows:0][0m SELECT description FROM pg_catalog.pg_description WHERE objsubid = (SELECT ordinal_position FROM information_schema.columns WHERE table_schema = CURRENT_SCHEMA() AND table_name = 'services' AND column_name = 'created_at') AND objoid = (SELECT oid FROM pg_catalog.pg_class WHERE relname = 'services' AND relnamespace = (SELECT oid FROM pg_catalog.pg_namespace WHERE nspname = CURRENT_SCHEMA()))
 
-2025/07/14 14:52:00 [32m/Users/paulo/projetos/full-services-auto-scale-app/backend/internal/database/database.go:52
-[0m[33m[0.364ms] [34;1m[rows:0][0m SELECT description FROM pg_catalog.pg_description WHERE objsubid = (SELECT ordinal_position FROM information_schema.columns WHERE table_schema = CURRENT_SCHEMA() AND table_name = 'services' AND column_name = 'updated_at') AND objoid = (SELECT oid FROM pg_catalog.pg_class WHERE relname = 'services' AND relnamespace = (SELECT oid FROM pg_catalog.pg_namespace WHERE nspname = CURRENT_SCHEMA()))
+2025/07/14 18:42:40 [32m/Users/paulo/projetos/full-services-auto-scale-app/backend/internal/database/database.go:52
+[0m[33m[0.632ms] [34;1m[rows:0][0m SELECT description FROM pg_catalog.pg_description WHERE objsubid = (SELECT ordinal_position FROM information_schema.columns WHERE table_schema = CURRENT_SCHEMA() AND table_name = 'services' AND column_name = 'updated_at') AND objoid = (SELECT oid FROM pg_catalog.pg_class WHERE relname = 'services' AND relnamespace = (SELECT oid FROM pg_catalog.pg_namespace WHERE nspname = CURRENT_SCHEMA()))
 
-2025/07/14 14:52:00 [32m/Users/paulo/projetos/full-services-auto-scale-app/backend/internal/database/database.go:52
-[0m[33m[1.058ms] [34;1m[rows:1][0m SELECT count(*) FROM INFORMATION_SCHEMA.table_constraints WHERE table_schema = CURRENT_SCHEMA() AND table_name = 'services' AND constraint_name = 'fk_tenants_services'
+2025/07/14 18:42:40 [32m/Users/paulo/projetos/full-services-auto-scale-app/backend/internal/database/database.go:52
+[0m[33m[3.572ms] [34;1m[rows:1][0m SELECT count(*) FROM INFORMATION_SCHEMA.table_constraints WHERE table_schema = CURRENT_SCHEMA() AND table_name = 'services' AND constraint_name = 'fk_services_creator'
 
-2025/07/14 14:52:00 [32m/Users/paulo/projetos/full-services-auto-scale-app/backend/internal/database/database.go:52
-[0m[33m[0.977ms] [34;1m[rows:1][0m SELECT count(*) FROM INFORMATION_SCHEMA.table_constraints WHERE table_schema = CURRENT_SCHEMA() AND table_name = 'services' AND constraint_name = 'fk_services_creator'
+2025/07/14 18:42:40 [32m/Users/paulo/projetos/full-services-auto-scale-app/backend/internal/database/database.go:52
+[0m[33m[1.622ms] [34;1m[rows:1][0m SELECT count(*) FROM INFORMATION_SCHEMA.table_constraints WHERE table_schema = CURRENT_SCHEMA() AND table_name = 'services' AND constraint_name = 'fk_tenants_services'
 
-2025/07/14 14:52:00 [32m/Users/paulo/projetos/full-services-auto-scale-app/backend/internal/database/database.go:52
-[0m[33m[0.586ms] [34;1m[rows:1][0m SELECT count(*) FROM information_schema.tables WHERE table_schema = CURRENT_SCHEMA() AND table_name = 'service_deployments' AND table_type = 'BASE TABLE'
+2025/07/14 18:42:40 [32m/Users/paulo/projetos/full-services-auto-scale-app/backend/internal/database/database.go:52
+[0m[33m[1.028ms] [34;1m[rows:1][0m SELECT count(*) FROM information_schema.tables WHERE table_schema = CURRENT_SCHEMA() AND table_name = 'service_deployments' AND table_type = 'BASE TABLE'
 
-2025/07/14 14:52:00 [32m/Users/paulo/projetos/full-services-auto-scale-app/backend/internal/database/database.go:52
-[0m[33m[0.217ms] [34;1m[rows:1][0m SELECT CURRENT_DATABASE()
+2025/07/14 18:42:40 [32m/Users/paulo/projetos/full-services-auto-scale-app/backend/internal/database/database.go:52
+[0m[33m[0.490ms] [34;1m[rows:1][0m SELECT CURRENT_DATABASE()
 
-2025/07/14 14:52:00 [32m/Users/paulo/projetos/full-services-auto-scale-app/backend/internal/database/database.go:52
-[0m[33m[1.143ms] [34;1m[rows:-][0m SELECT c.column_name, c.is_nullable = 'YES', c.udt_name, c.character_maximum_length, c.numeric_precision, c.numeric_precision_radix, c.numeric_scale, c.datetime_precision, 8 * typlen, c.column_default, pd.description, c.identity_increment FROM information_schema.columns AS c JOIN pg_type AS pgt ON c.udt_name = pgt.typname LEFT JOIN pg_catalog.pg_description as pd ON pd.objsubid = c.ordinal_position AND pd.objoid = (SELECT oid FROM pg_catalog.pg_class WHERE relname = c.table_name AND relnamespace = (SELECT oid FROM pg_catalog.pg_namespace WHERE nspname = c.table_schema)) where table_catalog = 'nomad_services' AND table_schema = CURRENT_SCHEMA() AND table_name = 'service_deployments'
+2025/07/14 18:42:40 [32m/Users/paulo/projetos/full-services-auto-scale-app/backend/internal/database/database.go:52
+[0m[33m[1.683ms] [34;1m[rows:-][0m SELECT c.column_name, c.is_nullable = 'YES', c.udt_name, c.character_maximum_length, c.numeric_precision, c.numeric_precision_radix, c.numeric_scale, c.datetime_precision, 8 * typlen, c.column_default, pd.description, c.identity_increment FROM information_schema.columns AS c JOIN pg_type AS pgt ON c.udt_name = pgt.typname LEFT JOIN pg_catalog.pg_description as pd ON pd.objsubid = c.ordinal_position AND pd.objoid = (SELECT oid FROM pg_catalog.pg_class WHERE relname = c.table_name AND relnamespace = (SELECT oid FROM pg_catalog.pg_namespace WHERE nspname = c.table_schema)) where table_catalog = 'nomad_services' AND table_schema = CURRENT_SCHEMA() AND table_name = 'service_deployments'
 
-2025/07/14 14:52:00 [32m/Users/paulo/projetos/full-services-auto-scale-app/backend/internal/database/database.go:52
-[0m[33m[1.319ms] [34;1m[rows:-][0m SELECT * FROM "service_deployments" LIMIT 1
+2025/07/14 18:42:40 [32m/Users/paulo/projetos/full-services-auto-scale-app/backend/internal/database/database.go:52
+[0m[33m[1.469ms] [34;1m[rows:-][0m SELECT * FROM "service_deployments" LIMIT 1
 
-2025/07/14 14:52:00 [32m/Users/paulo/projetos/full-services-auto-scale-app/backend/internal/database/database.go:52
-[0m[33m[2.007ms] [34;1m[rows:-][0m SELECT constraint_name FROM information_schema.table_constraints tc JOIN information_schema.constraint_column_usage AS ccu USING (constraint_schema, constraint_name) JOIN information_schema.columns AS c ON c.table_schema = tc.constraint_schema AND tc.table_name = c.table_name AND ccu.column_name = c.column_name WHERE constraint_type IN ('PRIMARY KEY', 'UNIQUE') AND c.table_catalog = 'nomad_services' AND c.table_schema = CURRENT_SCHEMA() AND c.table_name = 'service_deployments' AND constraint_type = 'UNIQUE'
+2025/07/14 18:42:40 [32m/Users/paulo/projetos/full-services-auto-scale-app/backend/internal/database/database.go:52
+[0m[33m[3.300ms] [34;1m[rows:-][0m SELECT constraint_name FROM information_schema.table_constraints tc JOIN information_schema.constraint_column_usage AS ccu USING (constraint_schema, constraint_name) JOIN information_schema.columns AS c ON c.table_schema = tc.constraint_schema AND tc.table_name = c.table_name AND ccu.column_name = c.column_name WHERE constraint_type IN ('PRIMARY KEY', 'UNIQUE') AND c.table_catalog = 'nomad_services' AND c.table_schema = CURRENT_SCHEMA() AND c.table_name = 'service_deployments' AND constraint_type = 'UNIQUE'
 
-2025/07/14 14:52:00 [32m/Users/paulo/projetos/full-services-auto-scale-app/backend/internal/database/database.go:52
-[0m[33m[1.963ms] [34;1m[rows:-][0m SELECT c.column_name, constraint_name, constraint_type FROM information_schema.table_constraints tc JOIN information_schema.constraint_column_usage AS ccu USING (constraint_schema, constraint_name) JOIN information_schema.columns AS c ON c.table_schema = tc.constraint_schema AND tc.table_name = c.table_name AND ccu.column_name = c.column_name WHERE constraint_type IN ('PRIMARY KEY', 'UNIQUE') AND c.table_catalog = 'nomad_services' AND c.table_schema = CURRENT_SCHEMA() AND c.table_name = 'service_deployments'
+2025/07/14 18:42:40 [32m/Users/paulo/projetos/full-services-auto-scale-app/backend/internal/database/database.go:52
+[0m[33m[6.921ms] [34;1m[rows:-][0m SELECT c.column_name, constraint_name, constraint_type FROM information_schema.table_constraints tc JOIN information_schema.constraint_column_usage AS ccu USING (constraint_schema, constraint_name) JOIN information_schema.columns AS c ON c.table_schema = tc.constraint_schema AND tc.table_name = c.table_name AND ccu.column_name = c.column_name WHERE constraint_type IN ('PRIMARY KEY', 'UNIQUE') AND c.table_catalog = 'nomad_services' AND c.table_schema = CURRENT_SCHEMA() AND c.table_name = 'service_deployments'
 
-2025/07/14 14:52:00 [32m/Users/paulo/projetos/full-services-auto-scale-app/backend/internal/database/database.go:52
-[0m[33m[0.406ms] [34;1m[rows:-][0m SELECT a.attname as column_name, format_type(a.atttypid, a.atttypmod) AS data_type
+2025/07/14 18:42:40 [32m/Users/paulo/projetos/full-services-auto-scale-app/backend/internal/database/database.go:52
+[0m[33m[2.913ms] [34;1m[rows:-][0m SELECT a.attname as column_name, format_type(a.atttypid, a.atttypmod) AS data_type
 		FROM pg_attribute a JOIN pg_class b ON a.attrelid = b.oid AND relnamespace = (SELECT oid FROM pg_catalog.pg_namespace WHERE nspname = CURRENT_SCHEMA())
 		WHERE a.attnum > 0 -- hide internal columns
 		AND NOT a.attisdropped -- hide deleted columns
 		AND b.relname = 'service_deployments'
 
-2025/07/14 14:52:00 [32m/Users/paulo/projetos/full-services-auto-scale-app/backend/internal/database/database.go:52
-[0m[33m[0.461ms] [34;1m[rows:0][0m SELECT description FROM pg_catalog.pg_description WHERE objsubid = (SELECT ordinal_position FROM information_schema.columns WHERE table_schema = CURRENT_SCHEMA() AND table_name = 'service_deployments' AND column_name = 'id') AND objoid = (SELECT oid FROM pg_catalog.pg_class WHERE relname = 'service_deployments' AND relnamespace = (SELECT oid FROM pg_catalog.pg_namespace WHERE nspname = CURRENT_SCHEMA()))
+2025/07/14 18:42:40 [32m/Users/paulo/projetos/full-services-auto-scale-app/backend/internal/database/database.go:52
+[0m[33m[1.066ms] [34;1m[rows:0][0m SELECT description FROM pg_catalog.pg_description WHERE objsubid = (SELECT ordinal_position FROM information_schema.columns WHERE table_schema = CURRENT_SCHEMA() AND table_name = 'service_deployments' AND column_name = 'id') AND objoid = (SELECT oid FROM pg_catalog.pg_class WHERE relname = 'service_deployments' AND relnamespace = (SELECT oid FROM pg_catalog.pg_namespace WHERE nspname = CURRENT_SCHEMA()))
 
-2025/07/14 14:52:00 [32m/Users/paulo/projetos/full-services-auto-scale-app/backend/internal/database/database.go:52
-[0m[33m[0.380ms] [34;1m[rows:0][0m SELECT description FROM pg_catalog.pg_description WHERE objsubid = (SELECT ordinal_position FROM information_schema.columns WHERE table_schema = CURRENT_SCHEMA() AND table_name = 'service_deployments' AND column_name = 'service_id') AND objoid = (SELECT oid FROM pg_catalog.pg_class WHERE relname = 'service_deployments' AND relnamespace = (SELECT oid FROM pg_catalog.pg_namespace WHERE nspname = CURRENT_SCHEMA()))
+2025/07/14 18:42:40 [32m/Users/paulo/projetos/full-services-auto-scale-app/backend/internal/database/database.go:52
+[0m[33m[0.515ms] [34;1m[rows:0][0m SELECT description FROM pg_catalog.pg_description WHERE objsubid = (SELECT ordinal_position FROM information_schema.columns WHERE table_schema = CURRENT_SCHEMA() AND table_name = 'service_deployments' AND column_name = 'service_id') AND objoid = (SELECT oid FROM pg_catalog.pg_class WHERE relname = 'service_deployments' AND relnamespace = (SELECT oid FROM pg_catalog.pg_namespace WHERE nspname = CURRENT_SCHEMA()))
 
-2025/07/14 14:52:00 [32m/Users/paulo/projetos/full-services-auto-scale-app/backend/internal/database/database.go:52
-[0m[33m[0.573ms] [34;1m[rows:0][0m SELECT description FROM pg_catalog.pg_description WHERE objsubid = (SELECT ordinal_position FROM information_schema.columns WHERE table_schema = CURRENT_SCHEMA() AND table_name = 'service_deployments' AND column_name = 'status') AND objoid = (SELECT oid FROM pg_catalog.pg_class WHERE relname = 'service_deployments' AND relnamespace = (SELECT oid FROM pg_catalog.pg_namespace WHERE nspname = CURRENT_SCHEMA()))
+2025/07/14 18:42:40 [32m/Users/paulo/projetos/full-services-auto-scale-app/backend/internal/database/database.go:52
+[0m[33m[0.664ms] [34;1m[rows:0][0m SELECT description FROM pg_catalog.pg_description WHERE objsubid = (SELECT ordinal_position FROM information_schema.columns WHERE table_schema = CURRENT_SCHEMA() AND table_name = 'service_deployments' AND column_name = 'status') AND objoid = (SELECT oid FROM pg_catalog.pg_class WHERE relname = 'service_deployments' AND relnamespace = (SELECT oid FROM pg_catalog.pg_namespace WHERE nspname = CURRENT_SCHEMA()))
 
-2025/07/14 14:52:00 [32m/Users/paulo/projetos/full-services-auto-scale-app/backend/internal/database/database.go:52
-[0m[33m[0.539ms] [34;1m[rows:0][0m SELECT description FROM pg_catalog.pg_description WHERE objsubid = (SELECT ordinal_position FROM information_schema.columns WHERE table_schema = CURRENT_SCHEMA() AND table_name = 'service_deployments' AND column_name = 'nomad_job_id') AND objoid = (SELECT oid FROM pg_catalog.pg_class WHERE relname = 'service_deployments' AND relnamespace = (SELECT oid FROM pg_catalog.pg_namespace WHERE nspname = CURRENT_SCHEMA()))
+2025/07/14 18:42:40 [32m/Users/paulo/projetos/full-services-auto-scale-app/backend/internal/database/database.go:52
+[0m[33m[0.476ms] [34;1m[rows:0][0m SELECT description FROM pg_catalog.pg_description WHERE objsubid = (SELECT ordinal_position FROM information_schema.columns WHERE table_schema = CURRENT_SCHEMA() AND table_name = 'service_deployments' AND column_name = 'nomad_job_id') AND objoid = (SELECT oid FROM pg_catalog.pg_class WHERE relname = 'service_deployments' AND relnamespace = (SELECT oid FROM pg_catalog.pg_namespace WHERE nspname = CURRENT_SCHEMA()))
 
-2025/07/14 14:52:00 [32m/Users/paulo/projetos/full-services-auto-scale-app/backend/internal/database/database.go:52
-[0m[33m[0.474ms] [34;1m[rows:0][0m SELECT description FROM pg_catalog.pg_description WHERE objsubid = (SELECT ordinal_position FROM information_schema.columns WHERE table_schema = CURRENT_SCHEMA() AND table_name = 'service_deployments' AND column_name = 'started_at') AND objoid = (SELECT oid FROM pg_catalog.pg_class WHERE relname = 'service_deployments' AND relnamespace = (SELECT oid FROM pg_catalog.pg_namespace WHERE nspname = CURRENT_SCHEMA()))
+2025/07/14 18:42:40 [32m/Users/paulo/projetos/full-services-auto-scale-app/backend/internal/database/database.go:52
+[0m[33m[0.507ms] [34;1m[rows:0][0m SELECT description FROM pg_catalog.pg_description WHERE objsubid = (SELECT ordinal_position FROM information_schema.columns WHERE table_schema = CURRENT_SCHEMA() AND table_name = 'service_deployments' AND column_name = 'started_at') AND objoid = (SELECT oid FROM pg_catalog.pg_class WHERE relname = 'service_deployments' AND relnamespace = (SELECT oid FROM pg_catalog.pg_namespace WHERE nspname = CURRENT_SCHEMA()))
 
-2025/07/14 14:52:00 [32m/Users/paulo/projetos/full-services-auto-scale-app/backend/internal/database/database.go:52
-[0m[33m[0.469ms] [34;1m[rows:0][0m SELECT description FROM pg_catalog.pg_description WHERE objsubid = (SELECT ordinal_position FROM information_schema.columns WHERE table_schema = CURRENT_SCHEMA() AND table_name = 'service_deployments' AND column_name = 'completed_at') AND objoid = (SELECT oid FROM pg_catalog.pg_class WHERE relname = 'service_deployments' AND relnamespace = (SELECT oid FROM pg_catalog.pg_namespace WHERE nspname = CURRENT_SCHEMA()))
+2025/07/14 18:42:40 [32m/Users/paulo/projetos/full-services-auto-scale-app/backend/internal/database/database.go:52
+[0m[33m[0.592ms] [34;1m[rows:0][0m SELECT description FROM pg_catalog.pg_description WHERE objsubid = (SELECT ordinal_position FROM information_schema.columns WHERE table_schema = CURRENT_SCHEMA() AND table_name = 'service_deployments' AND column_name = 'completed_at') AND objoid = (SELECT oid FROM pg_catalog.pg_class WHERE relname = 'service_deployments' AND relnamespace = (SELECT oid FROM pg_catalog.pg_namespace WHERE nspname = CURRENT_SCHEMA()))
 
-2025/07/14 14:52:00 [32m/Users/paulo/projetos/full-services-auto-scale-app/backend/internal/database/database.go:52
-[0m[33m[0.425ms] [34;1m[rows:0][0m SELECT description FROM pg_catalog.pg_description WHERE objsubid = (SELECT ordinal_position FROM information_schema.columns WHERE table_schema = CURRENT_SCHEMA() AND table_name = 'service_deployments' AND column_name = 'error_msg') AND objoid = (SELECT oid FROM pg_catalog.pg_class WHERE relname = 'service_deployments' AND relnamespace = (SELECT oid FROM pg_catalog.pg_namespace WHERE nspname = CURRENT_SCHEMA()))
+2025/07/14 18:42:40 [32m/Users/paulo/projetos/full-services-auto-scale-app/backend/internal/database/database.go:52
+[0m[33m[1.360ms] [34;1m[rows:0][0m SELECT description FROM pg_catalog.pg_description WHERE objsubid = (SELECT ordinal_position FROM information_schema.columns WHERE table_schema = CURRENT_SCHEMA() AND table_name = 'service_deployments' AND column_name = 'error_msg') AND objoid = (SELECT oid FROM pg_catalog.pg_class WHERE relname = 'service_deployments' AND relnamespace = (SELECT oid FROM pg_catalog.pg_namespace WHERE nspname = CURRENT_SCHEMA()))
 
-2025/07/14 14:52:00 [32m/Users/paulo/projetos/full-services-auto-scale-app/backend/internal/database/database.go:52
-[0m[33m[0.428ms] [34;1m[rows:0][0m SELECT description FROM pg_catalog.pg_description WHERE objsubid = (SELECT ordinal_position FROM information_schema.columns WHERE table_schema = CURRENT_SCHEMA() AND table_name = 'service_deployments' AND column_name = 'deployed_by') AND objoid = (SELECT oid FROM pg_catalog.pg_class WHERE relname = 'service_deployments' AND relnamespace = (SELECT oid FROM pg_catalog.pg_namespace WHERE nspname = CURRENT_SCHEMA()))
+2025/07/14 18:42:40 [32m/Users/paulo/projetos/full-services-auto-scale-app/backend/internal/database/database.go:52
+[0m[33m[0.955ms] [34;1m[rows:0][0m SELECT description FROM pg_catalog.pg_description WHERE objsubid = (SELECT ordinal_position FROM information_schema.columns WHERE table_schema = CURRENT_SCHEMA() AND table_name = 'service_deployments' AND column_name = 'deployed_by') AND objoid = (SELECT oid FROM pg_catalog.pg_class WHERE relname = 'service_deployments' AND relnamespace = (SELECT oid FROM pg_catalog.pg_namespace WHERE nspname = CURRENT_SCHEMA()))
 
-2025/07/14 14:52:00 [32m/Users/paulo/projetos/full-services-auto-scale-app/backend/internal/database/database.go:52
-[0m[33m[0.410ms] [34;1m[rows:0][0m SELECT description FROM pg_catalog.pg_description WHERE objsubid = (SELECT ordinal_position FROM information_schema.columns WHERE table_schema = CURRENT_SCHEMA() AND table_name = 'service_deployments' AND column_name = 'created_at') AND objoid = (SELECT oid FROM pg_catalog.pg_class WHERE relname = 'service_deployments' AND relnamespace = (SELECT oid FROM pg_catalog.pg_namespace WHERE nspname = CURRENT_SCHEMA()))
+2025/07/14 18:42:40 [32m/Users/paulo/projetos/full-services-auto-scale-app/backend/internal/database/database.go:52
+[0m[33m[0.731ms] [34;1m[rows:0][0m SELECT description FROM pg_catalog.pg_description WHERE objsubid = (SELECT ordinal_position FROM information_schema.columns WHERE table_schema = CURRENT_SCHEMA() AND table_name = 'service_deployments' AND column_name = 'created_at') AND objoid = (SELECT oid FROM pg_catalog.pg_class WHERE relname = 'service_deployments' AND relnamespace = (SELECT oid FROM pg_catalog.pg_namespace WHERE nspname = CURRENT_SCHEMA()))
 
-2025/07/14 14:52:00 [32m/Users/paulo/projetos/full-services-auto-scale-app/backend/internal/database/database.go:52
-[0m[33m[0.579ms] [34;1m[rows:0][0m SELECT description FROM pg_catalog.pg_description WHERE objsubid = (SELECT ordinal_position FROM information_schema.columns WHERE table_schema = CURRENT_SCHEMA() AND table_name = 'service_deployments' AND column_name = 'updated_at') AND objoid = (SELECT oid FROM pg_catalog.pg_class WHERE relname = 'service_deployments' AND relnamespace = (SELECT oid FROM pg_catalog.pg_namespace WHERE nspname = CURRENT_SCHEMA()))
+2025/07/14 18:42:40 [32m/Users/paulo/projetos/full-services-auto-scale-app/backend/internal/database/database.go:52
+[0m[33m[0.673ms] [34;1m[rows:0][0m SELECT description FROM pg_catalog.pg_description WHERE objsubid = (SELECT ordinal_position FROM information_schema.columns WHERE table_schema = CURRENT_SCHEMA() AND table_name = 'service_deployments' AND column_name = 'updated_at') AND objoid = (SELECT oid FROM pg_catalog.pg_class WHERE relname = 'service_deployments' AND relnamespace = (SELECT oid FROM pg_catalog.pg_namespace WHERE nspname = CURRENT_SCHEMA()))
 
-2025/07/14 14:52:00 [32m/Users/paulo/projetos/full-services-auto-scale-app/backend/internal/database/database.go:52
-[0m[33m[1.854ms] [34;1m[rows:1][0m SELECT count(*) FROM INFORMATION_SCHEMA.table_constraints WHERE table_schema = CURRENT_SCHEMA() AND table_name = 'service_deployments' AND constraint_name = 'fk_service_deployments_deployer'
+2025/07/14 18:42:40 [32m/Users/paulo/projetos/full-services-auto-scale-app/backend/internal/database/database.go:52
+[0m[33m[1.408ms] [34;1m[rows:1][0m SELECT count(*) FROM INFORMATION_SCHEMA.table_constraints WHERE table_schema = CURRENT_SCHEMA() AND table_name = 'service_deployments' AND constraint_name = 'fk_services_deployments'
 
-2025/07/14 14:52:00 [32m/Users/paulo/projetos/full-services-auto-scale-app/backend/internal/database/database.go:52
-[0m[33m[1.210ms] [34;1m[rows:1][0m SELECT count(*) FROM INFORMATION_SCHEMA.table_constraints WHERE table_schema = CURRENT_SCHEMA() AND table_name = 'service_deployments' AND constraint_name = 'fk_services_deployments'
+2025/07/14 18:42:40 [32m/Users/paulo/projetos/full-services-auto-scale-app/backend/internal/database/database.go:52
+[0m[33m[1.566ms] [34;1m[rows:1][0m SELECT count(*) FROM INFORMATION_SCHEMA.table_constraints WHERE table_schema = CURRENT_SCHEMA() AND table_name = 'service_deployments' AND constraint_name = 'fk_service_deployments_deployer'
 
-2025/07/14 14:52:00 [32m/Users/paulo/projetos/full-services-auto-scale-app/backend/internal/database/database.go:52
-[0m[33m[3.140ms] [34;1m[rows:1][0m SELECT count(*) FROM information_schema.tables WHERE table_schema = CURRENT_SCHEMA() AND table_name = 'service_templates' AND table_type = 'BASE TABLE'
+2025/07/14 18:42:40 [32m/Users/paulo/projetos/full-services-auto-scale-app/backend/internal/database/database.go:52
+[0m[33m[0.826ms] [34;1m[rows:1][0m SELECT count(*) FROM information_schema.tables WHERE table_schema = CURRENT_SCHEMA() AND table_name = 'service_templates' AND table_type = 'BASE TABLE'
 
-2025/07/14 14:52:00 [32m/Users/paulo/projetos/full-services-auto-scale-app/backend/internal/database/database.go:52
-[0m[33m[0.617ms] [34;1m[rows:1][0m SELECT CURRENT_DATABASE()
+2025/07/14 18:42:40 [32m/Users/paulo/projetos/full-services-auto-scale-app/backend/internal/database/database.go:52
+[0m[33m[0.335ms] [34;1m[rows:1][0m SELECT CURRENT_DATABASE()
 
-2025/07/14 14:52:00 [32m/Users/paulo/projetos/full-services-auto-scale-app/backend/internal/database/database.go:52
-[0m[33m[1.775ms] [34;1m[rows:-][0m SELECT c.column_name, c.is_nullable = 'YES', c.udt_name, c.character_maximum_length, c.numeric_precision, c.numeric_precision_radix, c.numeric_scale, c.datetime_precision, 8 * typlen, c.column_default, pd.description, c.identity_increment FROM information_schema.columns AS c JOIN pg_type AS pgt ON c.udt_name = pgt.typname LEFT JOIN pg_catalog.pg_description as pd ON pd.objsubid = c.ordinal_position AND pd.objoid = (SELECT oid FROM pg_catalog.pg_class WHERE relname = c.table_name AND relnamespace = (SELECT oid FROM pg_catalog.pg_namespace WHERE nspname = c.table_schema)) where table_catalog = 'nomad_services' AND table_schema = CURRENT_SCHEMA() AND table_name = 'service_templates'
+2025/07/14 18:42:40 [32m/Users/paulo/projetos/full-services-auto-scale-app/backend/internal/database/database.go:52
+[0m[33m[2.052ms] [34;1m[rows:-][0m SELECT c.column_name, c.is_nullable = 'YES', c.udt_name, c.character_maximum_length, c.numeric_precision, c.numeric_precision_radix, c.numeric_scale, c.datetime_precision, 8 * typlen, c.column_default, pd.description, c.identity_increment FROM information_schema.columns AS c JOIN pg_type AS pgt ON c.udt_name = pgt.typname LEFT JOIN pg_catalog.pg_description as pd ON pd.objsubid = c.ordinal_position AND pd.objoid = (SELECT oid FROM pg_catalog.pg_class WHERE relname = c.table_name AND relnamespace = (SELECT oid FROM pg_catalog.pg_namespace WHERE nspname = c.table_schema)) where table_catalog = 'nomad_services' AND table_schema = CURRENT_SCHEMA() AND table_name = 'service_templates'
 
-2025/07/14 14:52:00 [32m/Users/paulo/projetos/full-services-auto-scale-app/backend/internal/database/database.go:52
-[0m[33m[0.877ms] [34;1m[rows:-][0m SELECT * FROM "service_templates" LIMIT 1
+2025/07/14 18:42:40 [32m/Users/paulo/projetos/full-services-auto-scale-app/backend/internal/database/database.go:52
+[0m[33m[1.148ms] [34;1m[rows:-][0m SELECT * FROM "service_templates" LIMIT 1
 
-2025/07/14 14:52:00 [32m/Users/paulo/projetos/full-services-auto-scale-app/backend/internal/database/database.go:52
-[0m[33m[1.831ms] [34;1m[rows:-][0m SELECT constraint_name FROM information_schema.table_constraints tc JOIN information_schema.constraint_column_usage AS ccu USING (constraint_schema, constraint_name) JOIN information_schema.columns AS c ON c.table_schema = tc.constraint_schema AND tc.table_name = c.table_name AND ccu.column_name = c.column_name WHERE constraint_type IN ('PRIMARY KEY', 'UNIQUE') AND c.table_catalog = 'nomad_services' AND c.table_schema = CURRENT_SCHEMA() AND c.table_name = 'service_templates' AND constraint_type = 'UNIQUE'
+2025/07/14 18:42:40 [32m/Users/paulo/projetos/full-services-auto-scale-app/backend/internal/database/database.go:52
+[0m[33m[2.334ms] [34;1m[rows:-][0m SELECT constraint_name FROM information_schema.table_constraints tc JOIN information_schema.constraint_column_usage AS ccu USING (constraint_schema, constraint_name) JOIN information_schema.columns AS c ON c.table_schema = tc.constraint_schema AND tc.table_name = c.table_name AND ccu.column_name = c.column_name WHERE constraint_type IN ('PRIMARY KEY', 'UNIQUE') AND c.table_catalog = 'nomad_services' AND c.table_schema = CURRENT_SCHEMA() AND c.table_name = 'service_templates' AND constraint_type = 'UNIQUE'
 
-2025/07/14 14:52:00 [32m/Users/paulo/projetos/full-services-auto-scale-app/backend/internal/database/database.go:52
-[0m[33m[3.366ms] [34;1m[rows:-][0m SELECT c.column_name, constraint_name, constraint_type FROM information_schema.table_constraints tc JOIN information_schema.constraint_column_usage AS ccu USING (constraint_schema, constraint_name) JOIN information_schema.columns AS c ON c.table_schema = tc.constraint_schema AND tc.table_name = c.table_name AND ccu.column_name = c.column_name WHERE constraint_type IN ('PRIMARY KEY', 'UNIQUE') AND c.table_catalog = 'nomad_services' AND c.table_schema = CURRENT_SCHEMA() AND c.table_name = 'service_templates'
+2025/07/14 18:42:40 [32m/Users/paulo/projetos/full-services-auto-scale-app/backend/internal/database/database.go:52
+[0m[33m[2.504ms] [34;1m[rows:-][0m SELECT c.column_name, constraint_name, constraint_type FROM information_schema.table_constraints tc JOIN information_schema.constraint_column_usage AS ccu USING (constraint_schema, constraint_name) JOIN information_schema.columns AS c ON c.table_schema = tc.constraint_schema AND tc.table_name = c.table_name AND ccu.column_name = c.column_name WHERE constraint_type IN ('PRIMARY KEY', 'UNIQUE') AND c.table_catalog = 'nomad_services' AND c.table_schema = CURRENT_SCHEMA() AND c.table_name = 'service_templates'
 
-2025/07/14 14:52:00 [32m/Users/paulo/projetos/full-services-auto-scale-app/backend/internal/database/database.go:52
-[0m[33m[0.356ms] [34;1m[rows:-][0m SELECT a.attname as column_name, format_type(a.atttypid, a.atttypmod) AS data_type
+2025/07/14 18:42:40 [32m/Users/paulo/projetos/full-services-auto-scale-app/backend/internal/database/database.go:52
+[0m[33m[0.317ms] [34;1m[rows:-][0m SELECT a.attname as column_name, format_type(a.atttypid, a.atttypmod) AS data_type
 		FROM pg_attribute a JOIN pg_class b ON a.attrelid = b.oid AND relnamespace = (SELECT oid FROM pg_catalog.pg_namespace WHERE nspname = CURRENT_SCHEMA())
 		WHERE a.attnum > 0 -- hide internal columns
 		AND NOT a.attisdropped -- hide deleted columns
 		AND b.relname = 'service_templates'
 
-2025/07/14 14:52:00 [32m/Users/paulo/projetos/full-services-auto-scale-app/backend/internal/database/database.go:52
-[0m[33m[0.467ms] [34;1m[rows:0][0m SELECT description FROM pg_catalog.pg_description WHERE objsubid = (SELECT ordinal_position FROM information_schema.columns WHERE table_schema = CURRENT_SCHEMA() AND table_name = 'service_templates' AND column_name = 'id') AND objoid = (SELECT oid FROM pg_catalog.pg_class WHERE relname = 'service_templates' AND relnamespace = (SELECT oid FROM pg_catalog.pg_namespace WHERE nspname = CURRENT_SCHEMA()))
+2025/07/14 18:42:40 [32m/Users/paulo/projetos/full-services-auto-scale-app/backend/internal/database/database.go:52
+[0m[33m[0.568ms] [34;1m[rows:0][0m SELECT description FROM pg_catalog.pg_description WHERE objsubid = (SELECT ordinal_position FROM information_schema.columns WHERE table_schema = CURRENT_SCHEMA() AND table_name = 'service_templates' AND column_name = 'id') AND objoid = (SELECT oid FROM pg_catalog.pg_class WHERE relname = 'service_templates' AND relnamespace = (SELECT oid FROM pg_catalog.pg_namespace WHERE nspname = CURRENT_SCHEMA()))
 
-2025/07/14 14:52:00 [32m/Users/paulo/projetos/full-services-auto-scale-app/backend/internal/database/database.go:52
-[0m[33m[0.479ms] [34;1m[rows:0][0m SELECT description FROM pg_catalog.pg_description WHERE objsubid = (SELECT ordinal_position FROM information_schema.columns WHERE table_schema = CURRENT_SCHEMA() AND table_name = 'service_templates' AND column_name = 'name') AND objoid = (SELECT oid FROM pg_catalog.pg_class WHERE relname = 'service_templates' AND relnamespace = (SELECT oid FROM pg_catalog.pg_namespace WHERE nspname = CURRENT_SCHEMA()))
+2025/07/14 18:42:40 [32m/Users/paulo/projetos/full-services-auto-scale-app/backend/internal/database/database.go:52
+[0m[33m[0.406ms] [34;1m[rows:0][0m SELECT description FROM pg_catalog.pg_description WHERE objsubid = (SELECT ordinal_position FROM information_schema.columns WHERE table_schema = CURRENT_SCHEMA() AND table_name = 'service_templates' AND column_name = 'name') AND objoid = (SELECT oid FROM pg_catalog.pg_class WHERE relname = 'service_templates' AND relnamespace = (SELECT oid FROM pg_catalog.pg_namespace WHERE nspname = CURRENT_SCHEMA()))
 
-2025/07/14 14:52:00 [32m/Users/paulo/projetos/full-services-auto-scale-app/backend/internal/database/database.go:52
-[0m[33m[0.480ms] [34;1m[rows:0][0m SELECT description FROM pg_catalog.pg_description WHERE objsubid = (SELECT ordinal_position FROM information_schema.columns WHERE table_schema = CURRENT_SCHEMA() AND table_name = 'service_templates' AND column_name = 'type') AND objoid = (SELECT oid FROM pg_catalog.pg_class WHERE relname = 'service_templates' AND relnamespace = (SELECT oid FROM pg_catalog.pg_namespace WHERE nspname = CURRENT_SCHEMA()))
+2025/07/14 18:42:40 [32m/Users/paulo/projetos/full-services-auto-scale-app/backend/internal/database/database.go:52
+[0m[33m[4.366ms] [34;1m[rows:0][0m SELECT description FROM pg_catalog.pg_description WHERE objsubid = (SELECT ordinal_position FROM information_schema.columns WHERE table_schema = CURRENT_SCHEMA() AND table_name = 'service_templates' AND column_name = 'type') AND objoid = (SELECT oid FROM pg_catalog.pg_class WHERE relname = 'service_templates' AND relnamespace = (SELECT oid FROM pg_catalog.pg_namespace WHERE nspname = CURRENT_SCHEMA()))
 
-2025/07/14 14:52:00 [32m/Users/paulo/projetos/full-services-auto-scale-app/backend/internal/database/database.go:52
-[0m[33m[0.440ms] [34;1m[rows:0][0m SELECT description FROM pg_catalog.pg_description WHERE objsubid = (SELECT ordinal_position FROM information_schema.columns WHERE table_schema = CURRENT_SCHEMA() AND table_name = 'service_templates' AND column_name = 'description') AND objoid = (SELECT oid FROM pg_catalog.pg_class WHERE relname = 'service_templates' AND relnamespace = (SELECT oid FROM pg_catalog.pg_namespace WHERE nspname = CURRENT_SCHEMA()))
+2025/07/14 18:42:40 [32m/Users/paulo/projetos/full-services-auto-scale-app/backend/internal/database/database.go:52
+[0m[33m[1.779ms] [34;1m[rows:0][0m SELECT description FROM pg_catalog.pg_description WHERE objsubid = (SELECT ordinal_position FROM information_schema.columns WHERE table_schema = CURRENT_SCHEMA() AND table_name = 'service_templates' AND column_name = 'description') AND objoid = (SELECT oid FROM pg_catalog.pg_class WHERE relname = 'service_templates' AND relnamespace = (SELECT oid FROM pg_catalog.pg_namespace WHERE nspname = CURRENT_SCHEMA()))
 
-2025/07/14 14:52:00 [32m/Users/paulo/projetos/full-services-auto-scale-app/backend/internal/database/database.go:52
-[0m[33m[0.418ms] [34;1m[rows:0][0m SELECT description FROM pg_catalog.pg_description WHERE objsubid = (SELECT ordinal_position FROM information_schema.columns WHERE table_schema = CURRENT_SCHEMA() AND table_name = 'service_templates' AND column_name = 'icon') AND objoid = (SELECT oid FROM pg_catalog.pg_class WHERE relname = 'service_templates' AND relnamespace = (SELECT oid FROM pg_catalog.pg_namespace WHERE nspname = CURRENT_SCHEMA()))
+2025/07/14 18:42:40 [32m/Users/paulo/projetos/full-services-auto-scale-app/backend/internal/database/database.go:52
+[0m[33m[1.229ms] [34;1m[rows:0][0m SELECT description FROM pg_catalog.pg_description WHERE objsubid = (SELECT ordinal_position FROM information_schema.columns WHERE table_schema = CURRENT_SCHEMA() AND table_name = 'service_templates' AND column_name = 'icon') AND objoid = (SELECT oid FROM pg_catalog.pg_class WHERE relname = 'service_templates' AND relnamespace = (SELECT oid FROM pg_catalog.pg_namespace WHERE nspname = CURRENT_SCHEMA()))
 
-2025/07/14 14:52:00 [32m/Users/paulo/projetos/full-services-auto-scale-app/backend/internal/database/database.go:52
-[0m[33m[0.367ms] [34;1m[rows:0][0m SELECT description FROM pg_catalog.pg_description WHERE objsubid = (SELECT ordinal_position FROM information_schema.columns WHERE table_schema = CURRENT_SCHEMA() AND table_name = 'service_templates' AND column_name = 'category') AND objoid = (SELECT oid FROM pg_catalog.pg_class WHERE relname = 'service_templates' AND relnamespace = (SELECT oid FROM pg_catalog.pg_namespace WHERE nspname = CURRENT_SCHEMA()))
+2025/07/14 18:42:40 [32m/Users/paulo/projetos/full-services-auto-scale-app/backend/internal/database/database.go:52
+[0m[33m[0.879ms] [34;1m[rows:0][0m SELECT description FROM pg_catalog.pg_description WHERE objsubid = (SELECT ordinal_position FROM information_schema.columns WHERE table_schema = CURRENT_SCHEMA() AND table_name = 'service_templates' AND column_name = 'category') AND objoid = (SELECT oid FROM pg_catalog.pg_class WHERE relname = 'service_templates' AND relnamespace = (SELECT oid FROM pg_catalog.pg_namespace WHERE nspname = CURRENT_SCHEMA()))
 
-2025/07/14 14:52:00 [32m/Users/paulo/projetos/full-services-auto-scale-app/backend/internal/database/database.go:52
-[0m[33m[0.362ms] [34;1m[rows:0][0m SELECT description FROM pg_catalog.pg_description WHERE objsubid = (SELECT ordinal_position FROM information_schema.columns WHERE table_schema = CURRENT_SCHEMA() AND table_name = 'service_templates' AND column_name = 'tags') AND objoid = (SELECT oid FROM pg_catalog.pg_class WHERE relname = 'service_templates' AND relnamespace = (SELECT oid FROM pg_catalog.pg_namespace WHERE nspname = CURRENT_SCHEMA()))
+2025/07/14 18:42:40 [32m/Users/paulo/projetos/full-services-auto-scale-app/backend/internal/database/database.go:52
+[0m[33m[0.721ms] [34;1m[rows:0][0m SELECT description FROM pg_catalog.pg_description WHERE objsubid = (SELECT ordinal_position FROM information_schema.columns WHERE table_schema = CURRENT_SCHEMA() AND table_name = 'service_templates' AND column_name = 'tags') AND objoid = (SELECT oid FROM pg_catalog.pg_class WHERE relname = 'service_templates' AND relnamespace = (SELECT oid FROM pg_catalog.pg_namespace WHERE nspname = CURRENT_SCHEMA()))
 
-2025/07/14 14:52:00 [32m/Users/paulo/projetos/full-services-auto-scale-app/backend/internal/database/database.go:52
-[0m[33m[0.393ms] [34;1m[rows:0][0m SELECT description FROM pg_catalog.pg_description WHERE objsubid = (SELECT ordinal_position FROM information_schema.columns WHERE table_schema = CURRENT_SCHEMA() AND table_name = 'service_templates' AND column_name = 'config') AND objoid = (SELECT oid FROM pg_catalog.pg_class WHERE relname = 'service_templates' AND relnamespace = (SELECT oid FROM pg_catalog.pg_namespace WHERE nspname = CURRENT_SCHEMA()))
+2025/07/14 18:42:40 [32m/Users/paulo/projetos/full-services-auto-scale-app/backend/internal/database/database.go:52
+[0m[33m[0.651ms] [34;1m[rows:0][0m SELECT description FROM pg_catalog.pg_description WHERE objsubid = (SELECT ordinal_position FROM information_schema.columns WHERE table_schema = CURRENT_SCHEMA() AND table_name = 'service_templates' AND column_name = 'config') AND objoid = (SELECT oid FROM pg_catalog.pg_class WHERE relname = 'service_templates' AND relnamespace = (SELECT oid FROM pg_catalog.pg_namespace WHERE nspname = CURRENT_SCHEMA()))
 
-2025/07/14 14:52:00 [32m/Users/paulo/projetos/full-services-auto-scale-app/backend/internal/database/database.go:52
-[0m[33m[0.424ms] [34;1m[rows:0][0m SELECT description FROM pg_catalog.pg_description WHERE objsubid = (SELECT ordinal_position FROM information_schema.columns WHERE table_schema = CURRENT_SCHEMA() AND table_name = 'service_templates' AND column_name = 'is_public') AND objoid = (SELECT oid FROM pg_catalog.pg_class WHERE relname = 'service_templates' AND relnamespace = (SELECT oid FROM pg_catalog.pg_namespace WHERE nspname = CURRENT_SCHEMA()))
+2025/07/14 18:42:40 [32m/Users/paulo/projetos/full-services-auto-scale-app/backend/internal/database/database.go:52
+[0m[33m[2.249ms] [34;1m[rows:0][0m SELECT description FROM pg_catalog.pg_description WHERE objsubid = (SELECT ordinal_position FROM information_schema.columns WHERE table_schema = CURRENT_SCHEMA() AND table_name = 'service_templates' AND column_name = 'is_public') AND objoid = (SELECT oid FROM pg_catalog.pg_class WHERE relname = 'service_templates' AND relnamespace = (SELECT oid FROM pg_catalog.pg_namespace WHERE nspname = CURRENT_SCHEMA()))
 
-2025/07/14 14:52:00 [32m/Users/paulo/projetos/full-services-auto-scale-app/backend/internal/database/database.go:52
-[0m[33m[0.688ms] [34;1m[rows:0][0m SELECT description FROM pg_catalog.pg_description WHERE objsubid = (SELECT ordinal_position FROM information_schema.columns WHERE table_schema = CURRENT_SCHEMA() AND table_name = 'service_templates' AND column_name = 'created_by') AND objoid = (SELECT oid FROM pg_catalog.pg_class WHERE relname = 'service_templates' AND relnamespace = (SELECT oid FROM pg_catalog.pg_namespace WHERE nspname = CURRENT_SCHEMA()))
+2025/07/14 18:42:40 [32m/Users/paulo/projetos/full-services-auto-scale-app/backend/internal/database/database.go:52
+[0m[33m[0.836ms] [34;1m[rows:0][0m SELECT description FROM pg_catalog.pg_description WHERE objsubid = (SELECT ordinal_position FROM information_schema.columns WHERE table_schema = CURRENT_SCHEMA() AND table_name = 'service_templates' AND column_name = 'created_by') AND objoid = (SELECT oid FROM pg_catalog.pg_class WHERE relname = 'service_templates' AND relnamespace = (SELECT oid FROM pg_catalog.pg_namespace WHERE nspname = CURRENT_SCHEMA()))
 
-2025/07/14 14:52:00 [32m/Users/paulo/projetos/full-services-auto-scale-app/backend/internal/database/database.go:52
-[0m[33m[0.619ms] [34;1m[rows:0][0m SELECT description FROM pg_catalog.pg_description WHERE objsubid = (SELECT ordinal_position FROM information_schema.columns WHERE table_schema = CURRENT_SCHEMA() AND table_name = 'service_templates' AND column_name = 'created_at') AND objoid = (SELECT oid FROM pg_catalog.pg_class WHERE relname = 'service_templates' AND relnamespace = (SELECT oid FROM pg_catalog.pg_namespace WHERE nspname = CURRENT_SCHEMA()))
+2025/07/14 18:42:40 [32m/Users/paulo/projetos/full-services-auto-scale-app/backend/internal/database/database.go:52
+[0m[33m[1.455ms] [34;1m[rows:0][0m SELECT description FROM pg_catalog.pg_description WHERE objsubid = (SELECT ordinal_position FROM information_schema.columns WHERE table_schema = CURRENT_SCHEMA() AND table_name = 'service_templates' AND column_name = 'created_at') AND objoid = (SELECT oid FROM pg_catalog.pg_class WHERE relname = 'service_templates' AND relnamespace = (SELECT oid FROM pg_catalog.pg_namespace WHERE nspname = CURRENT_SCHEMA()))
 
-2025/07/14 14:52:00 [32m/Users/paulo/projetos/full-services-auto-scale-app/backend/internal/database/database.go:52
-[0m[33m[0.468ms] [34;1m[rows:0][0m SELECT description FROM pg_catalog.pg_description WHERE objsubid = (SELECT ordinal_position FROM information_schema.columns WHERE table_schema = CURRENT_SCHEMA() AND table_name = 'service_templates' AND column_name = 'updated_at') AND objoid = (SELECT oid FROM pg_catalog.pg_class WHERE relname = 'service_templates' AND relnamespace = (SELECT oid FROM pg_catalog.pg_namespace WHERE nspname = CURRENT_SCHEMA()))
+2025/07/14 18:42:40 [32m/Users/paulo/projetos/full-services-auto-scale-app/backend/internal/database/database.go:52
+[0m[33m[0.675ms] [34;1m[rows:0][0m SELECT description FROM pg_catalog.pg_description WHERE objsubid = (SELECT ordinal_position FROM information_schema.columns WHERE table_schema = CURRENT_SCHEMA() AND table_name = 'service_templates' AND column_name = 'updated_at') AND objoid = (SELECT oid FROM pg_catalog.pg_class WHERE relname = 'service_templates' AND relnamespace = (SELECT oid FROM pg_catalog.pg_namespace WHERE nspname = CURRENT_SCHEMA()))
 
-2025/07/14 14:52:00 [32m/Users/paulo/projetos/full-services-auto-scale-app/backend/internal/database/database.go:52
-[0m[33m[4.192ms] [34;1m[rows:1][0m SELECT count(*) FROM INFORMATION_SCHEMA.table_constraints WHERE table_schema = CURRENT_SCHEMA() AND table_name = 'service_templates' AND constraint_name = 'fk_service_templates_creator'
+2025/07/14 18:42:40 [32m/Users/paulo/projetos/full-services-auto-scale-app/backend/internal/database/database.go:52
+[0m[33m[1.221ms] [34;1m[rows:1][0m SELECT count(*) FROM INFORMATION_SCHEMA.table_constraints WHERE table_schema = CURRENT_SCHEMA() AND table_name = 'service_templates' AND constraint_name = 'fk_service_templates_creator'
 
-2025/07/14 14:52:00 [32m/Users/paulo/projetos/full-services-auto-scale-app/backend/internal/database/database.go:52
-[0m[33m[0.727ms] [34;1m[rows:1][0m SELECT count(*) FROM information_schema.tables WHERE table_schema = CURRENT_SCHEMA() AND table_name = 'audit_logs' AND table_type = 'BASE TABLE'
+2025/07/14 18:42:40 [32m/Users/paulo/projetos/full-services-auto-scale-app/backend/internal/database/database.go:52
+[0m[33m[0.674ms] [34;1m[rows:1][0m SELECT count(*) FROM information_schema.tables WHERE table_schema = CURRENT_SCHEMA() AND table_name = 'audit_logs' AND table_type = 'BASE TABLE'
 
-2025/07/14 14:52:00 [32m/Users/paulo/projetos/full-services-auto-scale-app/backend/internal/database/database.go:52
-[0m[33m[0.264ms] [34;1m[rows:1][0m SELECT CURRENT_DATABASE()
+2025/07/14 18:42:40 [32m/Users/paulo/projetos/full-services-auto-scale-app/backend/internal/database/database.go:52
+[0m[33m[0.228ms] [34;1m[rows:1][0m SELECT CURRENT_DATABASE()
 
-2025/07/14 14:52:00 [32m/Users/paulo/projetos/full-services-auto-scale-app/backend/internal/database/database.go:52
-[0m[33m[1.203ms] [34;1m[rows:-][0m SELECT c.column_name, c.is_nullable = 'YES', c.udt_name, c.character_maximum_length, c.numeric_precision, c.numeric_precision_radix, c.numeric_scale, c.datetime_precision, 8 * typlen, c.column_default, pd.description, c.identity_increment FROM information_schema.columns AS c JOIN pg_type AS pgt ON c.udt_name = pgt.typname LEFT JOIN pg_catalog.pg_description as pd ON pd.objsubid = c.ordinal_position AND pd.objoid = (SELECT oid FROM pg_catalog.pg_class WHERE relname = c.table_name AND relnamespace = (SELECT oid FROM pg_catalog.pg_namespace WHERE nspname = c.table_schema)) where table_catalog = 'nomad_services' AND table_schema = CURRENT_SCHEMA() AND table_name = 'audit_logs'
+2025/07/14 18:42:40 [32m/Users/paulo/projetos/full-services-auto-scale-app/backend/internal/database/database.go:52
+[0m[33m[2.744ms] [34;1m[rows:-][0m SELECT c.column_name, c.is_nullable = 'YES', c.udt_name, c.character_maximum_length, c.numeric_precision, c.numeric_precision_radix, c.numeric_scale, c.datetime_precision, 8 * typlen, c.column_default, pd.description, c.identity_increment FROM information_schema.columns AS c JOIN pg_type AS pgt ON c.udt_name = pgt.typname LEFT JOIN pg_catalog.pg_description as pd ON pd.objsubid = c.ordinal_position AND pd.objoid = (SELECT oid FROM pg_catalog.pg_class WHERE relname = c.table_name AND relnamespace = (SELECT oid FROM pg_catalog.pg_namespace WHERE nspname = c.table_schema)) where table_catalog = 'nomad_services' AND table_schema = CURRENT_SCHEMA() AND table_name = 'audit_logs'
 
-2025/07/14 14:52:00 [32m/Users/paulo/projetos/full-services-auto-scale-app/backend/internal/database/database.go:52
-[0m[33m[0.763ms] [34;1m[rows:-][0m SELECT * FROM "audit_logs" LIMIT 1
+2025/07/14 18:42:40 [32m/Users/paulo/projetos/full-services-auto-scale-app/backend/internal/database/database.go:52
+[0m[33m[0.949ms] [34;1m[rows:-][0m SELECT * FROM "audit_logs" LIMIT 1
 
-2025/07/14 14:52:00 [32m/Users/paulo/projetos/full-services-auto-scale-app/backend/internal/database/database.go:52
-[0m[33m[1.689ms] [34;1m[rows:-][0m SELECT constraint_name FROM information_schema.table_constraints tc JOIN information_schema.constraint_column_usage AS ccu USING (constraint_schema, constraint_name) JOIN information_schema.columns AS c ON c.table_schema = tc.constraint_schema AND tc.table_name = c.table_name AND ccu.column_name = c.column_name WHERE constraint_type IN ('PRIMARY KEY', 'UNIQUE') AND c.table_catalog = 'nomad_services' AND c.table_schema = CURRENT_SCHEMA() AND c.table_name = 'audit_logs' AND constraint_type = 'UNIQUE'
+2025/07/14 18:42:40 [32m/Users/paulo/projetos/full-services-auto-scale-app/backend/internal/database/database.go:52
+[0m[33m[2.123ms] [34;1m[rows:-][0m SELECT constraint_name FROM information_schema.table_constraints tc JOIN information_schema.constraint_column_usage AS ccu USING (constraint_schema, constraint_name) JOIN information_schema.columns AS c ON c.table_schema = tc.constraint_schema AND tc.table_name = c.table_name AND ccu.column_name = c.column_name WHERE constraint_type IN ('PRIMARY KEY', 'UNIQUE') AND c.table_catalog = 'nomad_services' AND c.table_schema = CURRENT_SCHEMA() AND c.table_name = 'audit_logs' AND constraint_type = 'UNIQUE'
 
-2025/07/14 14:52:00 [32m/Users/paulo/projetos/full-services-auto-scale-app/backend/internal/database/database.go:52
-[0m[33m[1.504ms] [34;1m[rows:-][0m SELECT c.column_name, constraint_name, constraint_type FROM information_schema.table_constraints tc JOIN information_schema.constraint_column_usage AS ccu USING (constraint_schema, constraint_name) JOIN information_schema.columns AS c ON c.table_schema = tc.constraint_schema AND tc.table_name = c.table_name AND ccu.column_name = c.column_name WHERE constraint_type IN ('PRIMARY KEY', 'UNIQUE') AND c.table_catalog = 'nomad_services' AND c.table_schema = CURRENT_SCHEMA() AND c.table_name = 'audit_logs'
+2025/07/14 18:42:40 [32m/Users/paulo/projetos/full-services-auto-scale-app/backend/internal/database/database.go:52
+[0m[33m[2.039ms] [34;1m[rows:-][0m SELECT c.column_name, constraint_name, constraint_type FROM information_schema.table_constraints tc JOIN information_schema.constraint_column_usage AS ccu USING (constraint_schema, constraint_name) JOIN information_schema.columns AS c ON c.table_schema = tc.constraint_schema AND tc.table_name = c.table_name AND ccu.column_name = c.column_name WHERE constraint_type IN ('PRIMARY KEY', 'UNIQUE') AND c.table_catalog = 'nomad_services' AND c.table_schema = CURRENT_SCHEMA() AND c.table_name = 'audit_logs'
 
-2025/07/14 14:52:00 [32m/Users/paulo/projetos/full-services-auto-scale-app/backend/internal/database/database.go:52
-[0m[33m[0.295ms] [34;1m[rows:-][0m SELECT a.attname as column_name, format_type(a.atttypid, a.atttypmod) AS data_type
+2025/07/14 18:42:40 [32m/Users/paulo/projetos/full-services-auto-scale-app/backend/internal/database/database.go:52
+[0m[33m[0.346ms] [34;1m[rows:-][0m SELECT a.attname as column_name, format_type(a.atttypid, a.atttypmod) AS data_type
 		FROM pg_attribute a JOIN pg_class b ON a.attrelid = b.oid AND relnamespace = (SELECT oid FROM pg_catalog.pg_namespace WHERE nspname = CURRENT_SCHEMA())
 		WHERE a.attnum > 0 -- hide internal columns
 		AND NOT a.attisdropped -- hide deleted columns
 		AND b.relname = 'audit_logs'
 
-2025/07/14 14:52:00 [32m/Users/paulo/projetos/full-services-auto-scale-app/backend/internal/database/database.go:52
-[0m[33m[0.400ms] [34;1m[rows:0][0m SELECT description FROM pg_catalog.pg_description WHERE objsubid = (SELECT ordinal_position FROM information_schema.columns WHERE table_schema = CURRENT_SCHEMA() AND table_name = 'audit_logs' AND column_name = 'id') AND objoid = (SELECT oid FROM pg_catalog.pg_class WHERE relname = 'audit_logs' AND relnamespace = (SELECT oid FROM pg_catalog.pg_namespace WHERE nspname = CURRENT_SCHEMA()))
+2025/07/14 18:42:40 [32m/Users/paulo/projetos/full-services-auto-scale-app/backend/internal/database/database.go:52
+[0m[33m[0.642ms] [34;1m[rows:0][0m SELECT description FROM pg_catalog.pg_description WHERE objsubid = (SELECT ordinal_position FROM information_schema.columns WHERE table_schema = CURRENT_SCHEMA() AND table_name = 'audit_logs' AND column_name = 'id') AND objoid = (SELECT oid FROM pg_catalog.pg_class WHERE relname = 'audit_logs' AND relnamespace = (SELECT oid FROM pg_catalog.pg_namespace WHERE nspname = CURRENT_SCHEMA()))
 
-2025/07/14 14:52:00 [32m/Users/paulo/projetos/full-services-auto-scale-app/backend/internal/database/database.go:52
-[0m[33m[0.464ms] [34;1m[rows:0][0m SELECT description FROM pg_catalog.pg_description WHERE objsubid = (SELECT ordinal_position FROM information_schema.columns WHERE table_schema = CURRENT_SCHEMA() AND table_name = 'audit_logs' AND column_name = 'user_id') AND objoid = (SELECT oid FROM pg_catalog.pg_class WHERE relname = 'audit_logs' AND relnamespace = (SELECT oid FROM pg_catalog.pg_namespace WHERE nspname = CURRENT_SCHEMA()))
+2025/07/14 18:42:40 [32m/Users/paulo/projetos/full-services-auto-scale-app/backend/internal/database/database.go:52
+[0m[33m[0.780ms] [34;1m[rows:0][0m SELECT description FROM pg_catalog.pg_description WHERE objsubid = (SELECT ordinal_position FROM information_schema.columns WHERE table_schema = CURRENT_SCHEMA() AND table_name = 'audit_logs' AND column_name = 'user_id') AND objoid = (SELECT oid FROM pg_catalog.pg_class WHERE relname = 'audit_logs' AND relnamespace = (SELECT oid FROM pg_catalog.pg_namespace WHERE nspname = CURRENT_SCHEMA()))
 
-2025/07/14 14:52:00 [32m/Users/paulo/projetos/full-services-auto-scale-app/backend/internal/database/database.go:52
-[0m[33m[0.370ms] [34;1m[rows:0][0m SELECT description FROM pg_catalog.pg_description WHERE objsubid = (SELECT ordinal_position FROM information_schema.columns WHERE table_schema = CURRENT_SCHEMA() AND table_name = 'audit_logs' AND column_name = 'tenant_id') AND objoid = (SELECT oid FROM pg_catalog.pg_class WHERE relname = 'audit_logs' AND relnamespace = (SELECT oid FROM pg_catalog.pg_namespace WHERE nspname = CURRENT_SCHEMA()))
+2025/07/14 18:42:40 [32m/Users/paulo/projetos/full-services-auto-scale-app/backend/internal/database/database.go:52
+[0m[33m[0.440ms] [34;1m[rows:0][0m SELECT description FROM pg_catalog.pg_description WHERE objsubid = (SELECT ordinal_position FROM information_schema.columns WHERE table_schema = CURRENT_SCHEMA() AND table_name = 'audit_logs' AND column_name = 'tenant_id') AND objoid = (SELECT oid FROM pg_catalog.pg_class WHERE relname = 'audit_logs' AND relnamespace = (SELECT oid FROM pg_catalog.pg_namespace WHERE nspname = CURRENT_SCHEMA()))
 
-2025/07/14 14:52:00 [32m/Users/paulo/projetos/full-services-auto-scale-app/backend/internal/database/database.go:52
-[0m[33m[0.343ms] [34;1m[rows:0][0m SELECT description FROM pg_catalog.pg_description WHERE objsubid = (SELECT ordinal_position FROM information_schema.columns WHERE table_schema = CURRENT_SCHEMA() AND table_name = 'audit_logs' AND column_name = 'action') AND objoid = (SELECT oid FROM pg_catalog.pg_class WHERE relname = 'audit_logs' AND relnamespace = (SELECT oid FROM pg_catalog.pg_namespace WHERE nspname = CURRENT_SCHEMA()))
+2025/07/14 18:42:40 [32m/Users/paulo/projetos/full-services-auto-scale-app/backend/internal/database/database.go:52
+[0m[33m[0.396ms] [34;1m[rows:0][0m SELECT description FROM pg_catalog.pg_description WHERE objsubid = (SELECT ordinal_position FROM information_schema.columns WHERE table_schema = CURRENT_SCHEMA() AND table_name = 'audit_logs' AND column_name = 'action') AND objoid = (SELECT oid FROM pg_catalog.pg_class WHERE relname = 'audit_logs' AND relnamespace = (SELECT oid FROM pg_catalog.pg_namespace WHERE nspname = CURRENT_SCHEMA()))
 
-2025/07/14 14:52:00 [32m/Users/paulo/projetos/full-services-auto-scale-app/backend/internal/database/database.go:52
-[0m[33m[0.340ms] [34;1m[rows:0][0m SELECT description FROM pg_catalog.pg_description WHERE objsubid = (SELECT ordinal_position FROM information_schema.columns WHERE table_schema = CURRENT_SCHEMA() AND table_name = 'audit_logs' AND column_name = 'resource') AND objoid = (SELECT oid FROM pg_catalog.pg_class WHERE relname = 'audit_logs' AND relnamespace = (SELECT oid FROM pg_catalog.pg_namespace WHERE nspname = CURRENT_SCHEMA()))
+2025/07/14 18:42:40 [32m/Users/paulo/projetos/full-services-auto-scale-app/backend/internal/database/database.go:52
+[0m[33m[0.369ms] [34;1m[rows:0][0m SELECT description FROM pg_catalog.pg_description WHERE objsubid = (SELECT ordinal_position FROM information_schema.columns WHERE table_schema = CURRENT_SCHEMA() AND table_name = 'audit_logs' AND column_name = 'resource') AND objoid = (SELECT oid FROM pg_catalog.pg_class WHERE relname = 'audit_logs' AND relnamespace = (SELECT oid FROM pg_catalog.pg_namespace WHERE nspname = CURRENT_SCHEMA()))
 
-2025/07/14 14:52:00 [32m/Users/paulo/projetos/full-services-auto-scale-app/backend/internal/database/database.go:52
-[0m[33m[0.311ms] [34;1m[rows:0][0m SELECT description FROM pg_catalog.pg_description WHERE objsubid = (SELECT ordinal_position FROM information_schema.columns WHERE table_schema = CURRENT_SCHEMA() AND table_name = 'audit_logs' AND column_name = 'details') AND objoid = (SELECT oid FROM pg_catalog.pg_class WHERE relname = 'audit_logs' AND relnamespace = (SELECT oid FROM pg_catalog.pg_namespace WHERE nspname = CURRENT_SCHEMA()))
+2025/07/14 18:42:40 [32m/Users/paulo/projetos/full-services-auto-scale-app/backend/internal/database/database.go:52
+[0m[33m[0.485ms] [34;1m[rows:0][0m SELECT description FROM pg_catalog.pg_description WHERE objsubid = (SELECT ordinal_position FROM information_schema.columns WHERE table_schema = CURRENT_SCHEMA() AND table_name = 'audit_logs' AND column_name = 'details') AND objoid = (SELECT oid FROM pg_catalog.pg_class WHERE relname = 'audit_logs' AND relnamespace = (SELECT oid FROM pg_catalog.pg_namespace WHERE nspname = CURRENT_SCHEMA()))
 
-2025/07/14 14:52:00 [32m/Users/paulo/projetos/full-services-auto-scale-app/backend/internal/database/database.go:52
-[0m[33m[0.352ms] [34;1m[rows:0][0m SELECT description FROM pg_catalog.pg_description WHERE objsubid = (SELECT ordinal_position FROM information_schema.columns WHERE table_schema = CURRENT_SCHEMA() AND table_name = 'audit_logs' AND column_name = 'ip_address') AND objoid = (SELECT oid FROM pg_catalog.pg_class WHERE relname = 'audit_logs' AND relnamespace = (SELECT oid FROM pg_catalog.pg_namespace WHERE nspname = CURRENT_SCHEMA()))
+2025/07/14 18:42:40 [32m/Users/paulo/projetos/full-services-auto-scale-app/backend/internal/database/database.go:52
+[0m[33m[0.363ms] [34;1m[rows:0][0m SELECT description FROM pg_catalog.pg_description WHERE objsubid = (SELECT ordinal_position FROM information_schema.columns WHERE table_schema = CURRENT_SCHEMA() AND table_name = 'audit_logs' AND column_name = 'ip_address') AND objoid = (SELECT oid FROM pg_catalog.pg_class WHERE relname = 'audit_logs' AND relnamespace = (SELECT oid FROM pg_catalog.pg_namespace WHERE nspname = CURRENT_SCHEMA()))
 
-2025/07/14 14:52:00 [32m/Users/paulo/projetos/full-services-auto-scale-app/backend/internal/database/database.go:52
-[0m[33m[0.407ms] [34;1m[rows:0][0m SELECT description FROM pg_catalog.pg_description WHERE objsubid = (SELECT ordinal_position FROM information_schema.columns WHERE table_schema = CURRENT_SCHEMA() AND table_name = 'audit_logs' AND column_name = 'user_agent') AND objoid = (SELECT oid FROM pg_catalog.pg_class WHERE relname = 'audit_logs' AND relnamespace = (SELECT oid FROM pg_catalog.pg_namespace WHERE nspname = CURRENT_SCHEMA()))
+2025/07/14 18:42:40 [32m/Users/paulo/projetos/full-services-auto-scale-app/backend/internal/database/database.go:52
+[0m[33m[0.420ms] [34;1m[rows:0][0m SELECT description FROM pg_catalog.pg_description WHERE objsubid = (SELECT ordinal_position FROM information_schema.columns WHERE table_schema = CURRENT_SCHEMA() AND table_name = 'audit_logs' AND column_name = 'user_agent') AND objoid = (SELECT oid FROM pg_catalog.pg_class WHERE relname = 'audit_logs' AND relnamespace = (SELECT oid FROM pg_catalog.pg_namespace WHERE nspname = CURRENT_SCHEMA()))
 
-2025/07/14 14:52:00 [32m/Users/paulo/projetos/full-services-auto-scale-app/backend/internal/database/database.go:52
-[0m[33m[0.418ms] [34;1m[rows:0][0m SELECT description FROM pg_catalog.pg_description WHERE objsubid = (SELECT ordinal_position FROM information_schema.columns WHERE table_schema = CURRENT_SCHEMA() AND table_name = 'audit_logs' AND column_name = 'created_at') AND objoid = (SELECT oid FROM pg_catalog.pg_class WHERE relname = 'audit_logs' AND relnamespace = (SELECT oid FROM pg_catalog.pg_namespace WHERE nspname = CURRENT_SCHEMA()))
+2025/07/14 18:42:40 [32m/Users/paulo/projetos/full-services-auto-scale-app/backend/internal/database/database.go:52
+[0m[33m[0.481ms] [34;1m[rows:0][0m SELECT description FROM pg_catalog.pg_description WHERE objsubid = (SELECT ordinal_position FROM information_schema.columns WHERE table_schema = CURRENT_SCHEMA() AND table_name = 'audit_logs' AND column_name = 'created_at') AND objoid = (SELECT oid FROM pg_catalog.pg_class WHERE relname = 'audit_logs' AND relnamespace = (SELECT oid FROM pg_catalog.pg_namespace WHERE nspname = CURRENT_SCHEMA()))
 
-2025/07/14 14:52:00 [32m/Users/paulo/projetos/full-services-auto-scale-app/backend/internal/database/database.go:52
-[0m[33m[0.516ms] [34;1m[rows:1][0m SELECT count(*) FROM INFORMATION_SCHEMA.table_constraints WHERE table_schema = CURRENT_SCHEMA() AND table_name = 'audit_logs' AND constraint_name = 'fk_audit_logs_user'
+2025/07/14 18:42:40 [32m/Users/paulo/projetos/full-services-auto-scale-app/backend/internal/database/database.go:52
+[0m[33m[0.405ms] [34;1m[rows:1][0m SELECT count(*) FROM INFORMATION_SCHEMA.table_constraints WHERE table_schema = CURRENT_SCHEMA() AND table_name = 'audit_logs' AND constraint_name = 'fk_audit_logs_user'
 
-2025/07/14 14:52:00 [32m/Users/paulo/projetos/full-services-auto-scale-app/backend/internal/database/database.go:52
-[0m[33m[0.336ms] [34;1m[rows:1][0m SELECT count(*) FROM INFORMATION_SCHEMA.table_constraints WHERE table_schema = CURRENT_SCHEMA() AND table_name = 'audit_logs' AND constraint_name = 'fk_audit_logs_tenant'
+2025/07/14 18:42:40 [32m/Users/paulo/projetos/full-services-auto-scale-app/backend/internal/database/database.go:52
+[0m[33m[0.308ms] [34;1m[rows:1][0m SELECT count(*) FROM INFORMATION_SCHEMA.table_constraints WHERE table_schema = CURRENT_SCHEMA() AND table_name = 'audit_logs' AND constraint_name = 'fk_audit_logs_tenant'
 
-2025/07/14 14:52:00 [32m/Users/paulo/projetos/full-services-auto-scale-app/backend/internal/database/database.go:52
-[0m[33m[0.295ms] [34;1m[rows:1][0m SELECT count(*) FROM information_schema.tables WHERE table_schema = CURRENT_SCHEMA() AND table_name = 'api_keys' AND table_type = 'BASE TABLE'
+2025/07/14 18:42:40 [32m/Users/paulo/projetos/full-services-auto-scale-app/backend/internal/database/database.go:52
+[0m[33m[1.180ms] [34;1m[rows:1][0m SELECT count(*) FROM information_schema.tables WHERE table_schema = CURRENT_SCHEMA() AND table_name = 'api_keys' AND table_type = 'BASE TABLE'
 
-2025/07/14 14:52:00 [32m/Users/paulo/projetos/full-services-auto-scale-app/backend/internal/database/database.go:52
-[0m[33m[0.287ms] [34;1m[rows:1][0m SELECT CURRENT_DATABASE()
+2025/07/14 18:42:40 [32m/Users/paulo/projetos/full-services-auto-scale-app/backend/internal/database/database.go:52
+[0m[33m[0.276ms] [34;1m[rows:1][0m SELECT CURRENT_DATABASE()
 
-2025/07/14 14:52:00 [32m/Users/paulo/projetos/full-services-auto-scale-app/backend/internal/database/database.go:52
-[0m[33m[1.202ms] [34;1m[rows:-][0m SELECT c.column_name, c.is_nullable = 'YES', c.udt_name, c.character_maximum_length, c.numeric_precision, c.numeric_precision_radix, c.numeric_scale, c.datetime_precision, 8 * typlen, c.column_default, pd.description, c.identity_increment FROM information_schema.columns AS c JOIN pg_type AS pgt ON c.udt_name = pgt.typname LEFT JOIN pg_catalog.pg_description as pd ON pd.objsubid = c.ordinal_position AND pd.objoid = (SELECT oid FROM pg_catalog.pg_class WHERE relname = c.table_name AND relnamespace = (SELECT oid FROM pg_catalog.pg_namespace WHERE nspname = c.table_schema)) where table_catalog = 'nomad_services' AND table_schema = CURRENT_SCHEMA() AND table_name = 'api_keys'
+2025/07/14 18:42:40 [32m/Users/paulo/projetos/full-services-auto-scale-app/backend/internal/database/database.go:52
+[0m[33m[3.364ms] [34;1m[rows:-][0m SELECT c.column_name, c.is_nullable = 'YES', c.udt_name, c.character_maximum_length, c.numeric_precision, c.numeric_precision_radix, c.numeric_scale, c.datetime_precision, 8 * typlen, c.column_default, pd.description, c.identity_increment FROM information_schema.columns AS c JOIN pg_type AS pgt ON c.udt_name = pgt.typname LEFT JOIN pg_catalog.pg_description as pd ON pd.objsubid = c.ordinal_position AND pd.objoid = (SELECT oid FROM pg_catalog.pg_class WHERE relname = c.table_name AND relnamespace = (SELECT oid FROM pg_catalog.pg_namespace WHERE nspname = c.table_schema)) where table_catalog = 'nomad_services' AND table_schema = CURRENT_SCHEMA() AND table_name = 'api_keys'
 
-2025/07/14 14:52:00 [32m/Users/paulo/projetos/full-services-auto-scale-app/backend/internal/database/database.go:52
-[0m[33m[0.840ms] [34;1m[rows:-][0m SELECT * FROM "api_keys" LIMIT 1
+2025/07/14 18:42:40 [32m/Users/paulo/projetos/full-services-auto-scale-app/backend/internal/database/database.go:52
+[0m[33m[3.308ms] [34;1m[rows:-][0m SELECT * FROM "api_keys" LIMIT 1
 
-2025/07/14 14:52:00 [32m/Users/paulo/projetos/full-services-auto-scale-app/backend/internal/database/database.go:52
-[0m[33m[1.654ms] [34;1m[rows:-][0m SELECT constraint_name FROM information_schema.table_constraints tc JOIN information_schema.constraint_column_usage AS ccu USING (constraint_schema, constraint_name) JOIN information_schema.columns AS c ON c.table_schema = tc.constraint_schema AND tc.table_name = c.table_name AND ccu.column_name = c.column_name WHERE constraint_type IN ('PRIMARY KEY', 'UNIQUE') AND c.table_catalog = 'nomad_services' AND c.table_schema = CURRENT_SCHEMA() AND c.table_name = 'api_keys' AND constraint_type = 'UNIQUE'
+2025/07/14 18:42:40 [32m/Users/paulo/projetos/full-services-auto-scale-app/backend/internal/database/database.go:52
+[0m[33m[2.222ms] [34;1m[rows:-][0m SELECT constraint_name FROM information_schema.table_constraints tc JOIN information_schema.constraint_column_usage AS ccu USING (constraint_schema, constraint_name) JOIN information_schema.columns AS c ON c.table_schema = tc.constraint_schema AND tc.table_name = c.table_name AND ccu.column_name = c.column_name WHERE constraint_type IN ('PRIMARY KEY', 'UNIQUE') AND c.table_catalog = 'nomad_services' AND c.table_schema = CURRENT_SCHEMA() AND c.table_name = 'api_keys' AND constraint_type = 'UNIQUE'
 
-2025/07/14 14:52:00 [32m/Users/paulo/projetos/full-services-auto-scale-app/backend/internal/database/database.go:52
-[0m[33m[1.655ms] [34;1m[rows:-][0m SELECT c.column_name, constraint_name, constraint_type FROM information_schema.table_constraints tc JOIN information_schema.constraint_column_usage AS ccu USING (constraint_schema, constraint_name) JOIN information_schema.columns AS c ON c.table_schema = tc.constraint_schema AND tc.table_name = c.table_name AND ccu.column_name = c.column_name WHERE constraint_type IN ('PRIMARY KEY', 'UNIQUE') AND c.table_catalog = 'nomad_services' AND c.table_schema = CURRENT_SCHEMA() AND c.table_name = 'api_keys'
+2025/07/14 18:42:40 [32m/Users/paulo/projetos/full-services-auto-scale-app/backend/internal/database/database.go:52
+[0m[33m[2.619ms] [34;1m[rows:-][0m SELECT c.column_name, constraint_name, constraint_type FROM information_schema.table_constraints tc JOIN information_schema.constraint_column_usage AS ccu USING (constraint_schema, constraint_name) JOIN information_schema.columns AS c ON c.table_schema = tc.constraint_schema AND tc.table_name = c.table_name AND ccu.column_name = c.column_name WHERE constraint_type IN ('PRIMARY KEY', 'UNIQUE') AND c.table_catalog = 'nomad_services' AND c.table_schema = CURRENT_SCHEMA() AND c.table_name = 'api_keys'
 
-2025/07/14 14:52:00 [32m/Users/paulo/projetos/full-services-auto-scale-app/backend/internal/database/database.go:52
-[0m[33m[0.331ms] [34;1m[rows:-][0m SELECT a.attname as column_name, format_type(a.atttypid, a.atttypmod) AS data_type
+2025/07/14 18:42:40 [32m/Users/paulo/projetos/full-services-auto-scale-app/backend/internal/database/database.go:52
+[0m[33m[0.440ms] [34;1m[rows:-][0m SELECT a.attname as column_name, format_type(a.atttypid, a.atttypmod) AS data_type
 		FROM pg_attribute a JOIN pg_class b ON a.attrelid = b.oid AND relnamespace = (SELECT oid FROM pg_catalog.pg_namespace WHERE nspname = CURRENT_SCHEMA())
 		WHERE a.attnum > 0 -- hide internal columns
 		AND NOT a.attisdropped -- hide deleted columns
 		AND b.relname = 'api_keys'
 
-2025/07/14 14:52:00 [32m/Users/paulo/projetos/full-services-auto-scale-app/backend/internal/database/database.go:52
-[0m[33m[0.434ms] [34;1m[rows:0][0m SELECT description FROM pg_catalog.pg_description WHERE objsubid = (SELECT ordinal_position FROM information_schema.columns WHERE table_schema = CURRENT_SCHEMA() AND table_name = 'api_keys' AND column_name = 'id') AND objoid = (SELECT oid FROM pg_catalog.pg_class WHERE relname = 'api_keys' AND relnamespace = (SELECT oid FROM pg_catalog.pg_namespace WHERE nspname = CURRENT_SCHEMA()))
+2025/07/14 18:42:40 [32m/Users/paulo/projetos/full-services-auto-scale-app/backend/internal/database/database.go:52
+[0m[33m[0.652ms] [34;1m[rows:0][0m SELECT description FROM pg_catalog.pg_description WHERE objsubid = (SELECT ordinal_position FROM information_schema.columns WHERE table_schema = CURRENT_SCHEMA() AND table_name = 'api_keys' AND column_name = 'id') AND objoid = (SELECT oid FROM pg_catalog.pg_class WHERE relname = 'api_keys' AND relnamespace = (SELECT oid FROM pg_catalog.pg_namespace WHERE nspname = CURRENT_SCHEMA()))
 
-2025/07/14 14:52:00 [32m/Users/paulo/projetos/full-services-auto-scale-app/backend/internal/database/database.go:52
-[0m[33m[0.451ms] [34;1m[rows:0][0m SELECT description FROM pg_catalog.pg_description WHERE objsubid = (SELECT ordinal_position FROM information_schema.columns WHERE table_schema = CURRENT_SCHEMA() AND table_name = 'api_keys' AND column_name = 'name') AND objoid = (SELECT oid FROM pg_catalog.pg_class WHERE relname = 'api_keys' AND relnamespace = (SELECT oid FROM pg_catalog.pg_namespace WHERE nspname = CURRENT_SCHEMA()))
+2025/07/14 18:42:40 [32m/Users/paulo/projetos/full-services-auto-scale-app/backend/internal/database/database.go:52
+[0m[33m[0.664ms] [34;1m[rows:0][0m SELECT description FROM pg_catalog.pg_description WHERE objsubid = (SELECT ordinal_position FROM information_schema.columns WHERE table_schema = CURRENT_SCHEMA() AND table_name = 'api_keys' AND column_name = 'name') AND objoid = (SELECT oid FROM pg_catalog.pg_class WHERE relname = 'api_keys' AND relnamespace = (SELECT oid FROM pg_catalog.pg_namespace WHERE nspname = CURRENT_SCHEMA()))
 
-2025/07/14 14:52:00 [32m
-[0m[33m[0.273ms] [34;1m[rows:1][0m SELECT CURRENT_DATABASE()
+2025/07/14 18:42:40 [32m
+[0m[33m[0.233ms] [34;1m[rows:1][0m SELECT CURRENT_DATABASE()
 
-2025/07/14 14:52:00 [32m
-[0m[33m[1.318ms] [34;1m[rows:-][0m SELECT c.column_name, c.is_nullable = 'YES', c.udt_name, c.character_maximum_length, c.numeric_precision, c.numeric_precision_radix, c.numeric_scale, c.datetime_precision, 8 * typlen, c.column_default, pd.description, c.identity_increment FROM information_schema.columns AS c JOIN pg_type AS pgt ON c.udt_name = pgt.typname LEFT JOIN pg_catalog.pg_description as pd ON pd.objsubid = c.ordinal_position AND pd.objoid = (SELECT oid FROM pg_catalog.pg_class WHERE relname = c.table_name AND relnamespace = (SELECT oid FROM pg_catalog.pg_namespace WHERE nspname = c.table_schema)) where table_catalog = 'nomad_services' AND table_schema = CURRENT_SCHEMA() AND table_name = 'api_keys'
+2025/07/14 18:42:40 [32m
+[0m[33m[1.437ms] [34;1m[rows:-][0m SELECT c.column_name, c.is_nullable = 'YES', c.udt_name, c.character_maximum_length, c.numeric_precision, c.numeric_precision_radix, c.numeric_scale, c.datetime_precision, 8 * typlen, c.column_default, pd.description, c.identity_increment FROM information_schema.columns AS c JOIN pg_type AS pgt ON c.udt_name = pgt.typname LEFT JOIN pg_catalog.pg_description as pd ON pd.objsubid = c.ordinal_position AND pd.objoid = (SELECT oid FROM pg_catalog.pg_class WHERE relname = c.table_name AND relnamespace = (SELECT oid FROM pg_catalog.pg_namespace WHERE nspname = c.table_schema)) where table_catalog = 'nomad_services' AND table_schema = CURRENT_SCHEMA() AND table_name = 'api_keys'
 
-2025/07/14 14:52:00 [32m
-[0m[33m[0.862ms] [34;1m[rows:-][0m SELECT * FROM "api_keys" LIMIT 1
+2025/07/14 18:42:40 [32m
+[0m[33m[0.253ms] [34;1m[rows:-][0m SELECT * FROM "api_keys" LIMIT 1
 
-2025/07/14 14:52:00 [32m
-[0m[33m[3.089ms] [34;1m[rows:-][0m SELECT constraint_name FROM information_schema.table_constraints tc JOIN information_schema.constraint_column_usage AS ccu USING (constraint_schema, constraint_name) JOIN information_schema.columns AS c ON c.table_schema = tc.constraint_schema AND tc.table_name = c.table_name AND ccu.column_name = c.column_name WHERE constraint_type IN ('PRIMARY KEY', 'UNIQUE') AND c.table_catalog = 'nomad_services' AND c.table_schema = CURRENT_SCHEMA() AND c.table_name = 'api_keys' AND constraint_type = 'UNIQUE'
+2025/07/14 18:42:40 [32m
+[0m[33m[3.002ms] [34;1m[rows:-][0m SELECT constraint_name FROM information_schema.table_constraints tc JOIN information_schema.constraint_column_usage AS ccu USING (constraint_schema, constraint_name) JOIN information_schema.columns AS c ON c.table_schema = tc.constraint_schema AND tc.table_name = c.table_name AND ccu.column_name = c.column_name WHERE constraint_type IN ('PRIMARY KEY', 'UNIQUE') AND c.table_catalog = 'nomad_services' AND c.table_schema = CURRENT_SCHEMA() AND c.table_name = 'api_keys' AND constraint_type = 'UNIQUE'
 
-2025/07/14 14:52:00 [32m
-[0m[33m[4.962ms] [34;1m[rows:-][0m SELECT c.column_name, constraint_name, constraint_type FROM information_schema.table_constraints tc JOIN information_schema.constraint_column_usage AS ccu USING (constraint_schema, constraint_name) JOIN information_schema.columns AS c ON c.table_schema = tc.constraint_schema AND tc.table_name = c.table_name AND ccu.column_name = c.column_name WHERE constraint_type IN ('PRIMARY KEY', 'UNIQUE') AND c.table_catalog = 'nomad_services' AND c.table_schema = CURRENT_SCHEMA() AND c.table_name = 'api_keys'
+2025/07/14 18:42:40 [32m
+[0m[33m[5.854ms] [34;1m[rows:-][0m SELECT c.column_name, constraint_name, constraint_type FROM information_schema.table_constraints tc JOIN information_schema.constraint_column_usage AS ccu USING (constraint_schema, constraint_name) JOIN information_schema.columns AS c ON c.table_schema = tc.constraint_schema AND tc.table_name = c.table_name AND ccu.column_name = c.column_name WHERE constraint_type IN ('PRIMARY KEY', 'UNIQUE') AND c.table_catalog = 'nomad_services' AND c.table_schema = CURRENT_SCHEMA() AND c.table_name = 'api_keys'
 
-2025/07/14 14:52:00 [32m
-[0m[33m[1.221ms] [34;1m[rows:-][0m SELECT a.attname as column_name, format_type(a.atttypid, a.atttypmod) AS data_type
+2025/07/14 18:42:40 [32m
+[0m[33m[0.885ms] [34;1m[rows:-][0m SELECT a.attname as column_name, format_type(a.atttypid, a.atttypmod) AS data_type
 		FROM pg_attribute a JOIN pg_class b ON a.attrelid = b.oid AND relnamespace = (SELECT oid FROM pg_catalog.pg_namespace WHERE nspname = CURRENT_SCHEMA())
 		WHERE a.attnum > 0 -- hide internal columns
 		AND NOT a.attisdropped -- hide deleted columns
 		AND b.relname = 'api_keys'
 
-2025/07/14 14:52:00 [32m
-[0m[33m[0.458ms] [34;1m[rows:1][0m SELECT count(*) FROM pg_indexes WHERE tablename = 'api_keys' AND indexname = 'idx_api_keys_key' AND schemaname = CURRENT_SCHEMA()
+2025/07/14 18:42:40 [32m
+[0m[33m[0.542ms] [34;1m[rows:1][0m SELECT count(*) FROM pg_indexes WHERE tablename = 'api_keys' AND indexname = 'idx_api_keys_key' AND schemaname = CURRENT_SCHEMA()
 
-2025/07/14 14:52:00 [32m/Users/paulo/projetos/full-services-auto-scale-app/backend/internal/database/database.go:52
-[0m[33m[0.465ms] [34;1m[rows:0][0m SELECT description FROM pg_catalog.pg_description WHERE objsubid = (SELECT ordinal_position FROM information_schema.columns WHERE table_schema = CURRENT_SCHEMA() AND table_name = 'api_keys' AND column_name = 'key') AND objoid = (SELECT oid FROM pg_catalog.pg_class WHERE relname = 'api_keys' AND relnamespace = (SELECT oid FROM pg_catalog.pg_namespace WHERE nspname = CURRENT_SCHEMA()))
+2025/07/14 18:42:40 [32m/Users/paulo/projetos/full-services-auto-scale-app/backend/internal/database/database.go:52
+[0m[33m[0.936ms] [34;1m[rows:0][0m SELECT description FROM pg_catalog.pg_description WHERE objsubid = (SELECT ordinal_position FROM information_schema.columns WHERE table_schema = CURRENT_SCHEMA() AND table_name = 'api_keys' AND column_name = 'key') AND objoid = (SELECT oid FROM pg_catalog.pg_class WHERE relname = 'api_keys' AND relnamespace = (SELECT oid FROM pg_catalog.pg_namespace WHERE nspname = CURRENT_SCHEMA()))
 
-2025/07/14 14:52:00 [32m/Users/paulo/projetos/full-services-auto-scale-app/backend/internal/database/database.go:52
-[0m[33m[0.540ms] [34;1m[rows:0][0m SELECT description FROM pg_catalog.pg_description WHERE objsubid = (SELECT ordinal_position FROM information_schema.columns WHERE table_schema = CURRENT_SCHEMA() AND table_name = 'api_keys' AND column_name = 'user_id') AND objoid = (SELECT oid FROM pg_catalog.pg_class WHERE relname = 'api_keys' AND relnamespace = (SELECT oid FROM pg_catalog.pg_namespace WHERE nspname = CURRENT_SCHEMA()))
+2025/07/14 18:42:40 [32m/Users/paulo/projetos/full-services-auto-scale-app/backend/internal/database/database.go:52
+[0m[33m[0.910ms] [34;1m[rows:0][0m SELECT description FROM pg_catalog.pg_description WHERE objsubid = (SELECT ordinal_position FROM information_schema.columns WHERE table_schema = CURRENT_SCHEMA() AND table_name = 'api_keys' AND column_name = 'user_id') AND objoid = (SELECT oid FROM pg_catalog.pg_class WHERE relname = 'api_keys' AND relnamespace = (SELECT oid FROM pg_catalog.pg_namespace WHERE nspname = CURRENT_SCHEMA()))
 
-2025/07/14 14:52:00 [32m/Users/paulo/projetos/full-services-auto-scale-app/backend/internal/database/database.go:52
-[0m[33m[0.652ms] [34;1m[rows:0][0m SELECT description FROM pg_catalog.pg_description WHERE objsubid = (SELECT ordinal_position FROM information_schema.columns WHERE table_schema = CURRENT_SCHEMA() AND table_name = 'api_keys' AND column_name = 'tenant_id') AND objoid = (SELECT oid FROM pg_catalog.pg_class WHERE relname = 'api_keys' AND relnamespace = (SELECT oid FROM pg_catalog.pg_namespace WHERE nspname = CURRENT_SCHEMA()))
+2025/07/14 18:42:40 [32m/Users/paulo/projetos/full-services-auto-scale-app/backend/internal/database/database.go:52
+[0m[33m[0.570ms] [34;1m[rows:0][0m SELECT description FROM pg_catalog.pg_description WHERE objsubid = (SELECT ordinal_position FROM information_schema.columns WHERE table_schema = CURRENT_SCHEMA() AND table_name = 'api_keys' AND column_name = 'tenant_id') AND objoid = (SELECT oid FROM pg_catalog.pg_class WHERE relname = 'api_keys' AND relnamespace = (SELECT oid FROM pg_catalog.pg_namespace WHERE nspname = CURRENT_SCHEMA()))
 
-2025/07/14 14:52:00 [32m/Users/paulo/projetos/full-services-auto-scale-app/backend/internal/database/database.go:52
-[0m[33m[1.382ms] [34;1m[rows:0][0m SELECT description FROM pg_catalog.pg_description WHERE objsubid = (SELECT ordinal_position FROM information_schema.columns WHERE table_schema = CURRENT_SCHEMA() AND table_name = 'api_keys' AND column_name = 'is_active') AND objoid = (SELECT oid FROM pg_catalog.pg_class WHERE relname = 'api_keys' AND relnamespace = (SELECT oid FROM pg_catalog.pg_namespace WHERE nspname = CURRENT_SCHEMA()))
+2025/07/14 18:42:40 [32m/Users/paulo/projetos/full-services-auto-scale-app/backend/internal/database/database.go:52
+[0m[33m[0.482ms] [34;1m[rows:0][0m SELECT description FROM pg_catalog.pg_description WHERE objsubid = (SELECT ordinal_position FROM information_schema.columns WHERE table_schema = CURRENT_SCHEMA() AND table_name = 'api_keys' AND column_name = 'is_active') AND objoid = (SELECT oid FROM pg_catalog.pg_class WHERE relname = 'api_keys' AND relnamespace = (SELECT oid FROM pg_catalog.pg_namespace WHERE nspname = CURRENT_SCHEMA()))
 
-2025/07/14 14:52:00 [32m/Users/paulo/projetos/full-services-auto-scale-app/backend/internal/database/database.go:52
-[0m[33m[1.367ms] [34;1m[rows:0][0m SELECT description FROM pg_catalog.pg_description WHERE objsubid = (SELECT ordinal_position FROM information_schema.columns WHERE table_schema = CURRENT_SCHEMA() AND table_name = 'api_keys' AND column_name = 'expires_at') AND objoid = (SELECT oid FROM pg_catalog.pg_class WHERE relname = 'api_keys' AND relnamespace = (SELECT oid FROM pg_catalog.pg_namespace WHERE nspname = CURRENT_SCHEMA()))
+2025/07/14 18:42:40 [32m/Users/paulo/projetos/full-services-auto-scale-app/backend/internal/database/database.go:52
+[0m[33m[0.446ms] [34;1m[rows:0][0m SELECT description FROM pg_catalog.pg_description WHERE objsubid = (SELECT ordinal_position FROM information_schema.columns WHERE table_schema = CURRENT_SCHEMA() AND table_name = 'api_keys' AND column_name = 'expires_at') AND objoid = (SELECT oid FROM pg_catalog.pg_class WHERE relname = 'api_keys' AND relnamespace = (SELECT oid FROM pg_catalog.pg_namespace WHERE nspname = CURRENT_SCHEMA()))
 
-2025/07/14 14:52:00 [32m/Users/paulo/projetos/full-services-auto-scale-app/backend/internal/database/database.go:52
-[0m[33m[1.056ms] [34;1m[rows:0][0m SELECT description FROM pg_catalog.pg_description WHERE objsubid = (SELECT ordinal_position FROM information_schema.columns WHERE table_schema = CURRENT_SCHEMA() AND table_name = 'api_keys' AND column_name = 'last_used') AND objoid = (SELECT oid FROM pg_catalog.pg_class WHERE relname = 'api_keys' AND relnamespace = (SELECT oid FROM pg_catalog.pg_namespace WHERE nspname = CURRENT_SCHEMA()))
+2025/07/14 18:42:40 [32m/Users/paulo/projetos/full-services-auto-scale-app/backend/internal/database/database.go:52
+[0m[33m[0.717ms] [34;1m[rows:0][0m SELECT description FROM pg_catalog.pg_description WHERE objsubid = (SELECT ordinal_position FROM information_schema.columns WHERE table_schema = CURRENT_SCHEMA() AND table_name = 'api_keys' AND column_name = 'last_used') AND objoid = (SELECT oid FROM pg_catalog.pg_class WHERE relname = 'api_keys' AND relnamespace = (SELECT oid FROM pg_catalog.pg_namespace WHERE nspname = CURRENT_SCHEMA()))
 
-2025/07/14 14:52:00 [32m/Users/paulo/projetos/full-services-auto-scale-app/backend/internal/database/database.go:52
-[0m[33m[0.621ms] [34;1m[rows:0][0m SELECT description FROM pg_catalog.pg_description WHERE objsubid = (SELECT ordinal_position FROM information_schema.columns WHERE table_schema = CURRENT_SCHEMA() AND table_name = 'api_keys' AND column_name = 'created_at') AND objoid = (SELECT oid FROM pg_catalog.pg_class WHERE relname = 'api_keys' AND relnamespace = (SELECT oid FROM pg_catalog.pg_namespace WHERE nspname = CURRENT_SCHEMA()))
+2025/07/14 18:42:40 [32m/Users/paulo/projetos/full-services-auto-scale-app/backend/internal/database/database.go:52
+[0m[33m[0.643ms] [34;1m[rows:0][0m SELECT description FROM pg_catalog.pg_description WHERE objsubid = (SELECT ordinal_position FROM information_schema.columns WHERE table_schema = CURRENT_SCHEMA() AND table_name = 'api_keys' AND column_name = 'created_at') AND objoid = (SELECT oid FROM pg_catalog.pg_class WHERE relname = 'api_keys' AND relnamespace = (SELECT oid FROM pg_catalog.pg_namespace WHERE nspname = CURRENT_SCHEMA()))
 
-2025/07/14 14:52:00 [32m/Users/paulo/projetos/full-services-auto-scale-app/backend/internal/database/database.go:52
-[0m[33m[0.757ms] [34;1m[rows:0][0m SELECT description FROM pg_catalog.pg_description WHERE objsubid = (SELECT ordinal_position FROM information_schema.columns WHERE table_schema = CURRENT_SCHEMA() AND table_name = 'api_keys' AND column_name = 'updated_at') AND objoid = (SELECT oid FROM pg_catalog.pg_class WHERE relname = 'api_keys' AND relnamespace = (SELECT oid FROM pg_catalog.pg_namespace WHERE nspname = CURRENT_SCHEMA()))
+2025/07/14 18:42:40 [32m/Users/paulo/projetos/full-services-auto-scale-app/backend/internal/database/database.go:52
+[0m[33m[0.538ms] [34;1m[rows:0][0m SELECT description FROM pg_catalog.pg_description WHERE objsubid = (SELECT ordinal_position FROM information_schema.columns WHERE table_schema = CURRENT_SCHEMA() AND table_name = 'api_keys' AND column_name = 'updated_at') AND objoid = (SELECT oid FROM pg_catalog.pg_class WHERE relname = 'api_keys' AND relnamespace = (SELECT oid FROM pg_catalog.pg_namespace WHERE nspname = CURRENT_SCHEMA()))
 
-2025/07/14 14:52:00 [32m/Users/paulo/projetos/full-services-auto-scale-app/backend/internal/database/database.go:52
-[0m[33m[0.414ms] [34;1m[rows:1][0m SELECT count(*) FROM INFORMATION_SCHEMA.table_constraints WHERE table_schema = CURRENT_SCHEMA() AND table_name = 'api_keys' AND constraint_name = 'fk_api_keys_user'
+2025/07/14 18:42:40 [32m/Users/paulo/projetos/full-services-auto-scale-app/backend/internal/database/database.go:52
+[0m[33m[0.488ms] [34;1m[rows:1][0m SELECT count(*) FROM INFORMATION_SCHEMA.table_constraints WHERE table_schema = CURRENT_SCHEMA() AND table_name = 'api_keys' AND constraint_name = 'fk_api_keys_user'
 
-2025/07/14 14:52:00 [32m/Users/paulo/projetos/full-services-auto-scale-app/backend/internal/database/database.go:52
-[0m[33m[0.509ms] [34;1m[rows:1][0m SELECT count(*) FROM INFORMATION_SCHEMA.table_constraints WHERE table_schema = CURRENT_SCHEMA() AND table_name = 'api_keys' AND constraint_name = 'fk_api_keys_tenant'
+2025/07/14 18:42:40 [32m/Users/paulo/projetos/full-services-auto-scale-app/backend/internal/database/database.go:52
+[0m[33m[0.494ms] [34;1m[rows:1][0m SELECT count(*) FROM INFORMATION_SCHEMA.table_constraints WHERE table_schema = CURRENT_SCHEMA() AND table_name = 'api_keys' AND constraint_name = 'fk_api_keys_tenant'
 
-2025/07/14 14:52:00 [32m/Users/paulo/projetos/full-services-auto-scale-app/backend/internal/database/database.go:52
-[0m[33m[0.342ms] [34;1m[rows:1][0m SELECT count(*) FROM pg_indexes WHERE tablename = 'api_keys' AND indexname = 'idx_api_keys_key' AND schemaname = CURRENT_SCHEMA()
+2025/07/14 18:42:40 [32m/Users/paulo/projetos/full-services-auto-scale-app/backend/internal/database/database.go:52
+[0m[33m[0.321ms] [34;1m[rows:1][0m SELECT count(*) FROM pg_indexes WHERE tablename = 'api_keys' AND indexname = 'idx_api_keys_key' AND schemaname = CURRENT_SCHEMA()
 
-2025/07/14 14:52:00 [32m/Users/paulo/projetos/full-services-auto-scale-app/backend/internal/database/database.go:52
-[0m[33m[0.488ms] [34;1m[rows:1][0m SELECT count(*) FROM information_schema.tables WHERE table_schema = CURRENT_SCHEMA() AND table_name = 'subscriptions' AND table_type = 'BASE TABLE'
+2025/07/14 18:42:40 [32m/Users/paulo/projetos/full-services-auto-scale-app/backend/internal/database/database.go:52
+[0m[33m[0.273ms] [34;1m[rows:1][0m SELECT count(*) FROM information_schema.tables WHERE table_schema = CURRENT_SCHEMA() AND table_name = 'subscriptions' AND table_type = 'BASE TABLE'
 
-2025/07/14 14:52:00 [32m/Users/paulo/projetos/full-services-auto-scale-app/backend/internal/database/database.go:52
-[0m[33m[4.277ms] [34;1m[rows:1][0m SELECT CURRENT_DATABASE()
+2025/07/14 18:42:40 [32m/Users/paulo/projetos/full-services-auto-scale-app/backend/internal/database/database.go:52
+[0m[33m[0.212ms] [34;1m[rows:1][0m SELECT CURRENT_DATABASE()
 
-2025/07/14 14:52:00 [32m/Users/paulo/projetos/full-services-auto-scale-app/backend/internal/database/database.go:52
-[0m[33m[3.440ms] [34;1m[rows:-][0m SELECT c.column_name, c.is_nullable = 'YES', c.udt_name, c.character_maximum_length, c.numeric_precision, c.numeric_precision_radix, c.numeric_scale, c.datetime_precision, 8 * typlen, c.column_default, pd.description, c.identity_increment FROM information_schema.columns AS c JOIN pg_type AS pgt ON c.udt_name = pgt.typname LEFT JOIN pg_catalog.pg_description as pd ON pd.objsubid = c.ordinal_position AND pd.objoid = (SELECT oid FROM pg_catalog.pg_class WHERE relname = c.table_name AND relnamespace = (SELECT oid FROM pg_catalog.pg_namespace WHERE nspname = c.table_schema)) where table_catalog = 'nomad_services' AND table_schema = CURRENT_SCHEMA() AND table_name = 'subscriptions'
+2025/07/14 18:42:40 [32m/Users/paulo/projetos/full-services-auto-scale-app/backend/internal/database/database.go:52
+[0m[33m[2.036ms] [34;1m[rows:-][0m SELECT c.column_name, c.is_nullable = 'YES', c.udt_name, c.character_maximum_length, c.numeric_precision, c.numeric_precision_radix, c.numeric_scale, c.datetime_precision, 8 * typlen, c.column_default, pd.description, c.identity_increment FROM information_schema.columns AS c JOIN pg_type AS pgt ON c.udt_name = pgt.typname LEFT JOIN pg_catalog.pg_description as pd ON pd.objsubid = c.ordinal_position AND pd.objoid = (SELECT oid FROM pg_catalog.pg_class WHERE relname = c.table_name AND relnamespace = (SELECT oid FROM pg_catalog.pg_namespace WHERE nspname = c.table_schema)) where table_catalog = 'nomad_services' AND table_schema = CURRENT_SCHEMA() AND table_name = 'subscriptions'
 
-2025/07/14 14:52:00 [32m/Users/paulo/projetos/full-services-auto-scale-app/backend/internal/database/database.go:52
-[0m[33m[2.976ms] [34;1m[rows:-][0m SELECT * FROM "subscriptions" LIMIT 1
+2025/07/14 18:42:40 [32m/Users/paulo/projetos/full-services-auto-scale-app/backend/internal/database/database.go:52
+[0m[33m[1.202ms] [34;1m[rows:-][0m SELECT * FROM "subscriptions" LIMIT 1
 
-2025/07/14 14:52:00 [32m/Users/paulo/projetos/full-services-auto-scale-app/backend/internal/database/database.go:52
-[0m[33m[3.480ms] [34;1m[rows:-][0m SELECT constraint_name FROM information_schema.table_constraints tc JOIN information_schema.constraint_column_usage AS ccu USING (constraint_schema, constraint_name) JOIN information_schema.columns AS c ON c.table_schema = tc.constraint_schema AND tc.table_name = c.table_name AND ccu.column_name = c.column_name WHERE constraint_type IN ('PRIMARY KEY', 'UNIQUE') AND c.table_catalog = 'nomad_services' AND c.table_schema = CURRENT_SCHEMA() AND c.table_name = 'subscriptions' AND constraint_type = 'UNIQUE'
+2025/07/14 18:42:40 [32m/Users/paulo/projetos/full-services-auto-scale-app/backend/internal/database/database.go:52
+[0m[33m[2.445ms] [34;1m[rows:-][0m SELECT constraint_name FROM information_schema.table_constraints tc JOIN information_schema.constraint_column_usage AS ccu USING (constraint_schema, constraint_name) JOIN information_schema.columns AS c ON c.table_schema = tc.constraint_schema AND tc.table_name = c.table_name AND ccu.column_name = c.column_name WHERE constraint_type IN ('PRIMARY KEY', 'UNIQUE') AND c.table_catalog = 'nomad_services' AND c.table_schema = CURRENT_SCHEMA() AND c.table_name = 'subscriptions' AND constraint_type = 'UNIQUE'
 
-2025/07/14 14:52:00 [32m/Users/paulo/projetos/full-services-auto-scale-app/backend/internal/database/database.go:52
-[0m[33m[4.741ms] [34;1m[rows:-][0m SELECT c.column_name, constraint_name, constraint_type FROM information_schema.table_constraints tc JOIN information_schema.constraint_column_usage AS ccu USING (constraint_schema, constraint_name) JOIN information_schema.columns AS c ON c.table_schema = tc.constraint_schema AND tc.table_name = c.table_name AND ccu.column_name = c.column_name WHERE constraint_type IN ('PRIMARY KEY', 'UNIQUE') AND c.table_catalog = 'nomad_services' AND c.table_schema = CURRENT_SCHEMA() AND c.table_name = 'subscriptions'
+2025/07/14 18:42:40 [32m/Users/paulo/projetos/full-services-auto-scale-app/backend/internal/database/database.go:52
+[0m[33m[2.125ms] [34;1m[rows:-][0m SELECT c.column_name, constraint_name, constraint_type FROM information_schema.table_constraints tc JOIN information_schema.constraint_column_usage AS ccu USING (constraint_schema, constraint_name) JOIN information_schema.columns AS c ON c.table_schema = tc.constraint_schema AND tc.table_name = c.table_name AND ccu.column_name = c.column_name WHERE constraint_type IN ('PRIMARY KEY', 'UNIQUE') AND c.table_catalog = 'nomad_services' AND c.table_schema = CURRENT_SCHEMA() AND c.table_name = 'subscriptions'
 
-2025/07/14 14:52:00 [32m/Users/paulo/projetos/full-services-auto-scale-app/backend/internal/database/database.go:52
-[0m[33m[0.838ms] [34;1m[rows:-][0m SELECT a.attname as column_name, format_type(a.atttypid, a.atttypmod) AS data_type
+2025/07/14 18:42:40 [32m/Users/paulo/projetos/full-services-auto-scale-app/backend/internal/database/database.go:52
+[0m[33m[0.999ms] [34;1m[rows:-][0m SELECT a.attname as column_name, format_type(a.atttypid, a.atttypmod) AS data_type
 		FROM pg_attribute a JOIN pg_class b ON a.attrelid = b.oid AND relnamespace = (SELECT oid FROM pg_catalog.pg_namespace WHERE nspname = CURRENT_SCHEMA())
 		WHERE a.attnum > 0 -- hide internal columns
 		AND NOT a.attisdropped -- hide deleted columns
 		AND b.relname = 'subscriptions'
 
-2025/07/14 14:52:00 [32m/Users/paulo/projetos/full-services-auto-scale-app/backend/internal/database/database.go:52
-[0m[33m[0.780ms] [34;1m[rows:0][0m SELECT description FROM pg_catalog.pg_description WHERE objsubid = (SELECT ordinal_position FROM information_schema.columns WHERE table_schema = CURRENT_SCHEMA() AND table_name = 'subscriptions' AND column_name = 'id') AND objoid = (SELECT oid FROM pg_catalog.pg_class WHERE relname = 'subscriptions' AND relnamespace = (SELECT oid FROM pg_catalog.pg_namespace WHERE nspname = CURRENT_SCHEMA()))
+2025/07/14 18:42:40 [32m/Users/paulo/projetos/full-services-auto-scale-app/backend/internal/database/database.go:52
+[0m[33m[0.501ms] [34;1m[rows:0][0m SELECT description FROM pg_catalog.pg_description WHERE objsubid = (SELECT ordinal_position FROM information_schema.columns WHERE table_schema = CURRENT_SCHEMA() AND table_name = 'subscriptions' AND column_name = 'id') AND objoid = (SELECT oid FROM pg_catalog.pg_class WHERE relname = 'subscriptions' AND relnamespace = (SELECT oid FROM pg_catalog.pg_namespace WHERE nspname = CURRENT_SCHEMA()))
 
-2025/07/14 14:52:00 [32m/Users/paulo/projetos/full-services-auto-scale-app/backend/internal/database/database.go:52
-[0m[33m[0.562ms] [34;1m[rows:0][0m SELECT description FROM pg_catalog.pg_description WHERE objsubid = (SELECT ordinal_position FROM information_schema.columns WHERE table_schema = CURRENT_SCHEMA() AND table_name = 'subscriptions' AND column_name = 'tenant_id') AND objoid = (SELECT oid FROM pg_catalog.pg_class WHERE relname = 'subscriptions' AND relnamespace = (SELECT oid FROM pg_catalog.pg_namespace WHERE nspname = CURRENT_SCHEMA()))
+2025/07/14 18:42:40 [32m/Users/paulo/projetos/full-services-auto-scale-app/backend/internal/database/database.go:52
+[0m[33m[0.431ms] [34;1m[rows:0][0m SELECT description FROM pg_catalog.pg_description WHERE objsubid = (SELECT ordinal_position FROM information_schema.columns WHERE table_schema = CURRENT_SCHEMA() AND table_name = 'subscriptions' AND column_name = 'tenant_id') AND objoid = (SELECT oid FROM pg_catalog.pg_class WHERE relname = 'subscriptions' AND relnamespace = (SELECT oid FROM pg_catalog.pg_namespace WHERE nspname = CURRENT_SCHEMA()))
 
-2025/07/14 14:52:00 [32m/Users/paulo/projetos/full-services-auto-scale-app/backend/internal/database/database.go:52
-[0m[33m[1.166ms] [34;1m[rows:0][0m SELECT description FROM pg_catalog.pg_description WHERE objsubid = (SELECT ordinal_position FROM information_schema.columns WHERE table_schema = CURRENT_SCHEMA() AND table_name = 'subscriptions' AND column_name = 'plan') AND objoid = (SELECT oid FROM pg_catalog.pg_class WHERE relname = 'subscriptions' AND relnamespace = (SELECT oid FROM pg_catalog.pg_namespace WHERE nspname = CURRENT_SCHEMA()))
+2025/07/14 18:42:40 [32m/Users/paulo/projetos/full-services-auto-scale-app/backend/internal/database/database.go:52
+[0m[33m[0.449ms] [34;1m[rows:0][0m SELECT description FROM pg_catalog.pg_description WHERE objsubid = (SELECT ordinal_position FROM information_schema.columns WHERE table_schema = CURRENT_SCHEMA() AND table_name = 'subscriptions' AND column_name = 'plan') AND objoid = (SELECT oid FROM pg_catalog.pg_class WHERE relname = 'subscriptions' AND relnamespace = (SELECT oid FROM pg_catalog.pg_namespace WHERE nspname = CURRENT_SCHEMA()))
 
-2025/07/14 14:52:00 [32m/Users/paulo/projetos/full-services-auto-scale-app/backend/internal/database/database.go:52
-[0m[33m[0.529ms] [34;1m[rows:0][0m SELECT description FROM pg_catalog.pg_description WHERE objsubid = (SELECT ordinal_position FROM information_schema.columns WHERE table_schema = CURRENT_SCHEMA() AND table_name = 'subscriptions' AND column_name = 'status') AND objoid = (SELECT oid FROM pg_catalog.pg_class WHERE relname = 'subscriptions' AND relnamespace = (SELECT oid FROM pg_catalog.pg_namespace WHERE nspname = CURRENT_SCHEMA()))
+2025/07/14 18:42:40 [32m/Users/paulo/projetos/full-services-auto-scale-app/backend/internal/database/database.go:52
+[0m[33m[0.425ms] [34;1m[rows:0][0m SELECT description FROM pg_catalog.pg_description WHERE objsubid = (SELECT ordinal_position FROM information_schema.columns WHERE table_schema = CURRENT_SCHEMA() AND table_name = 'subscriptions' AND column_name = 'status') AND objoid = (SELECT oid FROM pg_catalog.pg_class WHERE relname = 'subscriptions' AND relnamespace = (SELECT oid FROM pg_catalog.pg_namespace WHERE nspname = CURRENT_SCHEMA()))
 
-2025/07/14 14:52:00 [32m/Users/paulo/projetos/full-services-auto-scale-app/backend/internal/database/database.go:52
-[0m[33m[0.553ms] [34;1m[rows:0][0m SELECT description FROM pg_catalog.pg_description WHERE objsubid = (SELECT ordinal_position FROM information_schema.columns WHERE table_schema = CURRENT_SCHEMA() AND table_name = 'subscriptions' AND column_name = 'price_per_month') AND objoid = (SELECT oid FROM pg_catalog.pg_class WHERE relname = 'subscriptions' AND relnamespace = (SELECT oid FROM pg_catalog.pg_namespace WHERE nspname = CURRENT_SCHEMA()))
+2025/07/14 18:42:40 [32m/Users/paulo/projetos/full-services-auto-scale-app/backend/internal/database/database.go:52
+[0m[33m[0.400ms] [34;1m[rows:0][0m SELECT description FROM pg_catalog.pg_description WHERE objsubid = (SELECT ordinal_position FROM information_schema.columns WHERE table_schema = CURRENT_SCHEMA() AND table_name = 'subscriptions' AND column_name = 'price_per_month') AND objoid = (SELECT oid FROM pg_catalog.pg_class WHERE relname = 'subscriptions' AND relnamespace = (SELECT oid FROM pg_catalog.pg_namespace WHERE nspname = CURRENT_SCHEMA()))
 
-2025/07/14 14:52:00 [32m/Users/paulo/projetos/full-services-auto-scale-app/backend/internal/database/database.go:52
-[0m[33m[0.712ms] [34;1m[rows:0][0m SELECT description FROM pg_catalog.pg_description WHERE objsubid = (SELECT ordinal_position FROM information_schema.columns WHERE table_schema = CURRENT_SCHEMA() AND table_name = 'subscriptions' AND column_name = 'max_services') AND objoid = (SELECT oid FROM pg_catalog.pg_class WHERE relname = 'subscriptions' AND relnamespace = (SELECT oid FROM pg_catalog.pg_namespace WHERE nspname = CURRENT_SCHEMA()))
+2025/07/14 18:42:40 [32m/Users/paulo/projetos/full-services-auto-scale-app/backend/internal/database/database.go:52
+[0m[33m[0.518ms] [34;1m[rows:0][0m SELECT description FROM pg_catalog.pg_description WHERE objsubid = (SELECT ordinal_position FROM information_schema.columns WHERE table_schema = CURRENT_SCHEMA() AND table_name = 'subscriptions' AND column_name = 'max_services') AND objoid = (SELECT oid FROM pg_catalog.pg_class WHERE relname = 'subscriptions' AND relnamespace = (SELECT oid FROM pg_catalog.pg_namespace WHERE nspname = CURRENT_SCHEMA()))
 
-2025/07/14 14:52:00 [32m/Users/paulo/projetos/full-services-auto-scale-app/backend/internal/database/database.go:52
-[0m[33m[0.594ms] [34;1m[rows:0][0m SELECT description FROM pg_catalog.pg_description WHERE objsubid = (SELECT ordinal_position FROM information_schema.columns WHERE table_schema = CURRENT_SCHEMA() AND table_name = 'subscriptions' AND column_name = 'billing_cycle') AND objoid = (SELECT oid FROM pg_catalog.pg_class WHERE relname = 'subscriptions' AND relnamespace = (SELECT oid FROM pg_catalog.pg_namespace WHERE nspname = CURRENT_SCHEMA()))
+2025/07/14 18:42:40 [32m/Users/paulo/projetos/full-services-auto-scale-app/backend/internal/database/database.go:52
+[0m[33m[0.400ms] [34;1m[rows:0][0m SELECT description FROM pg_catalog.pg_description WHERE objsubid = (SELECT ordinal_position FROM information_schema.columns WHERE table_schema = CURRENT_SCHEMA() AND table_name = 'subscriptions' AND column_name = 'billing_cycle') AND objoid = (SELECT oid FROM pg_catalog.pg_class WHERE relname = 'subscriptions' AND relnamespace = (SELECT oid FROM pg_catalog.pg_namespace WHERE nspname = CURRENT_SCHEMA()))
 
-2025/07/14 14:52:00 [32m/Users/paulo/projetos/full-services-auto-scale-app/backend/internal/database/database.go:52
-[0m[33m[0.481ms] [34;1m[rows:0][0m SELECT description FROM pg_catalog.pg_description WHERE objsubid = (SELECT ordinal_position FROM information_schema.columns WHERE table_schema = CURRENT_SCHEMA() AND table_name = 'subscriptions' AND column_name = 'current_period_start') AND objoid = (SELECT oid FROM pg_catalog.pg_class WHERE relname = 'subscriptions' AND relnamespace = (SELECT oid FROM pg_catalog.pg_namespace WHERE nspname = CURRENT_SCHEMA()))
+2025/07/14 18:42:40 [32m/Users/paulo/projetos/full-services-auto-scale-app/backend/internal/database/database.go:52
+[0m[33m[0.458ms] [34;1m[rows:0][0m SELECT description FROM pg_catalog.pg_description WHERE objsubid = (SELECT ordinal_position FROM information_schema.columns WHERE table_schema = CURRENT_SCHEMA() AND table_name = 'subscriptions' AND column_name = 'current_period_start') AND objoid = (SELECT oid FROM pg_catalog.pg_class WHERE relname = 'subscriptions' AND relnamespace = (SELECT oid FROM pg_catalog.pg_namespace WHERE nspname = CURRENT_SCHEMA()))
 
-2025/07/14 14:52:00 [32m/Users/paulo/projetos/full-services-auto-scale-app/backend/internal/database/database.go:52
-[0m[33m[0.847ms] [34;1m[rows:0][0m SELECT description FROM pg_catalog.pg_description WHERE objsubid = (SELECT ordinal_position FROM information_schema.columns WHERE table_schema = CURRENT_SCHEMA() AND table_name = 'subscriptions' AND column_name = 'current_period_end') AND objoid = (SELECT oid FROM pg_catalog.pg_class WHERE relname = 'subscriptions' AND relnamespace = (SELECT oid FROM pg_catalog.pg_namespace WHERE nspname = CURRENT_SCHEMA()))
+2025/07/14 18:42:40 [32m/Users/paulo/projetos/full-services-auto-scale-app/backend/internal/database/database.go:52
+[0m[33m[0.379ms] [34;1m[rows:0][0m SELECT description FROM pg_catalog.pg_description WHERE objsubid = (SELECT ordinal_position FROM information_schema.columns WHERE table_schema = CURRENT_SCHEMA() AND table_name = 'subscriptions' AND column_name = 'current_period_end') AND objoid = (SELECT oid FROM pg_catalog.pg_class WHERE relname = 'subscriptions' AND relnamespace = (SELECT oid FROM pg_catalog.pg_namespace WHERE nspname = CURRENT_SCHEMA()))
 
-2025/07/14 14:52:00 [32m/Users/paulo/projetos/full-services-auto-scale-app/backend/internal/database/database.go:52
-[0m[33m[0.503ms] [34;1m[rows:0][0m SELECT description FROM pg_catalog.pg_description WHERE objsubid = (SELECT ordinal_position FROM information_schema.columns WHERE table_schema = CURRENT_SCHEMA() AND table_name = 'subscriptions' AND column_name = 'cancel_at_period_end') AND objoid = (SELECT oid FROM pg_catalog.pg_class WHERE relname = 'subscriptions' AND relnamespace = (SELECT oid FROM pg_catalog.pg_namespace WHERE nspname = CURRENT_SCHEMA()))
+2025/07/14 18:42:40 [32m/Users/paulo/projetos/full-services-auto-scale-app/backend/internal/database/database.go:52
+[0m[33m[0.416ms] [34;1m[rows:0][0m SELECT description FROM pg_catalog.pg_description WHERE objsubid = (SELECT ordinal_position FROM information_schema.columns WHERE table_schema = CURRENT_SCHEMA() AND table_name = 'subscriptions' AND column_name = 'cancel_at_period_end') AND objoid = (SELECT oid FROM pg_catalog.pg_class WHERE relname = 'subscriptions' AND relnamespace = (SELECT oid FROM pg_catalog.pg_namespace WHERE nspname = CURRENT_SCHEMA()))
 
-2025/07/14 14:52:00 [32m/Users/paulo/projetos/full-services-auto-scale-app/backend/internal/database/database.go:52
-[0m[33m[0.454ms] [34;1m[rows:0][0m SELECT description FROM pg_catalog.pg_description WHERE objsubid = (SELECT ordinal_position FROM information_schema.columns WHERE table_schema = CURRENT_SCHEMA() AND table_name = 'subscriptions' AND column_name = 'created_at') AND objoid = (SELECT oid FROM pg_catalog.pg_class WHERE relname = 'subscriptions' AND relnamespace = (SELECT oid FROM pg_catalog.pg_namespace WHERE nspname = CURRENT_SCHEMA()))
+2025/07/14 18:42:40 [32m/Users/paulo/projetos/full-services-auto-scale-app/backend/internal/database/database.go:52
+[0m[33m[0.552ms] [34;1m[rows:0][0m SELECT description FROM pg_catalog.pg_description WHERE objsubid = (SELECT ordinal_position FROM information_schema.columns WHERE table_schema = CURRENT_SCHEMA() AND table_name = 'subscriptions' AND column_name = 'created_at') AND objoid = (SELECT oid FROM pg_catalog.pg_class WHERE relname = 'subscriptions' AND relnamespace = (SELECT oid FROM pg_catalog.pg_namespace WHERE nspname = CURRENT_SCHEMA()))
 
-2025/07/14 14:52:00 [32m/Users/paulo/projetos/full-services-auto-scale-app/backend/internal/database/database.go:52
-[0m[33m[0.445ms] [34;1m[rows:0][0m SELECT description FROM pg_catalog.pg_description WHERE objsubid = (SELECT ordinal_position FROM information_schema.columns WHERE table_schema = CURRENT_SCHEMA() AND table_name = 'subscriptions' AND column_name = 'updated_at') AND objoid = (SELECT oid FROM pg_catalog.pg_class WHERE relname = 'subscriptions' AND relnamespace = (SELECT oid FROM pg_catalog.pg_namespace WHERE nspname = CURRENT_SCHEMA()))
+2025/07/14 18:42:40 [32m/Users/paulo/projetos/full-services-auto-scale-app/backend/internal/database/database.go:52
+[0m[33m[0.741ms] [34;1m[rows:0][0m SELECT description FROM pg_catalog.pg_description WHERE objsubid = (SELECT ordinal_position FROM information_schema.columns WHERE table_schema = CURRENT_SCHEMA() AND table_name = 'subscriptions' AND column_name = 'updated_at') AND objoid = (SELECT oid FROM pg_catalog.pg_class WHERE relname = 'subscriptions' AND relnamespace = (SELECT oid FROM pg_catalog.pg_namespace WHERE nspname = CURRENT_SCHEMA()))
 
-2025/07/14 14:52:00 [32m/Users/paulo/projetos/full-services-auto-scale-app/backend/internal/database/database.go:52
-[0m[33m[0.512ms] [34;1m[rows:1][0m SELECT count(*) FROM INFORMATION_SCHEMA.table_constraints WHERE table_schema = CURRENT_SCHEMA() AND table_name = 'subscriptions' AND constraint_name = 'fk_tenants_subscription'
+2025/07/14 18:42:40 [32m/Users/paulo/projetos/full-services-auto-scale-app/backend/internal/database/database.go:52
+[0m[33m[0.396ms] [34;1m[rows:1][0m SELECT count(*) FROM INFORMATION_SCHEMA.table_constraints WHERE table_schema = CURRENT_SCHEMA() AND table_name = 'subscriptions' AND constraint_name = 'fk_tenants_subscription'
 [GIN-debug] [WARNING] Running in "debug" mode. Switch to "release" mode in production.
  - using env:	export GIN_MODE=release
  - using code:	gin.SetMode(gin.ReleaseMode)
@@ -652,38 +652,11 @@
 [GIN-debug] PUT    /api/v1/admin/users/:id/role --> nomad-services-api/internal/api.(*Server).updateUserRole-fm (6 handlers)
 [GIN-debug] PUT    /api/v1/admin/users/:id/activate --> nomad-services-api/internal/api.(*Server).activateUser-fm (6 handlers)
 [GIN-debug] PUT    /api/v1/admin/users/:id/deactivate --> nomad-services-api/internal/api.(*Server).deactivateUser-fm (6 handlers)
-[36mINFO[0m[2025-07-14T14:52:00-03:00] Starting server on port 8080                 
-[36mINFO[0m[2025-07-14T14:52:00-03:00] Server starting on port :8080                
-[GIN-debug] [WARNING] You trusted all proxies, this is NOT safe.[GIN] 2025/07/14 - 14:52:07 | 200 |     100.375µs |             ::1 | GET      "/health"
-[GIN] 2025/07/14 - 15:01:25 | 404 |      17.875µs |             ::1 | GET      "/api/v1/services"
-
-2025/07/14 15:01:49 [32m/Users/paulo/projetos/full-services-auto-scale-app/backend/internal/services/user_service.go:37
-[0m[33m[39.190ms] [34;1m[rows:1][0m SELECT * FROM "users" WHERE username = 'admin' ORDER BY "users"."id" LIMIT 1
-[GIN] 2025/07/14 - 15:01:49 | 200 |  112.621417ms |             ::1 | POST     "/api/v1/auth/login"
-[GIN] 2025/07/14 - 15:01:56 | 404 |      24.583µs |             ::1 | GET      "/api/v1/services"
-
-2025/07/14 15:02:10 [32m/Users/paulo/projetos/full-services-auto-scale-app/backend/internal/services/user_service.go:28
-[0m[33m[9.730ms] [34;1m[rows:1][0m SELECT * FROM "users" WHERE "users"."id" = '5a993e0f-bd9d-410b-89ef-f1c9195140e4' ORDER BY "users"."id" LIMIT 1
-[GIN] 2025/07/14 - 15:02:10 | 200 |   10.628042ms |             ::1 | GET      "/api/v1/users/me"
-
-2025/07/14 15:02:26 [32m/Users/paulo/projetos/full-services-auto-scale-app/backend/internal/services/user_service.go:28
-[0m[33m[6.231ms] [34;1m[rows:1][0m SELECT * FROM "users" WHERE "users"."id" = '5a993e0f-bd9d-410b-89ef-f1c9195140e4' ORDER BY "users"."id" LIMIT 1
-
-2025/07/14 15:02:26 [32m/Users/paulo/projetos/full-services-auto-scale-app/backend/internal/services/service_manager.go:227
-[0m[33m[5.397ms] [34;1m[rows:0][0m SELECT * FROM "services" ORDER BY created_at DESC
-[GIN] 2025/07/14 - 15:02:26 | 200 |   12.307625ms |             ::1 | GET      "/api/v1/services/"
-[GIN] 2025/07/14 - 15:02:57 | 204 |     230.833µs |             ::1 | OPTIONS  "/api/v1/services/"
-
-2025/07/14 15:02:57 [32m/Users/paulo/projetos/full-services-auto-scale-app/backend/internal/services/user_service.go:28
-[0m[33m[13.399ms] [34;1m[rows:1][0m SELECT * FROM "users" WHERE "users"."id" = 'c599fbb1-0aec-4bf4-9606-68b829fea378' ORDER BY "users"."id" LIMIT 1
-
-2025/07/14 15:02:57 [32m/Users/paulo/projetos/full-services-auto-scale-app/backend/internal/services/service_manager.go:227
-[0m[33m[0.558ms] [34;1m[rows:0][0m SELECT * FROM "services" ORDER BY created_at DESC
-[GIN] 2025/07/14 - 15:02:57 | 200 |   18.541042ms |             ::1 | GET      "/api/v1/services/"
-
-2025/07/14 15:02:58 [32m/Users/paulo/projetos/full-services-auto-scale-app/backend/internal/services/user_service.go:28
-[0m[33m[2.480ms] [34;1m[rows:1][0m SELECT * FROM "users" WHERE "users"."id" = 'c599fbb1-0aec-4bf4-9606-68b829fea378' ORDER BY "users"."id" LIMIT 1
-
-2025/07/14 15:02:58 [32m/Users/paulo/projetos/full-services-auto-scale-app/backend/internal/services/service_manager.go:227
-[0m[33m[0.705ms] [34;1m[rows:0][0m SELECT * FROM "services" ORDER BY created_at DESC
-[GIN] 2025/07/14 - 15:02:58 | 200 |    3.322084ms |             ::1 | GET      "/api/v1/services/"
+[36mINFO[0m[2025-07-14T18:42:40-03:00] Starting server on port 8080                 
+[36mINFO[0m[2025-07-14T18:42:40-03:00] Server starting on port :8080                
+[GIN-debug] [WARNING] You trusted all proxies, this is NOT safe. We recommend you to set a value.
+Please check https://pkg.go.dev/github.com/gin-gonic/gin#readme-don-t-trust-all-proxies for details.
+[GIN-debug] Listening and serving HTTP on :8080
+[GIN-debug] [ERROR] listen tcp :8080: bind: address already in use
+2025/07/14 18:42:40 Failed to start server:listen tcp :8080: bind: address already in use
+exit status 1

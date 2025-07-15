@@ -80,6 +80,7 @@ get_service_name() {
         "minio") echo "MinIO S3-Compatible Object Storage" ;;
         "mattermost") echo "Mattermost Collaboration Tool" ;;
         "gitlab-ce") echo "GitLab Community Edition" ;;
+        "nomad-autoscaler") echo "Nomad Autoscaler" ;;
         "traefik") echo "Traefik Reverse Proxy" ;;
         "traefik-https") echo "Traefik Reverse Proxy (HTTPS)" ;;
         "generic-docker") echo "Generic Docker Application" ;;
@@ -229,12 +230,19 @@ get_service_endpoints() {
             echo "💬 Team: http://${HOST_IP}:8065/[team-name]"
             ;;
         "gitlab-ce")
-            echo "🌐 GitLab CE Web: http://${HOST_IP}:8080"
+            echo "🌐 GitLab CE Web: http://${HOST_IP}:8090"
             echo "🔒 GitLab CE HTTPS: https://${HOST_IP}:8443"
             echo "📨 GitLab CE SSH: ${HOST_IP}:2022"
             echo "👤 Root Login: root / [check container logs for initial password]"
-            echo "📂 Projects: http://${HOST_IP}:8080/projects"
-            echo "⚙️ Admin: http://${HOST_IP}:8080/admin"
+            echo "📂 Projects: http://${HOST_IP}:8090/projects"
+            echo "⚙️ Admin: http://${HOST_IP}:8090/admin"
+            ;;
+        "nomad-autoscaler")
+            echo "🌐 Autoscaler API: http://${HOST_IP}:8080"
+            echo "📊 Health Check: http://${HOST_IP}:8080/v1/health"
+            echo "📋 Policies: http://${HOST_IP}:8080/v1/policies"
+            echo "📈 Scaling History: http://${HOST_IP}:8080/v1/scaling/history"
+            echo "⚙️ Management Script: scripts/manage-autoscaler.sh"
             ;;
         "traefik")
             echo "🌐 Traefik Dashboard: http://${HOST_IP}:8079"
@@ -376,9 +384,10 @@ get_service_key() {
         24) echo "minio" ;;
         25) echo "mattermost" ;;
         26) echo "gitlab-ce" ;;
-        27) echo "traefik" ;;
-        28) echo "traefik-https" ;;
-        29) echo "generic-docker" ;;
+        27) echo "nomad-autoscaler" ;;
+        28) echo "traefik" ;;
+        29) echo "traefik-https" ;;
+        30) echo "generic-docker" ;;
         *) echo "" ;;
     esac
 }
@@ -526,7 +535,7 @@ stop_nomad_server() {
 
 # Function to show service menu
 show_service_menu() {
-    print_header "================== Available Services (29 Total) =================="
+    print_header "================== Available Services (30 Total) =================="
     echo
     
     print_header "📊 OBSERVABILITY & MONITORING (7 services)"
@@ -576,17 +585,21 @@ show_service_menu() {
     echo "26) GitLab Community Edition (gitlab-ce)"
     echo
     
+    print_header "📈 AUTOSCALING (1 service)"
+    echo "27) Nomad Autoscaler (nomad-autoscaler)"
+    echo
+    
     print_header "🌍 NETWORKING & PROXY (2 services)"
-    echo "27) Traefik Reverse Proxy (traefik)"
-    echo "28) Traefik Reverse Proxy (HTTPS) (traefik-https)"
+    echo "28) Traefik Reverse Proxy (traefik)"
+    echo "29) Traefik Reverse Proxy (HTTPS) (traefik-https)"
     echo
     
     print_header "⚙️  ACTIONS"
-    echo "29) Deploy Custom Application"
-    echo "30) Deploy Multiple Services"
-    echo "31) Show All Running Services"
-    echo "32) Stop Specific Service"
-    echo "33) Stop All Services"
+    echo "30) Deploy Custom Application"
+    echo "31) Deploy Multiple Services"
+    echo "32) Show All Running Services"
+    echo "33) Stop Specific Service"
+    echo "34) Stop All Services"
     echo " 0) Exit"
     echo
 }
@@ -683,7 +696,7 @@ deploy_multiple_services() {
         # Check if item is a number
         if [[ "$item" =~ ^[0-9]+$ ]]; then
             # It's a number, get service by number
-            if [ "$item" -ge 1 ] && [ "$item" -le 28 ]; then
+            if [ "$item" -ge 1 ] && [ "$item" -le 29 ]; then
                 local selected_service=$(get_service_key "$item")
                 if [ -n "$selected_service" ]; then
                     deploy_service "$selected_service"
@@ -691,7 +704,7 @@ deploy_multiple_services() {
                     print_error "Invalid service number: $item"
                 fi
             else
-                print_error "Invalid service number: $item (must be 1-28)"
+                print_error "Invalid service number: $item (must be 1-29)"
             fi
         else
             # It's a name, check if it exists
@@ -737,7 +750,7 @@ stop_specific_service() {
     # Check if input is a number
     if [[ "$service_input" =~ ^[0-9]+$ ]]; then
         # It's a number, get service by number
-        if [ "$service_input" -ge 1 ] && [ "$service_input" -le 28 ]; then
+        if [ "$service_input" -ge 1 ] && [ "$service_input" -le 29 ]; then
             local selected_service=$(get_service_key "$service_input")
             if [ -n "$selected_service" ]; then
                 # Convert service key to job name
@@ -776,7 +789,7 @@ stop_specific_service() {
                 return
             fi
         else
-            print_error "Invalid service number: $service_input (must be 1-28)"
+            print_error "Invalid service number: $service_input (must be 1-29)"
             return
         fi
     else
@@ -1013,20 +1026,20 @@ main_menu() {
                     print_error "Invalid selection"
                 fi
                 ;;
-            29)
+            30)
                 deploy_generic_docker
                 show_deployed_jobs
                 ;;
-            30)
+            31)
                 deploy_multiple_services
                 ;;
-            31)
+            32)
                 show_deployed_jobs
                 ;;
-            32)
+            33)
                 stop_specific_service
                 ;;
-            33)
+            34)
                 print_warning "This will stop ALL running services. Are you sure? (y/N)"
                 read -p "Confirm: " confirm
                 if [[ $confirm =~ ^[Yy]$ ]]; then

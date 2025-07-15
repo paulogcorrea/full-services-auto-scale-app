@@ -36,7 +36,7 @@ export class ServicesService {
       params = params.set('search', filter.search);
     }
 
-    return this.http.get<ServiceListResponse>(`${environment.apiUrl}/services`, { params })
+    return this.http.get<ServiceListResponse>(`${environment.apiUrl}/services/`, { params })
       .pipe(
         tap(response => {
           this.servicesSubject.next(response.services);

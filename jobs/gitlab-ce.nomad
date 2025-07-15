@@ -24,7 +24,7 @@ job "gitlab-ce" {
     
     network {
       port "http" {
-        static = 8080
+        static = 8090
       }
       port "https" {
         static = 8443
@@ -87,7 +87,7 @@ job "gitlab-ce" {
       
       env {
         GITLAB_OMNIBUS_CONFIG = <<EOF
-external_url 'http://gitlab.local:8080'
+external_url 'http://gitlab.local:8090'
 gitlab_rails['gitlab_shell_ssh_port'] = 2022
 gitlab_rails['time_zone'] = 'UTC'
 
