@@ -25,3 +25,5 @@ nomad-environment/data/*
 frontend/.angular/*
 frontend/node_modules/*
 nomad-environment/data/*
+data/*
+
