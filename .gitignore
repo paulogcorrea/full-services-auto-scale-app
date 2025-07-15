@@ -46,3 +46,17 @@ backend/data/postgresql/pgdata/postgresql.conf
 backend/data/postgresql/pgdata/pg_hba.conf
 backend/data/postgresql/pgdata/pg_ident.conf
 backend/data/postgresql/pgdata/pg_control
+nomad-environment/data/postgresql/pgdata/*
+nomad-environment/data/postgresql/pgdata/pg_wal/*
+nomad-environment/data/postgresql/pgdata/pg_xact/*
+nomad-environment/data/postgresql/pgdata/pg_stat/*
+nomad-environment/data/postgresql/pgdata/pg_subtrans/*
+nomad-environment/data/postgresql/pgdata/pg_tblspc/*
+nomad-environment/data/postgresql/pgdata/pg_log/*
+nomad-environment/data/postgresql/pgdata/postmaster.pid
+nomad-environment/data/postgresql/pgdata/postmaster.opts
+nomad-environment/data/postgresql/pgdata/postgresql.conf
+nomad-environment/data/postgresql/pgdata/pg_hba.conf
+nomad-environment/data/postgresql/pgdata/pg_ident.conf
+nomad-environment/data/postgresql/*.*    
+nomad-environment/data/postgresql/global/*
