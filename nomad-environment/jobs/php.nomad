@@ -4,6 +4,26 @@ job "php-server" {
 
   group "php" {
     count = 1
+    
+    scaling {
+      enabled = true
+      min     = 1
+      max     = 10
+      
+      policy {
+        cooldown            = "1m"
+        evaluation_interval = "30s"
+        
+        check "req_per_second" {
+          source = "prometheus"
+          query  = "rate(nginx_http_requests_total{job=\"php-server\"}[5m])"
+          
+          strategy "target-value" {
+            target = 100
+          }
+        }
+      }
+    }
 
     network {
       port "http" {

@@ -43,7 +43,7 @@ print_status "Starting GitLab CE deployment..."
 
 # Deploy Redis first (GitLab dependency)
 print_status "Deploying Redis..."
-if nomad job run "$PROJECT_ROOT/jobs/redis.nomad"; then
+if nomad job run "$PROJECT_ROOT/nomad-environment/jobs/redis.nomad"; then
     print_status "Redis deployment initiated successfully"
 else
     print_error "Failed to deploy Redis"
@@ -62,7 +62,7 @@ fi
 
 # Deploy GitLab CE
 print_status "Deploying GitLab CE..."
-if nomad job run "$PROJECT_ROOT/jobs/gitlab-ce.nomad"; then
+if nomad job run "$PROJECT_ROOT/nomad-environment/jobs/gitlab-ce.nomad"; then
     print_status "GitLab CE deployment initiated successfully"
 else
     print_error "Failed to deploy GitLab CE"
@@ -72,7 +72,7 @@ fi
 print_status "GitLab CE deployment completed!"
 echo ""
 echo "Service URLs:"
-echo "  GitLab CE: http://localhost:8080"
+echo "  GitLab CE: http://localhost:8090"
 echo "  GitLab CE (HTTPS): https://localhost:8443"
 echo "  GitLab CE (SSH): localhost:2022"
 echo "  Redis: localhost:6379"

@@ -4,6 +4,26 @@ job "nodejs-server" {
 
   group "nodejs" {
     count = 1
+    
+    scaling {
+      enabled = true
+      min     = 1
+      max     = 5
+      
+      policy {
+        cooldown            = "2m"
+        evaluation_interval = "10s"
+        
+        check "avg_cpu" {
+          source = "prometheus"
+          query  = "avg(nomad_client_allocs_cpu_total_percent{job=\"nodejs-server\"})"
+          
+          strategy "target-value" {
+            target = 70
+          }
+        }
+      }
+    }
 
     network {
       port "http" {

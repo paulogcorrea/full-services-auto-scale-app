@@ -4,6 +4,26 @@ job "redis-server" {
 
   group "redis" {
     count = 1
+    
+    scaling {
+      enabled = true
+      min     = 1
+      max     = 3
+      
+      policy {
+        cooldown            = "3m"
+        evaluation_interval = "15s"
+        
+        check "avg_memory" {
+          source = "prometheus"
+          query  = "avg(nomad_client_allocs_memory_usage{job=\"redis-server\"})"
+          
+          strategy "target-value" {
+            target = 80
+          }
+        }
+      }
+    }
 
     network {
       port "redis" {
