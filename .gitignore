@@ -60,3 +60,15 @@ nomad-environment/data/postgresql/pgdata/pg_hba.conf
 nomad-environment/data/postgresql/pgdata/pg_ident.conf
 nomad-environment/data/postgresql/*.*    
 nomad-environment/data/postgresql/global/*
+nomad-environment/data/postgresql/base/1/*
+nomad-environment/data/postgresql/pg_xact/*
+nomad-environment/data/postgresql/pg_wal/*
+nomad-environment/data/postgresql/pg_stat/*
+nomad-environment/data/postgresql/pg_subtrans/*
+nomad-environment/data/postgresql/pg_tblspc/*
+nomad-environment/data/postgresql/pg_log/*
+nomad-environment/logs/*
+nomad-environment/logs/consul.log
+nomad-environment/logs/nomad.log
+nomad-environment/logs/backend.log
+nomad-environment/logs/frontend.log
