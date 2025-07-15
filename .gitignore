@@ -72,3 +72,4 @@ nomad-environment/logs/consul.log
 nomad-environment/logs/nomad.log
 nomad-environment/logs/backend.log
 nomad-environment/logs/frontend.log
+/Users/paulo/projetos/full-services-auto-scale-app/nomad-environment/data/*
