@@ -1,7 +1,7 @@
 #!/bin/bash
 
-# Nomad Services Full Platform Startup Script
-# This script starts the complete platform: PostgreSQL (Docker), Consul, Nomad, Backend API, and Frontend
+# Simplified Startup Script
+# This script starts only PostgreSQL, Backend, and Frontend (no Consul/Nomad)
 
 set -e
 
@@ -15,12 +15,10 @@ NC='\033[0m' # No Color
 
 # Configuration - Updated for new folder structure
 BASE_DIR="$(pwd)"
-NOMAD_DIR="$BASE_DIR/nomad-environment"
 BACKEND_DIR="$BASE_DIR/backend"
 FRONTEND_DIR="$BASE_DIR/frontend"
-LOG_DIR="$NOMAD_DIR/logs"
+LOG_DIR="$BASE_DIR/logs"
 POSTGRES_SETUP_SCRIPT="$BASE_DIR/init-scripts/setup-postgresql.sh"
-POSTGRES_ENV_FILE="$BASE_DIR/.env.postgres"
 
 # Create logs directory
 mkdir -p "$LOG_DIR"
@@ -127,28 +125,6 @@ cleanup() {
         wait "$BACKEND_PID" 2>/dev/null || true
     fi
     
-    # Stop Nomad
-    if [ -f "$NOMAD_DIR/nomad.pid" ]; then
-        NOMAD_PID=$(cat "$NOMAD_DIR/nomad.pid")
-        if kill -0 "$NOMAD_PID" 2>/dev/null; then
-            print_status "Stopping Nomad..."
-            kill "$NOMAD_PID" 2>/dev/null || true
-            wait "$NOMAD_PID" 2>/dev/null || true
-        fi
-        rm -f "$NOMAD_DIR/nomad.pid"
-    fi
-    
-    # Stop Consul
-    if [ -f "$NOMAD_DIR/consul.pid" ]; then
-        CONSUL_PID=$(cat "$NOMAD_DIR/consul.pid")
-        if kill -0 "$CONSUL_PID" 2>/dev/null; then
-            print_status "Stopping Consul..."
-            kill "$CONSUL_PID" 2>/dev/null || true
-            wait "$CONSUL_PID" 2>/dev/null || true
-        fi
-        rm -f "$NOMAD_DIR/consul.pid"
-    fi
-    
     # Stop PostgreSQL Docker container
     if docker ps -q -f name=nomad-services-postgres >/dev/null 2>&1; then
         print_status "Stopping PostgreSQL container..."
@@ -163,13 +139,15 @@ trap cleanup EXIT INT TERM
 
 # Main startup function
 main() {
-    print_header "NOMAD SERVICES FULL PLATFORM STARTUP"
+    print_header "SIMPLE PLATFORM STARTUP"
+    echo -e "${PURPLE}Starting PostgreSQL → Backend → Frontend${NC}"
+    echo ""
     
     # Check prerequisites
     print_status "Checking prerequisites..."
     
     # Check required commands
-    REQUIRED_COMMANDS=(docker docker-compose nomad consul go node npm)
+    REQUIRED_COMMANDS=(docker go node npm)
     for cmd in "${REQUIRED_COMMANDS[@]}"; do
         if ! command_exists "$cmd"; then
             print_error "$cmd is not installed or not in PATH"
@@ -179,8 +157,8 @@ main() {
     
     print_success "All prerequisites are installed"
     
-    # Start PostgreSQL Docker container
-    print_header "STARTING POSTGRESQL (DOCKER)"
+    # 1. Start PostgreSQL Docker container
+    print_header "1. STARTING POSTGRESQL (DOCKER)"
     
     # Check if PostgreSQL setup script exists
     if [ ! -f "$POSTGRES_SETUP_SCRIPT" ]; then
@@ -191,9 +169,20 @@ main() {
     # Start PostgreSQL using our setup script
     print_status "Starting PostgreSQL container..."
     cd "$BASE_DIR"
-    if ! "$POSTGRES_SETUP_SCRIPT" start; then
-        print_error "Failed to start PostgreSQL container"
-        exit 1
+    
+    # Check if container exists, if not create it
+    if ! docker ps -a --format '{{.Names}}' | grep -q "^nomad-services-postgres$"; then
+        print_status "PostgreSQL container doesn't exist, creating it..."
+        if ! "$POSTGRES_SETUP_SCRIPT"; then
+            print_error "Failed to create PostgreSQL container"
+            exit 1
+        fi
+    else
+        # Container exists, just start it
+        if ! "$POSTGRES_SETUP_SCRIPT" start; then
+            print_error "Failed to start PostgreSQL container"
+            exit 1
+        fi
     fi
     
     # Wait for PostgreSQL to be healthy
@@ -201,49 +190,27 @@ main() {
     
     # Verify PostgreSQL is accessible
     print_status "Verifying PostgreSQL connection..."
-    if ! docker exec nomad-services-postgres pg_isready -U nomad_services >/dev/null 2>&1; then
-        print_error "PostgreSQL is not ready"
-        exit 1
-    fi
-    print_success "PostgreSQL is ready and accessible"
+    local max_attempts=30
+    local attempt=1
     
-    # Start Consul
-    print_header "STARTING CONSUL"
-    if ! port_in_use 8500; then
-        print_status "Starting Consul..."
-        cd "$NOMAD_DIR"
-        consul agent -dev -log-level=INFO > "$LOG_DIR/consul.log" 2>&1 &
-        CONSUL_PID=$!
-        echo $CONSUL_PID > "$NOMAD_DIR/consul.pid"
+    while [ $attempt -le $max_attempts ]; do
+        if docker exec nomad-services-postgres pg_isready -U nomad_services >/dev/null 2>&1; then
+            print_success "PostgreSQL is ready and accessible"
+            break
+        fi
         
-        wait_for_service "http://localhost:8500/v1/status/leader" "Consul"
-    else
-        print_success "Consul is already running"
-    fi
-    
-    # Start Nomad
-    print_header "STARTING NOMAD"
-    if ! port_in_use 4646; then
-        print_status "Starting Nomad..."
-        cd "$NOMAD_DIR"
-        
-        # Check if Nomad config exists
-        if [ ! -f "configs/nomad-server.hcl" ]; then
-            print_error "Nomad config file not found at configs/nomad-server.hcl"
+        if [ $attempt -eq $max_attempts ]; then
+            print_error "PostgreSQL failed to become ready after $max_attempts attempts"
             exit 1
         fi
         
-        nomad agent -config=configs/nomad-server.hcl > "$LOG_DIR/nomad.log" 2>&1 &
-        NOMAD_PID=$!
-        echo $NOMAD_PID > "$NOMAD_DIR/nomad.pid"
-        
-        wait_for_service "http://localhost:4646/v1/status/leader" "Nomad"
-    else
-        print_success "Nomad is already running"
-    fi
+        echo -n "."
+        sleep 2
+        attempt=$((attempt + 1))
+    done
     
-    # Start Backend API
-    print_header "STARTING BACKEND API"
+    # 2. Start Backend API
+    print_header "2. STARTING BACKEND API"
     if ! port_in_use 8080; then
         cd "$BACKEND_DIR"
         
@@ -265,8 +232,8 @@ main() {
         print_success "Backend API is already running"
     fi
     
-    # Start Frontend
-    print_header "STARTING FRONTEND"
+    # 3. Start Frontend
+    print_header "3. STARTING FRONTEND"
     if ! port_in_use 4200; then
         cd "$FRONTEND_DIR"
         
@@ -286,27 +253,68 @@ main() {
         npm start > "$LOG_DIR/frontend.log" 2>&1 &
         FRONTEND_PID=$!
         
-        wait_for_service "http://localhost:4200" "Frontend"
+        # Wait for Angular dev server to start
+        print_status "Waiting for Angular dev server to start..."
+        local max_attempts=30
+        local attempt=1
+        local compilation_started=false
+        
+        while [ $attempt -le $max_attempts ]; do
+            # Check if compilation has started by looking for webpack output
+            if [ "$compilation_started" = false ] && grep -q "webpack" "$LOG_DIR/frontend.log" 2>/dev/null; then
+                print_status "Angular compilation started..."
+                compilation_started=true
+            fi
+            
+            # Check if Angular dev server is responding
+            if curl -s -f "http://localhost:4200" > /dev/null 2>&1; then
+                print_success "Frontend is ready!"
+                break
+            fi
+            
+            # Check for compilation errors
+            if grep -q "ERROR" "$LOG_DIR/frontend.log" 2>/dev/null; then
+                print_warning "Compilation errors detected, but continuing..."
+            fi
+            
+            # Check if server is bound but not ready (typical Angular behavior)
+            if curl -s "http://localhost:4200" 2>/dev/null | grep -q "Cannot GET" 2>/dev/null; then
+                print_status "Angular server is bound but still compiling..."
+            fi
+            
+            if [ $attempt -eq $max_attempts ]; then
+                print_warning "Angular dev server is taking longer than expected. Check logs at $LOG_DIR/frontend.log"
+                print_warning "The server might still be starting. You can check http://localhost:4200 manually."
+                break
+            fi
+            
+            # Dynamic sleep based on compilation state
+            if [ "$compilation_started" = true ]; then
+                echo -n "."
+                sleep 2  # Faster polling once compilation started
+            else
+                echo -n "o"
+                sleep 3  # Slower polling initially
+            fi
+            
+            attempt=$((attempt + 1))
+        done
     else
         print_success "Frontend is already running"
     fi
     
     # Display status
     print_header "PLATFORM STATUS"
-    echo -e "${PURPLE}🎉 Nomad Services Platform is now running!${NC}"
+    echo -e "${PURPLE}🎉 Simple Platform is now running!${NC}"
     echo ""
     print_status "Services:"
     print_status "  🐘 PostgreSQL:     localhost:5432 (Docker)"
-    print_status "  📊 Consul UI:      http://localhost:8500"
-    print_status "  🚀 Nomad UI:       http://localhost:4646"
     print_status "  🔧 Backend API:    http://localhost:8080"
     print_status "  🌐 Frontend App:   http://localhost:4200"
     echo ""
     print_status "Quick Links:"
     print_status "  Health Check:      http://localhost:8080/health"
     print_status "  API Base:          http://localhost:8080/api/v1"
-    print_status "  Consul Services:   http://localhost:8500/ui/dc1/services"
-    print_status "  Nomad Jobs:        http://localhost:4646/ui/jobs"
     echo ""
     print_status "Database Info:"
     print_status "  Host:              localhost:5432"
@@ -343,30 +351,21 @@ main() {
 
 # Show usage if help requested
 if [[ "$1" == "-h" || "$1" == "--help" ]]; then
-    echo "Nomad Services Full Platform Startup Script"
+    echo "Simple Platform Startup Script"
     echo ""
-    echo "Usage: $0 [options]"
+    echo "Usage: $0"
     echo ""
-    echo "Options:"
-    echo "  -h, --help     Show this help message"
-    echo "  --dev          Start in development mode (default)"
-    echo "  --prod         Start in production mode"
-    echo ""
-    echo "This script will start:"
-    echo "  - PostgreSQL (Docker container on port 5432)"
-    echo "  - Consul (port 8500)"
-    echo "  - Nomad (port 4646)"
-    echo "  - Backend API (port 8080)"
-    echo "  - Frontend (port 4200)"
+    echo "This script will start in order:"
+    echo "  1. PostgreSQL (Docker container on port 5432)"
+    echo "  2. Backend API (Go application on port 8080)"
+    echo "  3. Frontend (Angular application on port 4200)"
     echo ""
     echo "Prerequisites:"
-    echo "  - Docker and Docker Compose"
-    echo "  - Nomad binary"
-    echo "  - Consul binary"
+    echo "  - Docker (for PostgreSQL)"
     echo "  - Go (for backend)"
     echo "  - Node.js and npm (for frontend)"
     echo ""
-    echo "Logs will be saved to the nomad-environment/logs/ directory"
+    echo "Logs will be saved to the logs/ directory"
     echo "Press Ctrl+C to stop all services"
     exit 0
 fi
