@@ -1053,3 +1053,4 @@ nomad-environment/data/postgresql/pg_stat/db_16384.stat
 nomad-environment/data/postgresql/pg_stat/global.stat
 nomad-environment/data/postgresql/pg_wal/000000010000000000000001
 nomad-environment/data/postgresql/pg_xact/0000
+nomad-environment/data/*
