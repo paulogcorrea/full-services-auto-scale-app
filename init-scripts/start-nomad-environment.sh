@@ -27,7 +27,7 @@ get_host_ip() {
 HOST_IP=$(get_host_ip)
 
 # Configuration - Updated for new folder structure
-BASE_DIR="$(dirname "$(pwd)")"
+BASE_DIR="$(dirname "$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)")"
 NOMAD_ENVIRONMENT_DIR="$BASE_DIR/nomad-environment"
 NOMAD_DATA_DIR="$NOMAD_ENVIRONMENT_DIR/nomad-data"
 NOMAD_CONFIG_FILE="$NOMAD_ENVIRONMENT_DIR/configs/nomad-server.hcl"

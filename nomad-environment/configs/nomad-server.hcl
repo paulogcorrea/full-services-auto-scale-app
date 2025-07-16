@@ -17,7 +17,7 @@ client {
   enabled = true
   
   # Enable Docker volumes
-  driver "docker" {
+  plugin "docker" {
     config {
       volumes {
         enabled = true
