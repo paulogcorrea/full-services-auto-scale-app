@@ -14,7 +14,8 @@ PURPLE='\033[0;35m'
 NC='\033[0m' # No Color
 
 # Configuration - Updated for new folder structure
-BASE_DIR="$(pwd)"
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+BASE_DIR="$(dirname "$SCRIPT_DIR")"
 BACKEND_DIR="$BASE_DIR/backend"
 FRONTEND_DIR="$BASE_DIR/frontend"
 LOG_DIR="$BASE_DIR/logs"
