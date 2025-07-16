@@ -16,15 +16,6 @@ server {
 client {
   enabled = true
   
-  # Enable Docker volumes
-  plugin "docker" {
-    config {
-      volumes {
-        enabled = true
-      }
-    }
-  }
-  
   # Host volume definitions for persistent storage
   host_volume "keycloak-data" {
     path      = "/Users/paulo/projetos/full-services-auto-scale-app/nomad-environment/volumes/keycloak-data"
