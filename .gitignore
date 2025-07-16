@@ -73,3 +73,8 @@ nomad-environment/logs/nomad.log
 nomad-environment/logs/backend.log
 nomad-environment/logs/frontend.log
 /Users/paulo/projetos/full-services-auto-scale-app/nomad-environment/data/*
+nomad-environment/data/postgresql/base/1/*
+nomad-environment/data/postgresql/base/1/1247
+nomad-environment/data/postgresql/base/1/*_vm
+nomad-environment/data/postgresql/base/*/*_vm
+nomad-environment/data/postgresql/base/*/*
