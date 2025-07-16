@@ -68,6 +68,7 @@ nomad-environment/data/postgresql/pg_subtrans/*
 nomad-environment/data/postgresql/pg_tblspc/*
 nomad-environment/data/postgresql/pg_log/*
 nomad-environment/logs/*
+/full-services-auto-scale-app/nomad-environment/data/postgresql/*
 nomad-environment/logs/consul.log
 nomad-environment/logs/nomad.log
 nomad-environment/logs/backend.log

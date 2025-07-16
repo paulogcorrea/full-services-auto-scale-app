@@ -12,14 +12,18 @@ YELLOW='\033[1;33m'
 BLUE='\033[0;34m'
 NC='\033[0m' # No Color
 
+# Get script directory for relative paths
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+BASE_DIR="$(dirname "$SCRIPT_DIR")"
+
 # Configuration
 POSTGRES_CONTAINER_NAME="nomad-services-postgres"
 POSTGRES_USER="nomad_services"
 POSTGRES_PASSWORD="secure_password"
 POSTGRES_DB="nomad_services"
 POSTGRES_PORT="5432"
-POSTGRES_DATA_DIR="./nomad-environment/data/postgresql"
-POSTGRES_BACKUP_DIR="./nomad-environment/backups/postgresql"
+POSTGRES_DATA_DIR="$BASE_DIR/nomad-environment/data/postgresql"
+POSTGRES_BACKUP_DIR="$BASE_DIR/nomad-environment/backups/postgresql"
 
 # Function to print colored output
 print_status() {
@@ -86,9 +90,9 @@ start_postgres() {
         -e POSTGRES_PASSWORD="${POSTGRES_PASSWORD}" \
         -e POSTGRES_DB="${POSTGRES_DB}" \
         -p "${POSTGRES_PORT}:5432" \
-        -v "${PWD}/${POSTGRES_DATA_DIR}:/var/lib/postgresql/data" \
-        -v "${PWD}/${POSTGRES_BACKUP_DIR}:/backups" \
-        -v "${PWD}/init-scripts:/docker-entrypoint-initdb.d" \
+        -v "${POSTGRES_DATA_DIR}:/var/lib/postgresql/data" \
+        -v "${POSTGRES_BACKUP_DIR}:/backups" \
+        -v "${BASE_DIR}/init-scripts:/docker-entrypoint-initdb.d" \
         postgres:13-alpine
     
     print_success "PostgreSQL container started"
@@ -129,7 +133,7 @@ setup_database() {
 create_env_file() {
     print_status "Creating environment configuration file..."
     
-    cat > .env.postgres << EOF
+    cat > "$BASE_DIR/.env.postgres" << EOF
 # PostgreSQL Configuration for Nomad Services Backend API
 DB_HOST=localhost
 DB_PORT=${POSTGRES_PORT}
@@ -173,7 +177,7 @@ show_connection_info() {
 create_backup_script() {
     print_status "Creating backup script..."
     
-    cat > backup-postgresql.sh << 'EOF'
+    cat > "$BASE_DIR/backup-postgresql.sh" << 'EOF'
 #!/bin/bash
 
 # PostgreSQL Backup Script
@@ -229,7 +233,7 @@ find "${BACKUP_DIR}" -name "nomad_services_backup_*.sql" -mtime +7 -delete
 print_success "Backup completed successfully"
 EOF
 
-    chmod +x backup-postgresql.sh
+    chmod +x "$BASE_DIR/backup-postgresql.sh"
     print_success "Backup script created: backup-postgresql.sh"
 }
 
@@ -237,7 +241,7 @@ EOF
 create_restore_script() {
     print_status "Creating restore script..."
     
-    cat > restore-postgresql.sh << 'EOF'
+    cat > "$BASE_DIR/restore-postgresql.sh" << 'EOF'
 #!/bin/bash
 
 # PostgreSQL Restore Script
@@ -317,7 +321,7 @@ docker exec -i "${CONTAINER_NAME}" psql -U "${DB_USER}" -d "${DB_NAME}" < "${BAC
 print_success "Database restored successfully"
 EOF
 
-    chmod +x restore-postgresql.sh
+    chmod +x "$BASE_DIR/restore-postgresql.sh"
     print_success "Restore script created: restore-postgresql.sh"
 }
 
