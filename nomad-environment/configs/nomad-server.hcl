@@ -158,6 +158,15 @@ client {
   }
 }
 
+# Enable Docker plugin with volumes
+plugin "docker" {
+  config {
+    volumes {
+      enabled = true
+    }
+  }
+}
+
 consul {
   address = "127.0.0.1:8500"
 }

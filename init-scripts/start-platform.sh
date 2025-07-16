@@ -14,7 +14,8 @@ PURPLE='\033[0;35m'
 NC='\033[0m' # No Color
 
 # Configuration - Updated for new folder structure
-BASE_DIR="$(pwd)"
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+BASE_DIR="$(dirname "$SCRIPT_DIR")"
 NOMAD_DIR="$BASE_DIR/nomad-environment"
 BACKEND_DIR="$BASE_DIR/backend"
 FRONTEND_DIR="$BASE_DIR/frontend"
@@ -191,9 +192,20 @@ main() {
     # Start PostgreSQL using our setup script
     print_status "Starting PostgreSQL container..."
     cd "$BASE_DIR"
-    if ! "$POSTGRES_SETUP_SCRIPT" start; then
-        print_error "Failed to start PostgreSQL container"
-        exit 1
+    
+    # Check if container exists, if not create it
+    if ! docker ps -a --format '{{.Names}}' | grep -q "^nomad-services-postgres$"; then
+        print_status "PostgreSQL container doesn't exist, creating it..."
+        if ! "$POSTGRES_SETUP_SCRIPT"; then
+            print_error "Failed to create PostgreSQL container"
+            exit 1
+        fi
+    else
+        # Container exists, just start it
+        if ! "$POSTGRES_SETUP_SCRIPT" start; then
+            print_error "Failed to start PostgreSQL container"
+            exit 1
+        fi
     fi
     
     # Wait for PostgreSQL to be healthy
@@ -201,11 +213,24 @@ main() {
     
     # Verify PostgreSQL is accessible
     print_status "Verifying PostgreSQL connection..."
-    if ! docker exec nomad-services-postgres pg_isready -U nomad_services >/dev/null 2>&1; then
-        print_error "PostgreSQL is not ready"
-        exit 1
-    fi
-    print_success "PostgreSQL is ready and accessible"
+    local max_attempts=30
+    local attempt=1
+    
+    while [ $attempt -le $max_attempts ]; do
+        if docker exec nomad-services-postgres pg_isready -U nomad_services > /dev/null 2>&1; then
+            print_success "PostgreSQL is ready and accessible"
+            break
+        fi
+        
+        if [ $attempt -eq $max_attempts ]; then
+            print_error "PostgreSQL failed to become ready after $max_attempts attempts"
+            exit 1
+        fi
+        
+        echo -n "."
+        sleep 2
+        attempt=$((attempt + 1))
+    done
     
     # Start Consul
     print_header "STARTING CONSUL"
