@@ -78,3 +78,6 @@ nomad-environment/data/postgresql/base/1/1247
 nomad-environment/data/postgresql/base/1/*_vm
 nomad-environment/data/postgresql/base/*/*_vm
 nomad-environment/data/postgresql/base/*/*
+nomad-environment/logs/backend.log
+nomad-environment/logs/backend.log
+nomad-environment/logs/backend.log
