@@ -325,7 +325,7 @@ show_service_info() {
             print_status "💡 Database Tips:"
             echo "   • Use these services as backends for your applications"
             echo "   • Data is persisted in Docker volumes"
-            echo "   • Check Nomad UI for detailed service status: http://localhost:4646"
+            echo "   • Check Nomad UI for detailed service status: https://localhost:4646"
             ;;
         "prometheus")
             print_status "💡 Monitoring Tips:"
@@ -490,6 +490,7 @@ start_nomad_server() {
         print_status "Nomad server started successfully!"
         print_status "Nomad UI available at: https://localhost:4646"
         print_status "Note: You may need to accept the self-signed certificate in your browser"
+        print_status "💡 Run 'nomad-environment/scripts/setup-tls.sh' to configure certificate trust"
     else
         print_error "Failed to start Nomad server"
         exit 1
