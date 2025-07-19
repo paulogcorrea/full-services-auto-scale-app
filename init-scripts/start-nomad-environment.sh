@@ -349,7 +349,7 @@ show_service_info() {
     
     echo
     print_status "🔗 Additional Resources:"
-    echo "   • Nomad UI: http://localhost:4646"
+    echo "   • Nomad UI: https://localhost:4646"
     echo "   • Consul UI: http://localhost:8500"
     echo "   • Service logs: nomad alloc logs [allocation-id]"
     echo
@@ -488,7 +488,8 @@ start_nomad_server() {
     # Check if Nomad is running
     if nomad node status &> /dev/null; then
         print_status "Nomad server started successfully!"
-        print_status "Nomad UI available at: http://localhost:4646"
+        print_status "Nomad UI available at: https://localhost:4646"
+        print_status "Note: You may need to accept the self-signed certificate in your browser"
     else
         print_error "Failed to start Nomad server"
         exit 1

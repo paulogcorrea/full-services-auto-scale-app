@@ -2,6 +2,19 @@ datacenter = "dc1"
 data_dir   = "/Users/paulo/projetos/full-services-auto-scale-app/nomad-environment/nomad-data"
 bind_addr  = "127.0.0.1"
 
+# TLS Configuration for HTTPS
+tls {
+  http = true
+  rpc  = true
+  
+  ca_file   = "/Users/paulo/projetos/full-services-auto-scale-app/nomad-environment/certs/ca.pem"
+  cert_file = "/Users/paulo/projetos/full-services-auto-scale-app/nomad-environment/certs/server-cert.pem"
+  key_file  = "/Users/paulo/projetos/full-services-auto-scale-app/nomad-environment/certs/server-key.pem"
+  
+  verify_server_hostname = false
+  verify_https_client    = false
+}
+
 advertise {
   http = "127.0.0.1:4646"
   rpc  = "127.0.0.1:4647"
