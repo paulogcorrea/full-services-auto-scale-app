@@ -82,6 +82,7 @@ get_service_name() {
         "gitlab-ce") echo "GitLab Community Edition" ;;
         "gitea") echo "Gitea Git Service" ;;
         "drone") echo "Drone CI Server" ;;
+        "woodpecker") echo "Woodpecker CI Server" ;;
         "nomad-autoscaler") echo "Nomad Autoscaler" ;;
         "traefik") echo "Traefik Reverse Proxy" ;;
         "traefik-https") echo "Traefik Reverse Proxy (HTTPS)" ;;
@@ -254,6 +255,15 @@ get_service_endpoints() {
             echo "📂 Repositories: http://${HOST_IP}:8080/repos"
             echo "📋 Builds: http://${HOST_IP}:8080/builds"
             echo "⚙️ Settings: http://${HOST_IP}:8080/account/tokens"
+            ;;
+        "woodpecker")
+            echo "🌐 Woodpecker CI Web UI: http://${HOST_IP}:8000"
+            echo "🔧 Woodpecker CI gRPC: ${HOST_IP}:9000"
+            echo "👤 Setup: Configure OAuth with your Git provider"
+            echo "📂 Repositories: http://${HOST_IP}:8000/repos"
+            echo "📋 Pipelines: http://${HOST_IP}:8000/pipelines"
+            echo "⚙️ Settings: http://${HOST_IP}:8000/user"
+            echo "📊 API Health: http://${HOST_IP}:8000/api/healthz"
             ;;
         "nomad-autoscaler")
             echo "🌐 Autoscaler API: http://${HOST_IP}:8080"
@@ -602,19 +612,20 @@ show_service_menu() {
     echo "25) Mattermost Collaboration Tool (mattermost)"
     echo
     
-    print_header "🔧 DEVOPS & VERSION CONTROL (3 services)"
+    print_header "🔧 DEVOPS & VERSION CONTROL (4 services)"
     echo "26) GitLab Community Edition (gitlab-ce)"
     echo "27) Gitea Git Service with Actions (gitea)"
     echo "28) Drone CI Server (drone)"
+    echo "29) Woodpecker CI Server (woodpecker)"
     echo
     
     print_header "📈 AUTOSCALING (1 service)"
-    echo "29) Nomad Autoscaler (nomad-autoscaler)"
+    echo "30) Nomad Autoscaler (nomad-autoscaler)"
     echo
     
     print_header "🌍 NETWORKING & PROXY (2 services)"
-    echo "30) Traefik Reverse Proxy (traefik)"
-    echo "31) Traefik Reverse Proxy (HTTPS) (traefik-https)"
+    echo "31) Traefik Reverse Proxy (traefik)"
+    echo "32) Traefik Reverse Proxy (HTTPS) (traefik-https)"
     echo
     
     print_header "⚙️  ACTIONS"

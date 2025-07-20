@@ -179,6 +179,11 @@ client {
     path      = "/Users/paulo/projetos/full-services-auto-scale-app/nomad-environment/volumes/drone-data"
     read_only = false
   }
+  
+  host_volume "woodpecker_data" {
+    path      = "/Users/paulo/projetos/full-services-auto-scale-app/nomad-environment/volumes/woodpecker-data"
+    read_only = false
+  }
 }
 
 # Enable Docker plugin with volumes
