@@ -169,6 +169,11 @@ client {
     path      = "/Users/paulo/projetos/full-services-auto-scale-app/nomad-environment/volumes/gitlab-data"
     read_only = false
   }
+  
+  host_volume "gitea_data" {
+    path      = "/Users/paulo/projetos/full-services-auto-scale-app/nomad-environment/volumes/gitea-data"
+    read_only = false
+  }
 }
 
 # Enable Docker plugin with volumes
