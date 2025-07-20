@@ -80,6 +80,8 @@ get_service_name() {
         "minio") echo "MinIO S3-Compatible Object Storage" ;;
         "mattermost") echo "Mattermost Collaboration Tool" ;;
         "gitlab-ce") echo "GitLab Community Edition" ;;
+        "gitea") echo "Gitea Git Service" ;;
+        "drone") echo "Drone CI Server" ;;
         "nomad-autoscaler") echo "Nomad Autoscaler" ;;
         "traefik") echo "Traefik Reverse Proxy" ;;
         "traefik-https") echo "Traefik Reverse Proxy (HTTPS)" ;;
@@ -237,6 +239,22 @@ get_service_endpoints() {
             echo "📂 Projects: http://${HOST_IP}:8090/projects"
             echo "⚙️ Admin: http://${HOST_IP}:8090/admin"
             ;;
+        "gitea")
+            echo "🌐 Gitea Web UI: http://${HOST_IP}:3000"
+            echo "📨 Gitea SSH: ${HOST_IP}:2222"
+            echo "👤 Setup: Create admin account on first visit"
+            echo "📂 Repositories: http://${HOST_IP}:3000/explore/repos"
+            echo "⚙️ Admin Panel: http://${HOST_IP}:3000/admin"
+            echo "🔧 Actions: Built-in CI/CD with Gitea Actions"
+            ;;
+        "drone")
+            echo "🌐 Drone CI Web UI: http://${HOST_IP}:8080"
+            echo "🔧 Drone CI gRPC: ${HOST_IP}:9000"
+            echo "👤 Setup: Configure OAuth with your Git provider"
+            echo "📂 Repositories: http://${HOST_IP}:8080/repos"
+            echo "📋 Builds: http://${HOST_IP}:8080/builds"
+            echo "⚙️ Settings: http://${HOST_IP}:8080/account/tokens"
+            ;;
         "nomad-autoscaler")
             echo "🌐 Autoscaler API: http://${HOST_IP}:8080"
             echo "📊 Health Check: http://${HOST_IP}:8080/v1/health"
@@ -384,10 +402,11 @@ get_service_key() {
         24) echo "minio" ;;
         25) echo "mattermost" ;;
         26) echo "gitlab-ce" ;;
-        27) echo "nomad-autoscaler" ;;
-        28) echo "traefik" ;;
-        29) echo "traefik-https" ;;
-        30) echo "generic-docker" ;;
+        27) echo "gitea" ;;
+        28) echo "drone" ;;
+        29) echo "nomad-autoscaler" ;;
+        30) echo "traefik" ;;
+        31) echo "traefik-https" ;;
         *) echo "" ;;
     esac
 }
@@ -537,7 +556,7 @@ stop_nomad_server() {
 
 # Function to show service menu
 show_service_menu() {
-    print_header "================== Available Services (30 Total) =================="
+    print_header "================== Available Services (31 Total) =================="
     echo
     
     print_header "📊 OBSERVABILITY & MONITORING (7 services)"
@@ -583,25 +602,27 @@ show_service_menu() {
     echo "25) Mattermost Collaboration Tool (mattermost)"
     echo
     
-    print_header "🔧 DEVOPS & VERSION CONTROL (1 service)"
+    print_header "🔧 DEVOPS & VERSION CONTROL (3 services)"
     echo "26) GitLab Community Edition (gitlab-ce)"
+    echo "27) Gitea Git Service with Actions (gitea)"
+    echo "28) Drone CI Server (drone)"
     echo
     
     print_header "📈 AUTOSCALING (1 service)"
-    echo "27) Nomad Autoscaler (nomad-autoscaler)"
+    echo "29) Nomad Autoscaler (nomad-autoscaler)"
     echo
     
     print_header "🌍 NETWORKING & PROXY (2 services)"
-    echo "28) Traefik Reverse Proxy (traefik)"
-    echo "29) Traefik Reverse Proxy (HTTPS) (traefik-https)"
+    echo "30) Traefik Reverse Proxy (traefik)"
+    echo "31) Traefik Reverse Proxy (HTTPS) (traefik-https)"
     echo
     
     print_header "⚙️  ACTIONS"
-    echo "30) Deploy Custom Application"
-    echo "31) Deploy Multiple Services"
-    echo "32) Show All Running Services"
-    echo "33) Stop Specific Service"
-    echo "34) Stop All Services"
+    echo "32) Deploy Custom Application"
+    echo "33) Deploy Multiple Services"
+    echo "34) Show All Running Services"
+    echo "35) Stop Specific Service"
+    echo "36) Stop All Services"
     echo " 0) Exit"
     echo
 }
@@ -698,7 +719,7 @@ deploy_multiple_services() {
         # Check if item is a number
         if [[ "$item" =~ ^[0-9]+$ ]]; then
             # It's a number, get service by number
-            if [ "$item" -ge 1 ] && [ "$item" -le 29 ]; then
+            if [ "$item" -ge 1 ] && [ "$item" -le 31 ]; then
                 local selected_service=$(get_service_key "$item")
                 if [ -n "$selected_service" ]; then
                     deploy_service "$selected_service"
@@ -706,7 +727,7 @@ deploy_multiple_services() {
                     print_error "Invalid service number: $item"
                 fi
             else
-                print_error "Invalid service number: $item (must be 1-29)"
+                print_error "Invalid service number: $item (must be 1-31)"
             fi
         else
             # It's a name, check if it exists
@@ -752,7 +773,7 @@ stop_specific_service() {
     # Check if input is a number
     if [[ "$service_input" =~ ^[0-9]+$ ]]; then
         # It's a number, get service by number
-        if [ "$service_input" -ge 1 ] && [ "$service_input" -le 29 ]; then
+        if [ "$service_input" -ge 1 ] && [ "$service_input" -le 31 ]; then
             local selected_service=$(get_service_key "$service_input")
             if [ -n "$selected_service" ]; then
                 # Convert service key to job name
@@ -791,7 +812,7 @@ stop_specific_service() {
                 return
             fi
         else
-            print_error "Invalid service number: $service_input (must be 1-29)"
+            print_error "Invalid service number: $service_input (must be 1-31)"
             return
         fi
     else
@@ -1017,7 +1038,7 @@ main_menu() {
                 cleanup
                 exit 0
                 ;;
-            [1-9]|1[0-9]|2[0-9])
+            [1-9]|[1-2][0-9]|3[0-1])
                 # Get service key by number
                 local selected_service=$(get_service_key "$choice")
                 if [ -n "$selected_service" ]; then
@@ -1028,20 +1049,20 @@ main_menu() {
                     print_error "Invalid selection"
                 fi
                 ;;
-            30)
+            32)
                 deploy_generic_docker
                 show_deployed_jobs
                 ;;
-            31)
+            33)
                 deploy_multiple_services
                 ;;
-            32)
+            34)
                 show_deployed_jobs
                 ;;
-            33)
+            35)
                 stop_specific_service
                 ;;
-            34)
+            36)
                 print_warning "This will stop ALL running services. Are you sure? (y/N)"
                 read -p "Confirm: " confirm
                 if [[ $confirm =~ ^[Yy]$ ]]; then

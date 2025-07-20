@@ -174,6 +174,11 @@ client {
     path      = "/Users/paulo/projetos/full-services-auto-scale-app/nomad-environment/volumes/gitea-data"
     read_only = false
   }
+  
+  host_volume "drone_data" {
+    path      = "/Users/paulo/projetos/full-services-auto-scale-app/nomad-environment/volumes/drone-data"
+    read_only = false
+  }
 }
 
 # Enable Docker plugin with volumes
