@@ -7,7 +7,7 @@ require (
 	github.com/gin-gonic/gin v1.9.1
 	github.com/golang-jwt/jwt/v5 v5.0.0
 	github.com/google/uuid v1.3.1
-	github.com/hashicorp/nomad/api v0.0.0-20231213195942-64e3dca9274b
+	github.com/hashicorp/nomad/api v0.0.0-20250718200626-edd7b5b8e7ce
 	github.com/joho/godotenv v1.4.0
 	github.com/sirupsen/logrus v1.9.3
 	golang.org/x/crypto v0.13.0
@@ -24,7 +24,7 @@ require (
 	github.com/go-playground/universal-translator v0.18.1 // indirect
 	github.com/go-playground/validator/v10 v10.14.0 // indirect
 	github.com/goccy/go-json v0.10.2 // indirect
-	github.com/gorilla/websocket v1.5.0 // indirect
+	github.com/gorilla/websocket v1.5.3 // indirect
 	github.com/hashicorp/cronexpr v1.1.2 // indirect
 	github.com/hashicorp/errwrap v1.1.0 // indirect
 	github.com/hashicorp/go-cleanhttp v0.5.2 // indirect
