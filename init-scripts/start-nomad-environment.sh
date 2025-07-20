@@ -414,9 +414,10 @@ get_service_key() {
         26) echo "gitlab-ce" ;;
         27) echo "gitea" ;;
         28) echo "drone" ;;
-        29) echo "nomad-autoscaler" ;;
-        30) echo "traefik" ;;
-        31) echo "traefik-https" ;;
+        29) echo "woodpecker" ;;
+        30) echo "nomad-autoscaler" ;;
+        31) echo "traefik" ;;
+        32) echo "traefik-https" ;;
         *) echo "" ;;
     esac
 }
@@ -566,7 +567,7 @@ stop_nomad_server() {
 
 # Function to show service menu
 show_service_menu() {
-    print_header "================== Available Services (31 Total) =================="
+    print_header "================== Available Services (32 Total) =================="
     echo
     
     print_header "📊 OBSERVABILITY & MONITORING (7 services)"
@@ -629,11 +630,11 @@ show_service_menu() {
     echo
     
     print_header "⚙️  ACTIONS"
-    echo "32) Deploy Custom Application"
-    echo "33) Deploy Multiple Services"
-    echo "34) Show All Running Services"
-    echo "35) Stop Specific Service"
-    echo "36) Stop All Services"
+    echo "33) Deploy Custom Application"
+    echo "34) Deploy Multiple Services"
+    echo "35) Show All Running Services"
+    echo "36) Stop Specific Service"
+    echo "37) Stop All Services"
     echo " 0) Exit"
     echo
 }
@@ -730,7 +731,7 @@ deploy_multiple_services() {
         # Check if item is a number
         if [[ "$item" =~ ^[0-9]+$ ]]; then
             # It's a number, get service by number
-            if [ "$item" -ge 1 ] && [ "$item" -le 31 ]; then
+            if [ "$item" -ge 1 ] && [ "$item" -le 32 ]; then
                 local selected_service=$(get_service_key "$item")
                 if [ -n "$selected_service" ]; then
                     deploy_service "$selected_service"
@@ -738,7 +739,7 @@ deploy_multiple_services() {
                     print_error "Invalid service number: $item"
                 fi
             else
-                print_error "Invalid service number: $item (must be 1-31)"
+                print_error "Invalid service number: $item (must be 1-32)"
             fi
         else
             # It's a name, check if it exists
@@ -784,7 +785,7 @@ stop_specific_service() {
     # Check if input is a number
     if [[ "$service_input" =~ ^[0-9]+$ ]]; then
         # It's a number, get service by number
-        if [ "$service_input" -ge 1 ] && [ "$service_input" -le 31 ]; then
+        if [ "$service_input" -ge 1 ] && [ "$service_input" -le 32 ]; then
             local selected_service=$(get_service_key "$service_input")
             if [ -n "$selected_service" ]; then
                 # Convert service key to job name
@@ -1049,7 +1050,7 @@ main_menu() {
                 cleanup
                 exit 0
                 ;;
-            [1-9]|[1-2][0-9]|3[0-1])
+            [1-9]|[1-2][0-9]|3[0-2])
                 # Get service key by number
                 local selected_service=$(get_service_key "$choice")
                 if [ -n "$selected_service" ]; then
@@ -1060,20 +1061,20 @@ main_menu() {
                     print_error "Invalid selection"
                 fi
                 ;;
-            32)
+            33)
                 deploy_generic_docker
                 show_deployed_jobs
                 ;;
-            33)
+            34)
                 deploy_multiple_services
                 ;;
-            34)
+            35)
                 show_deployed_jobs
                 ;;
-            35)
+            36)
                 stop_specific_service
                 ;;
-            36)
+            37)
                 print_warning "This will stop ALL running services. Are you sure? (y/N)"
                 read -p "Confirm: " confirm
                 if [[ $confirm =~ ^[Yy]$ ]]; then
