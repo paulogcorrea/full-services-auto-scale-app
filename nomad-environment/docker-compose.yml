@@ -45,7 +45,7 @@ services:
 
   # Nomad
   nomad:
-    image: hashicorp/nomad:1.7
+    image: hashicorp/nomad:1.10
     container_name: nomad-server
     command: ["nomad", "agent", "-dev", "-bind=0.0.0.0", "-log-level=INFO"]
     ports:
