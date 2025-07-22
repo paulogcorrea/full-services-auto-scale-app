@@ -8,7 +8,7 @@ require (
 	github.com/golang-jwt/jwt/v5 v5.0.0
 	github.com/google/uuid v1.3.1
 	github.com/hashicorp/nomad/api v0.0.0-20250718200626-edd7b5b8e7ce
-	github.com/joho/godotenv v1.4.0
+	github.com/joho/godotenv v1.5.1
 	github.com/sirupsen/logrus v1.9.3
 	golang.org/x/crypto v0.13.0
 	gorm.io/driver/postgres v1.5.2
