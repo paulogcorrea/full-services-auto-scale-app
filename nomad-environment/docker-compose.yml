@@ -25,7 +25,7 @@ services:
 
   # Consul
   consul:
-    image: hashicorp/consul:1.17
+    image: hashicorp/consul:1.21
     container_name: nomad-consul
     command: ["consul", "agent", "-dev", "-client=0.0.0.0", "-log-level=INFO"]
     ports:
