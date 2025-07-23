@@ -3,7 +3,7 @@ version: '3.8'
 services:
   # PostgreSQL Database
   postgres:
-    image: postgres:13
+    image: postgres:17
     container_name: nomad-postgres
     environment:
       POSTGRES_USER: nomad_services
