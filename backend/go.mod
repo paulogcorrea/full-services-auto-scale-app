@@ -13,8 +13,8 @@ require (
 	github.com/joho/godotenv v1.5.1
 	github.com/sirupsen/logrus v1.9.3
 	golang.org/x/crypto v0.40.0
-	gorm.io/driver/postgres v1.6.0
-	gorm.io/gorm v1.25.10
+	gorm.io/driver/postgres v1.5.2
+	gorm.io/gorm v1.30.1
 )
 
 require (
