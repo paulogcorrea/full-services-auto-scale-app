@@ -90,6 +90,8 @@ github.com/hashicorp/nomad/api v0.0.0-20250718200626-edd7b5b8e7ce h1:bMO+PuGw6eK
 github.com/hashicorp/nomad/api v0.0.0-20250718200626-edd7b5b8e7ce/go.mod h1:y4olHzVXiQolzyk6QD/gqJxQTnnchlTf/QtczFFKwOI=
 github.com/hashicorp/nomad/api v0.0.0-20250722145331-e6d63faf58c1 h1:/GjaHzfoO2B3E3Lz+avR0yUp0iwvNv57b2msfBLlPVg=
 github.com/hashicorp/nomad/api v0.0.0-20250722145331-e6d63faf58c1/go.mod h1:y4olHzVXiQolzyk6QD/gqJxQTnnchlTf/QtczFFKwOI=
+github.com/hashicorp/nomad/api v0.0.0-20250729122306-4ce937884dd7 h1:G/2LJfJSq8hiOVxHJWP7J2bW0z9wHHpIiranfnZkS+I=
+github.com/hashicorp/nomad/api v0.0.0-20250729122306-4ce937884dd7/go.mod h1:y4olHzVXiQolzyk6QD/gqJxQTnnchlTf/QtczFFKwOI=
 github.com/jackc/pgpassfile v1.0.0 h1:/6Hmqy13Ss2zCq62VdNG8tM1wchn8zjSGOBJ6icpsIM=
 github.com/jackc/pgpassfile v1.0.0/go.mod h1:CEx0iS5ambNFdcRtxPj5JhEz+xB6uRky5eyVu/W2HEg=
 github.com/jackc/pgservicefile v0.0.0-20221227161230-091c0ba34f0a h1:bbPeKD0xmW/Y25WS6cokEszi5g+S0QxI/d45PkRi7Nk=
@@ -205,6 +207,8 @@ golang.org/x/net v0.41.0 h1:vBTly1HeNPEn3wtREYfy4GZ/NECgw2Cnl+nK6Nz3uvw=
 golang.org/x/net v0.41.0/go.mod h1:B/K4NNqkfmg07DQYrbwvSluqCJOOXwUjeb/5lOisjbA=
 golang.org/x/sync v0.15.0 h1:KWH3jNZsfyT6xfAfKiz6MRNmd46ByHDYaZ7KSkCtdW8=
 golang.org/x/sync v0.15.0/go.mod h1:1dzgHSNfp02xaA81J2MS99Qcpr2w7fw1gpm99rleRqA=
+golang.org/x/sync v0.16.0 h1:ycBJEhp9p4vXvUZNszeOq0kGTPghopOL8q0fq3vstxw=
+golang.org/x/sync v0.16.0/go.mod h1:1dzgHSNfp02xaA81J2MS99Qcpr2w7fw1gpm99rleRqA=
 golang.org/x/sys v0.0.0-20201119102817-f84b799fce68/go.mod h1:h1NjWce9XRLGQEsW7wpKNCjG9DtNlClVuFLEZdDNbEs=
 golang.org/x/sys v0.0.0-20210615035016-665e8c7367d1/go.mod h1:oPkhp1MJrh7nUepCBck5+mAzfO9JrbApNNgaTdGDITg=
 golang.org/x/sys v0.0.0-20210630005230-0f9fa26af87c/go.mod h1:oPkhp1MJrh7nUepCBck5+mAzfO9JrbApNNgaTdGDITg=
