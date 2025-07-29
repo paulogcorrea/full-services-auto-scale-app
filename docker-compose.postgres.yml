@@ -3,7 +3,7 @@ version: '3.8'
 services:
   # PostgreSQL Database for Nomad Services Backend API
   postgres:
-    image: postgres:13-alpine
+    image: postgres:17-alpine
     container_name: nomad-services-postgres
     environment:
       POSTGRES_USER: ${POSTGRES_USER:-nomad_services}
