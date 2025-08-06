@@ -2,7 +2,7 @@ module nomad-services-api
 
 go 1.23.0
 
-toolchain go1.24.5
+toolchain go1.24.6
 
 require (
 	github.com/gin-contrib/cors v1.7.6
