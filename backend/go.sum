@@ -110,6 +110,8 @@ github.com/hashicorp/nomad/api v0.0.0-20250811082657-225ac2938a05 h1:9fbHa34uM1G
 github.com/hashicorp/nomad/api v0.0.0-20250811082657-225ac2938a05/go.mod h1:y4olHzVXiQolzyk6QD/gqJxQTnnchlTf/QtczFFKwOI=
 github.com/hashicorp/nomad/api v0.0.0-20250811131312-7964c5ab18e1 h1:fy26WEXcxESawJQ1OI2DsBZ8JyQorC7oDNZ349ZYu68=
 github.com/hashicorp/nomad/api v0.0.0-20250811131312-7964c5ab18e1/go.mod h1:y4olHzVXiQolzyk6QD/gqJxQTnnchlTf/QtczFFKwOI=
+github.com/hashicorp/nomad/api v0.0.0-20250812194633-2d771f0f103f h1:W7TTjxF7B5SmFjn6Z9xXDaPw7PGK08t0Lz2kREJCVzM=
+github.com/hashicorp/nomad/api v0.0.0-20250812194633-2d771f0f103f/go.mod h1:y4olHzVXiQolzyk6QD/gqJxQTnnchlTf/QtczFFKwOI=
 github.com/jackc/pgpassfile v1.0.0 h1:/6Hmqy13Ss2zCq62VdNG8tM1wchn8zjSGOBJ6icpsIM=
 github.com/jackc/pgpassfile v1.0.0/go.mod h1:CEx0iS5ambNFdcRtxPj5JhEz+xB6uRky5eyVu/W2HEg=
 github.com/jackc/pgservicefile v0.0.0-20221227161230-091c0ba34f0a h1:bbPeKD0xmW/Y25WS6cokEszi5g+S0QxI/d45PkRi7Nk=
